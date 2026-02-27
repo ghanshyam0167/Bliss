@@ -1,0 +1,392 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/a268eb4fa1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" type="text/css" href="/static/update.css">
+</head>
+
+<body>
+    <div class="upcoming">
+        <div class="upcomingcontainers">
+            <div class="upcominglabel">Coming this week</div>
+            <div class="contentcontainer">
+                <div class="horz-scroll" style="width: 100%;">
+                    <div class="main">
+                        <div class="main-scroll-div">
+                            <div class="cover">
+                                <div class="btn-child-1">
+                                    <button class="icon" onclick="scrolll(0)">
+                                        <i class="fas fa-angle-left"> </i>
+                                    </button>
+                                </div>
+                                <div class="scroll-images" id="scroll-images-2" style=" padding: 40px 0; ">
+                                    {% for card in entry4 %}
+                                    <div class="child">
+                                        <div class="slider-image">
+                                            <div class="premiumcron" style="height: 32px; width: 32px; position: absolute; top: 10px; right: 10px; padding: 6px; border-radius: 50%; background-color: black; display: flex;
+                align-items: center; justify-content: center; z-index: 1;">
+                                                <span style="height: 20px; width: 20px;"> <img
+                                                        src="/static/web images/king_2545603.png" alt=""
+                                                        style="height: 100%; width: 100%; object-fit: cover; border-radius: 50%; position: inherit;"></span>
+                                            </div>
+                                            <a href="/subscribe/">
+                                                <img src="{{card.card_image.url}}" style="object-fit: fill;">
+                                                <div class="slider-image-hover-text">
+                                                    <div class="slider-image-hover-text-1">Tanzania</div>
+                                                    <div class="slider-image-hover-text-2">{{card.card_desc}}</div>
+                                                    <div class="slider-image-hover-text-3"> Read more<i
+                                                            class="fa-solid fa-arrow-right"></i></div>
+                                                </div>
+                                                <div class="slider-img-text"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="btn-child-2">
+                                    <button class="icon" onclick="scrollr(0)">
+                                        <i class="fas fa-angle-right"> </i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="upcomingcontainers">
+            <div class="upcominglabel">Today's best pick </div>
+            <div class="contentcontainer">
+                <div class="horz-scroll" style="width: 100%;">
+                    <div class="main">
+                        <div class="main-scroll-div">
+                            <div class="cover">
+                                <div class="btn-child-1">
+                                    <button class="icon" onclick="scrolll(1)">
+                                        <i class="fas fa-angle-left"> </i>
+                                    </button>
+                                </div>
+                                <div class="scroll-images" id="scroll-images-2" style=" padding: 40px 0; ">
+                                    {% for card in entry3 %}
+                                    <div class="child">
+                                        <div class="slider-image">
+                                            <!-- <div class="premiumcron" style="height: 32px; width: 32px; position: absolute; top: 10px; right: 10px; padding: 6px; border-radius: 50%; background-color: black; display: flex;
+                align-items: center; justify-content: center; z-index: 1;">
+                                                <span style="height: 20px; width: 20px;"> <img
+                                                        src="/static/web images/king_2545603.png" alt=""
+                                                        style="height: 100%; width: 100%; object-fit: cover; border-radius: 50%; position: inherit;"></span>
+                                            </div> -->
+                                            <a href="/subscribe/">
+                                                <img src="{{card.card_image.url}}" style="object-fit: fill;">
+                                                <div class="slider-image-hover-text">
+                                                    <div class="slider-image-hover-text-1">Tanzania</div>
+                                                    <div class="slider-image-hover-text-2">{{card.card_desc}}</div>
+                                                    <div class="slider-image-hover-text-3"> Read more<i
+                                                            class="fa-solid fa-arrow-right"></i></div>
+                                                </div>
+                                                <div class="slider-img-text"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="btn-child-2">
+                                    <button class="icon" onclick="scrollr(1)">
+                                        <i class="fas fa-angle-right"> </i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="upcomingcontainers">
+            <div class="upcominglabel" style="margin-bottom: inherit;">Event's organising this week </div>
+            <div class="inner-feed-event">
+                <div class="event-card-scroller">
+                    {% for ev in eventdata %}
+                    <div class="eventcard-child">
+                        <div class="eventcard">
+                            <div class="design-event">
+                                <div class="eventimg"><img src="{{ ev.eventimg.url }}" alt=""></div>
+                                <div class="eventdetails">
+                                    <div class="ev-det-top">
+                                        <div class="eventusercircle">
+                                            {% for userprofile in Userdetail%}
+                                    {% if ev.user == userprofile.user %}
+                                    <img src="{{ userprofile.Profileimage.url }}" alt="">
+                                    {%endif%}
+                                    {% endfor%}
+                                        </div>
+                                        <div class="eventitle">
+                                            <p>
+                                                Abhinav Pandit invites for {{ev.eventtitle}}
+                                                 </p>
+                                        </div>
+                                    </div>
+                                    <div class="ev-det-middle">
+                                        <div class="det-middle-left">
+                                            <p>Live Event</p>
+                                            <p>&#x20B9; {{ev.event_fee}}</p>
+                                        </div>
+                                        <div class="det-middle-right">
+                                            <div class="event-register">
+                                                <span>Register</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="eventicons">
+                                    <div class="eventdetailsicon">
+                                        <div class="det-ico-left whileclose">
+                                            <span class="material-symbols-outlined toroticon">
+                                                arrow_upward
+                                            </span>
+                                        </div>
+                                        <div class="det-ico-middle"><span>Event details</span></div>
+                                        <div class="det-ico-right"></div>
+                                    </div>
+                                    <div class="eventregisterd">
+                                        <div class="person-icon">
+                                            <span class="material-symbols-outlined">
+                                                account_circle
+                                            </span>
+                                        </div>
+                                        <div class="registercount"><span>321 already registered</span></div>
+                                    </div>
+                                </div>
+                                <div class="whileclosecircle">
+                                    {% for userprofile in Userdetail%}
+                                    {% if ev.user == userprofile.user %}
+                                    <img src="{{ userprofile.Profileimage.url }}" alt="">
+                                    {%endif%}
+                                    {% endfor%}
+                                </div>
+                            </div>
+                            <div class="onhover-card" style="background-image: url('{{ev.eventimg.url}}');">
+                                <div class="designpreviewcard">
+                                    <div class="onhover-card-details-event">
+                                        <div class="clsdetails">
+                                            <span class="material-symbols-outlined">
+                                                close
+                                            </span>
+                                        </div>
+                                        <div class="onhover-event-title tobeflex">
+                                            <span class="">{{ev.eventtitle}}</span>
+                                        </div>
+                                        <div class="onhover-event-category"><span class="">(
+                                            {{ev.eventcat}} )</span></div>
+                                        <div class="onhover-event-desciption"><span>{{ev.eventdesc}}</span></div>
+                                        <div class="onhover-horz-border"></div>
+                                        <div class="special-guests-label"><span>Special guest</span></div>
+                                        <div class="special-guest-design-event">
+                                            <div class="guest-name-display">
+                                                <div class="star-icon">
+                                                    <span class="material-symbols-outlined">
+                                                        star
+                                                    </span>
+                                                </div>
+                                                <div class="star-name"><span>{{ev.event_guest}}</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="onhover-horz-border"></div>
+                
+                                        <div class="onhover-card-labels"><span>Informations</span></div>
+                                        <div class="information-design">
+                                            <div class="id-icon"><span class="material-symbols-outlined">
+                                                    currency_rupee
+                                                </span></div>
+                                            <div class="id-icon-name">
+                                                {% if ev.event_fee %}
+                                                <span>{{ev.event_fee}}</span>
+                                                {% else%}
+            
+                                                <span>Free
+                                                    tickets</span>
+                                                    {% endif %}
+                                                </div>
+            
+                                        </div>
+                                        <div class="information-design">
+                                            <div class="id-icon"><span class="material-symbols-outlined">
+                                                    calendar_today
+                                                </span></div>
+                                            <div class="id-icon-name"><span>{{ev.eventdmonth}} {{ev.eventdday}},
+                                                    {{ev.eventdyear}}</span></div>
+                                        </div>
+                                        <div class="information-design">
+                                            <div class="id-icon"><span class="material-symbols-outlined">
+                                                    schedule
+                                                </span></div>
+                                            <div class="id-icon-name">
+                                                <span>From</span>&nbsp;
+                                                <span>{{ev.eventfhr}}</span>
+                                                <span style="font-size: 18px;">:</span>
+                                                <span>{{ev.eventfmin}}
+                                                </span>
+                                                <span>{{ev.eventfampm}}</span>&nbsp;
+                                                <span>---</span>
+                                                &nbsp;
+                                                <span>To</span>&nbsp;
+                                                <span>{{ev.eventthr}}</span>
+                                                <span style="font-size: 18px;">:</span>
+                                                <span>{{ev.eventtmin}}
+                                                </span>
+                                                <span>{{ev.eventtampm}}</span>
+                                            </div>
+                                        </div>
+                                        {% if ev.eventfr_tillmonth %}
+                                        <div class="information-design" style="display: flex;">
+                                            <div class="id-icon"><span class="material-symbols-outlined">
+                                                    restart_alt
+                                                </span></div>
+                                            <div class="id-icon-name">
+                                                <span>Event will held for continous</span>&nbsp;
+                                                <span>{{ ev.eventfr_every}}</span>&nbsp;
+                                                <span>times a</span>&nbsp;
+                                                <span>{{ev.eventfr_basis}}</span>&nbsp;
+                                                <span>till</span>&nbsp;
+                                                <span>{{ev.eventfr_tillmonth}} {{ev.eventfr_tillday}}, {{ev.eventfr_tillyear}}</span>
+                                            </div>
+                                        </div>
+                                        {%endif%}
+                                        <div class="information-design">
+                                            <div class="id-icon"><span class="material-symbols-outlined">
+                                                    location_on
+                                                </span></div>
+                                            <div class="id-icon-name">
+                                                {% if ev.eventaddressp %}
+                                                <span>{{ev.eventaddressp}}</span>
+                                                {% else %}
+                                                <span><a href="{{ev.eventaddressv}}">{{ev.eventaddressv}}</a></span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="onhover-card-labels"><span>Requirements</span></div>
+                                        <div class="information-design">
+                                            <div class="id-icon"><span class="material-symbols-outlined">
+                                                    person
+                                                </span></div>
+                                            <div class="id-icon-name"><span>{{ev.event_req}}</span></div>
+                                        </div>
+                
+                                    </div>
+                
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    {% endfor %} 
+                </div>
+            </div>
+            
+        </div>
+        <div class="upcomingcontainers">
+            <div class="upcominglabel">Upcoming Next week</div>
+            <div class="contentcontainer">
+                <div class="horz-scroll" style="width: 100%;">
+                    <div class="main">
+                        <div class="main-scroll-div">
+                            <div class="cover">
+                                <div class="btn-child-1">
+                                    <button class="icon" onclick="scrolll(2)">
+                                        <i class="fas fa-angle-left"> </i>
+                                    </button>
+                                </div>
+                                <div class="scroll-images" id="scroll-images-2" style=" padding: 40px 0; ">
+                                    {% for card in entry1 %}
+                                    <div class="child">
+                                        <div class="slider-image">
+                                            <div class="premiumcron" style="height: 32px; width: 32px; position: absolute; top: 10px; right: 10px; padding: 6px; border-radius: 50%; background-color: black; display: flex;
+                align-items: center; justify-content: center; z-index: 1;">
+                                                <span style="height: 20px; width: 20px;"> <img
+                                                        src="/static/web images/king_2545603.png" alt=""
+                                                        style="height: 100%; width: 100%; object-fit: cover; border-radius: 50%; position: inherit;"></span>
+                                            </div>
+                                            <a href="/subscribe/">
+                                                <img src="{{card.card_image.url}}" style="object-fit: fill;">
+                                                <div class="slider-image-hover-text">
+                                                    <div class="slider-image-hover-text-1">Tanzania</div>
+                                                    <div class="slider-image-hover-text-2">{{card.card_desc}}</div>
+                                                    <div class="slider-image-hover-text-3"> Read more<i
+                                                            class="fa-solid fa-arrow-right"></i></div>
+                                                </div>
+                                                <div class="slider-img-text"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="btn-child-2">
+                                    <button class="icon" onclick="scrollr(2)">
+                                        <i class="fas fa-angle-right"> </i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="upcomingcontainers">
+            <div class="upcominglabel">Upcoming Free contents</div>
+            <div class="contentcontainer">
+                <div class="horz-scroll" style="width: 100%;">
+                    <div class="main">
+                        <div class="main-scroll-div">
+                            <div class="cover">
+                                <div class="btn-child-1">
+                                    <button class="icon" onclick="scrolll(3)">
+                                        <i class="fas fa-angle-left"> </i>
+                                    </button>
+                                </div>
+                                <div class="scroll-images" id="scroll-images-2" style=" padding: 40px 0; ">
+                                    {% for card in entry2 %}
+                                    <div class="child">
+                                        <div class="slider-image">
+                                            <!-- <div class="premiumcron" style="height: 32px; width: 32px; position: absolute; top: 10px; right: 10px; padding: 6px; border-radius: 50%; background-color: black; display: flex;
+                align-items: center; justify-content: center; z-index: 1;">
+                                                <span style="height: 20px; width: 20px;"> <img
+                                                        src="/static/web images/king_2545603.png" alt=""
+                                                        style="height: 100%; width: 100%; object-fit: cover; border-radius: 50%; position: inherit;"></span>
+                                            </div> -->
+                                            <a href="/subscribe/">
+                                                <img src="{{card.card_image.url}}" style="object-fit: fill;">
+                                                <div class="slider-image-hover-text">
+                                                    <div class="slider-image-hover-text-1">Tanzania</div>
+                                                    <div class="slider-image-hover-text-2">{{card.card_desc}}</div>
+                                                    <div class="slider-image-hover-text-3"> Read more<i
+                                                            class="fa-solid fa-arrow-right"></i></div>
+                                                </div>
+                                                <div class="slider-img-text"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="btn-child-2">
+                                    <button class="icon" onclick="scrollr(3)">
+                                        <i class="fas fa-angle-right"> </i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="{% static 'eventhandle.js' %}"></script>
+<script type="text/javascript" src="{% static 'feeprojecr.js' %}"></script>
+
+</html>

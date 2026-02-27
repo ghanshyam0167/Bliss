@@ -1,0 +1,1855 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="rightcolumn" id="home">
+    <div class="feed-div">
+        <div class="scroll-feed">
+            <div class="inner-scroll-feed">
+                <div class="feeds">
+                   <!-- Facebook story clone -->
+                    <!-- <div class="feeds-child">
+                        <div class="stories-div">
+                            <div class="story-scroll">
+                                <div class="story-child">
+                                    <div class="story">
+                                        <div class="desing-story">
+                                            <div class="user-story-post">
+                                                <div class="user-photo">
+                                                    {% for userdetail in Userdetail %}
+                                                    {% if userdetail.user == user %}
+                                                    <img src="{{ userdetail.Profileimage.url }}"
+                                                        alt="">
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                </div>
+                                                <div class="user-story-add-opt">
+                                                    <span class="create-story-label">Create story</span>
+                                                    <div class="add-plus-icon">
+                                                        <div class="plus-icon">
+                                                            <span class="material-symbols-outlined">
+                                                                add
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% for s in story%}
+                                {% if s.user == user %}
+                                <div class="story-child">
+                                    <div class="story">
+                                        <div class="desing-story">
+
+                                            <div class="regular-story">
+                                                <div class="story-inner-content">
+                                                    <input type="hidden" id="takingvalueforbackground" value="{{ s.contentbackground }}">
+                                                    {% if s.storyfile %}
+                                                    <img src="{{s.storyfile.url}}" alt="">
+                                                    {% else %}
+                                                    <div class="storytextcontent">
+                                                        <input type="hidden" id="takingvalueforstyle" value='{{ s.contentfstyle }}'>
+                                                        <span>{{ s.contenttext }}</span>
+                                                    </div>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="story-circle">
+                                                    {% for userdetail in Userdetail %}
+                                                    {% if userdetail.user == s.user %}
+                                                    <img src="{{ userdetail.Profileimage.url }}"
+                                                        alt="">
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                </div>
+                                                <div class="story-creator-name">
+                                                    <div class="story-name">
+                                                        <span>{{user.first_name}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                                {% else %}
+                                <div class="story-child">
+                                    <div class="story">
+                                        <div class="desing-story">
+
+                                            <div class="regular-story">
+                                                <div class="story-inner-content">
+                                                    <input type="hidden" id="takingvalueforbackground" value="{{ s.contentbackground }}">
+                                                    {% if s.storyfile %}
+                                                    <img src="{{s.storyfile.url}}" alt="">
+                                                    {% else %}
+                                                    <div class="storytextcontent">
+                                                        <input type="hidden" id="takingvalueforstyle" value='{{ s.contentfstyle }}'>
+                                                        <span>{{ s.contenttext }}</span>
+                                                    </div>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="story-circle">
+                                                    {% for userdetail in Userdetail %}
+                                                    {% if userdetail.user == s.user %}
+                                                    <img src="{{ userdetail.Profileimage.url }}"
+                                                        alt="">
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                </div>
+                                                <div class="story-creator-name">
+                                                    <div class="story-name">
+                                                        <span>{{s.user.first_name}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                               {% endfor %}
+
+
+                            </div>
+                            <div class="stories-btn-left storybtn">
+                                <span class="material-symbols-outlined">
+                                    arrow_back_ios_new
+                                </span>
+                            </div>
+                            <div class="stories-btn-right storybtn">
+                                <span class="material-symbols-outlined">
+                                    arrow_forward_ios
+                                </span>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="feeds-child">
+                        <div class="user-post-opt">
+                            <div class="inner-post-opt">
+                                <div class="post-opt-up">
+                                    <div class="user-post-circle-div">
+                                        <div class="user-post-circle">
+                                            {% for userdetail in Userdetail %}
+                                            {% if userdetail.user == user %}
+                                            <img src="{{ userdetail.Profileimage.url }}"
+                                                alt="">
+                                                {% endif %}
+                                                {% endfor %}
+                                        </div>
+                                    </div>
+                                    <div class="post-input-div">
+                                        <div class="post-input">
+                                            <a><span>Post a blog, reach more.</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="post-opt-border"></div>
+                                <div class="post-opt-down">
+                                    <div class="post-opt-down-small-divs">
+                                        <div class="opt-forpost openwithimgfield">
+                                            <span class="material-symbols-outlined">
+                                                image
+                                            </span>
+                                            <span>Photos</span>
+                                        </div>
+                                    </div>
+                                    <div class="post-opt-down-small-divs">
+                                        <div class="opt-forpost">
+                                            <span class="material-symbols-outlined">
+                                                attach_file
+                                            </span>
+                                            <span>Attach file</span>
+                                        </div>
+                                    </div>
+                                    <div class="post-opt-down-small-divs">
+                                        <div class="opt-forpost openeventform">
+                                            <span class="material-symbols-outlined">
+                                                event
+                                            </span>
+                                            <span>Event</span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% for p in post2 %}
+                    <div class="feeds-child">
+                        <div class="feed-card">
+                            <div class="design-feed">
+                                <div class="feed-header">
+                                    <div class="user-description">
+                                        <div class="user-profile-circle">
+                                            <div class="profile-circle">
+                                                <a href="/myprofile-lg/?pk={{p.user_id}}">
+                                                    {% for userdetail in Userdetail %}
+                                                    {% if userdetail.user == p.user %}
+                                                    <img src="{{ userdetail.Profileimage.url }}"
+                                                        alt="">
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                    </a>
+                                            </div>
+                                        </div>
+                                        <div class="user-profile-name">
+                                            <div class="display-user-name">
+                                                <span class="user-name">
+                                                    {{ p.user.first_name }}
+                                                </span>
+                                            </div>
+                                            <div class="display-user-pdate">
+                                                <span class="minus-icon">
+                                                    <span class="material-symbols-outlined">
+                                                        remove
+                                                    </span>
+                                                </span>
+                                                <span class="feed-pdate">
+                                                    {% if p.created_at %}
+                                                    {% with current_time=now %}
+                                                        {% with time_difference=current_time|timeuntil:p.created_at %}
+                                                            {% if time_difference|floatformat:0 <= 60 %}
+                                                                <p>Created {{ time_difference|floatformat:0 }} minutes ago</p>
+                                                            {% else %}
+                                                                <p>Created at: {{ p.created_at|date:"D, d M Y H:i:s" }}</p>
+                                                            {% endif %}
+                                                        {% endwith %}
+                                                    {% endwith %}
+                                                {% endif %}
+                                                
+                                                
+
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="three-dots-menu">
+                                        <div class="three-dots-menu-icon">
+                                            <div class="threedotclick">
+                                                <span class="material-symbols-outlined onclick-hide">
+                                                    more_vert
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="three-dot-onclick-div">
+                                            <div class="design-three-dot-onclick-div">
+                                                <div class="inner-feed-opt">
+                                                    <div class="inner-feed-opt-icon">
+                                                        <span class="material-symbols-outlined">
+                                                            bookmark
+                                                        </span>
+                                                    </div>
+                                                    <div class="inner-feed-opt-text">
+                                                        <div class="inner-feed-opt-label"><span>Save blog</span></div>
+                                                        <div class="inner-feed-opt-desc"><span>Add this to your saved
+                                                                list.</span></div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="inner-feed-opt">
+                                                    <div class="inner-feed-opt-icon">
+                                                        <span class="material-symbols-outlined">
+                                                            delete_forever
+                                                        </span>
+                                                    </div>
+                                                    <div class="inner-feed-opt-text">
+                                                        <div class="inner-feed-opt-label"><span>Hide this post</span>
+                                                        </div>
+                                                        <div class="inner-feed-opt-desc"><span>Never see this post
+                                                                again.</span></div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="border-line-feed-opt"></div>
+                                                <div class="inner-feed-opt-type-2">
+                                                    <div class="inner-feed-opt-icon">
+                                                        <span class="material-symbols-outlined">
+                                                            all_inclusive
+                                                        </span>
+                                                    </div>
+                                                    <div class="inner-feed-opt-text-type-2">
+                                                        <div class="inner-feed-opt-label-type-2"><span>Copy link</span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="inner-feed-opt-type-2">
+                                                    <div class="inner-feed-opt-icon">
+                                                        <span class="material-symbols-outlined">
+                                                            edit
+                                                        </span>
+                                                    </div>
+                                                    <div class="inner-feed-opt-text-type-2">
+                                                        <div class="inner-feed-opt-label-type-2"><span>Open with
+                                                                editor</span></div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="border-line-feed-opt"></div>
+                                                {% if p.user == user %}
+                                                <form method="POST">
+                                                    {% csrf_token %}
+                                                    <button name="deletepost" style="height: auto; width: 100%; background-color: inherit; border: inherit;" type="submit" value="{{ p.id }}">
+
+                                                    
+                                                <div class="inner-feed-opt">
+                                                    <div class="inner-feed-opt-icon">
+                                                        <span class="material-symbols-outlined">
+                                                            delete
+                                                        </span>
+                                                    </div>
+                                                    <div class="inner-feed-opt-text">
+                                                        <div class="inner-feed-opt-label"><span style="color: rgba(235, 8, 8, 0.946);">Delete</span></div>
+                                                        <div class="inner-feed-opt-desc" style="display: flex;"><span>Delete your post for forever.</span></div>
+                                                    </div>
+
+                                                </div>
+                                            </button >
+                                            </form>
+                                                {% endif %}
+                                                <div class="inner-feed-opt">
+                                                    <div class="inner-feed-opt-icon">
+                                                        <span class="material-symbols-outlined">
+                                                            report
+                                                        </span>
+                                                    </div>
+                                                    <div class="inner-feed-opt-text">
+                                                        <div class="inner-feed-opt-label"><span>Report post</span></div>
+                                                        <div class="inner-feed-opt-desc"><span>We won't let user know
+                                                                who reported this.</span></div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="inner-feed-opt">
+                                                    <div class="inner-feed-opt-icon">
+                                                        <span class="material-symbols-outlined">
+                                                            person_remove
+                                                        </span>
+                                                    </div>
+                                                    <div class="inner-feed-opt-text">
+                                                        <div class="inner-feed-opt-label"><span>Block
+                                                                {{user.first_name}}'s profile</span></div>
+                                                        <div class="inner-feed-opt-desc"><span>You won't be able to see
+                                                                each other.</span></div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="feed-content">
+                                    <div class="inner-feed-div">
+                                        <div class="postcontent">
+                                            {{ p.content }}
+                                        </div>
+                                        <div class="postimgvid">
+                                            {% if p.image %}
+                                            {% if p.image.name|lower|slice:'-4:' == '.mp4' %}
+                                            <video controls autoplay>
+                                                <source src="{{ p.image.url }}" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            {% else %}
+                                            <img src="{{ p.image.url }}" alt="Post Image">
+                                            {% endif %}
+                                            {% endif %}
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="border-line"></div>
+                                <div class="feed-option">
+                                    <div class="inner-feed-option">
+                                        <div class="suggestions design-ss">
+                                            <div class="ss-actual suggesttrigger openss">
+                                                <span>Suggestions</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="stories design-ss">
+                                            <div class="ss-actual storytrigger">
+                                                <span>Stories</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="feedss">
+                                    <div class="feed-comments showss">
+                                        {% if p.comments.all %}
+                                        <div class="readmore-comment">
+                                            
+                                            <a href=""><span>Read more suggestions</span></a>
+                                          
+                                        </div>
+                                        {% endif %}
+                                        <div class="for-overflow">
+                                            {% for c in p.comments.all %}
+                                            <div class="commentsouter">
+                                                <div class="commentleft notowner">
+                                                    <span class="material-symbols-outlined commentlike">
+                                                        arrow_upward
+                                                        </span>
+                                                    <span class="cmntlikecount">343</span>    
+                                                </div>
+                                                <div class="commentleft owner" style="display: none;">
+                                                    <span class="material-symbols-outlined">
+                                                        check
+                                                        </span>
+                                                    <span class="topanswer">Top suggest</span>    
+    
+                                                </div>
+                                                <div class="comments">
+                                                    <div class="style-comment">
+                                                        <div class="comment-header">
+                                                            <div class="commenter-circle-div">
+                                                                <div class="commenter-circle">
+                                                                    <a href="/myprofile-lg/?pk={{c.user_id}}">
+                                                                    {% for userprofile in Userdetail %}
+                                                                    {% if userprofile.user == c.user %}
+                                                                    <img src="{{userprofile.Profileimage.url}}" alt="" style="height: 100%; width: 100%; object-fit: cover; border-radius: 50%;">
+                                                                    {% endif %}
+                                                                    {% endfor %}
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="commenter-name-div">
+                                                              
+                                                                <span class="commenter-name">{{c.user.first_name}}</span>
+                                                               
+                                                                <span class="comment-date"> -comentted at {{ p.created_at|date:"D, d M Y H:i:s" }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="comment-content">
+                                                            <div class="comment-jointer">
+                                                                <div class="cmnt-vertical-line"></div>
+                                                            </div>
+                                                            <div class="comment-flash">
+                                                                <div class="actual-comment">
+                                                                    <span>{{c.text}}</span>
+                                                                </div>
+                                                               
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% if p.user == user %}
+                                                <div class="ownercmntopt">
+                                                    <span class="material-symbols-outlined">
+                                                        check
+                                                        </span>
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                            
+                                            {% endfor %}
+                                            
+                                        </div>
+    
+                                        <div class="user-cmnt-opt">
+                                            <div class="cmnt-user-circle-div">
+                                                <div class="cmnt-user-circle">
+                                                    {% for userdetail in Userdetail %}
+                                                    {% if userdetail.user == user %}
+                                                    <img src="{{ userdetail.Profileimage.url }}"
+                                                        alt="">
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                </div>
+                                            </div>
+                                            <div class="cmnt-input">
+                                                <div class="design-cmnt-input">
+                                                    <form action="" id="commentform" method="post">
+                                                        {% csrf_token %}
+                                                    <div class="input-form">
+                                                        <input type="text" name="commentvalue" placeholder="Comment here.......">
+                                                    </div>
+                                                    <div class="input-form-icon-opt">
+                                                        <div class="cmnt-icon-div">
+                                                            <span class="material-symbols-outlined">
+                                                                add_reaction
+                                                            </span>
+                                                        </div>
+                                                        <div class="cmnt-icon-div">
+                                                            <span class="material-symbols-outlined">
+                                                                image
+                                                            </span>
+                                                        </div>
+                                                        <div class="cmnt-icon-div">
+                                                            <span class="material-symbols-outlined">
+                                                                gif_box
+                                                            </span>
+                                                        </div>
+                                                        <button type="submit" name="commentform_submit" style="background-color: inherit; border: inherit;" value="{{ p.id }}">
+    
+                                                       
+                                                        <div class="cmnt-icon-div" >
+                                                            <span class="material-symbols-outlined">
+                                                                send
+                                                            </span>
+                                                        </div>
+                                                    </button>
+                                                    </div>
+                                                </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="feed-stories">
+                                        <div class="readmore-comment">
+                                            
+                                            <a href=""><span>Read more stories</span></a>
+                                          
+                                        </div>
+                                        {% for pstory in p.stories.all %}
+                                        <div class="userstories">
+                                            <div class="userstoryleft">
+                                                <div class="storyleftheader">
+                                                    <div class="userstorycircle">
+                                                        {% for userdetail in Userdetail %}
+                                                        {% if userdetail.user == pstory.user %}
+                                                        <img src="{{ userdetail.Profileimage.url }}"
+                                                            alt="">
+                                                            {% endif %}
+                                                            {% endfor %}
+                                                    </div>
+                                                    <div class="userstoryname"><span>{{pstory.user.first_name}}</span></div>
+                                                </div>
+                                                <div class="storyactualcontent">
+                                                    {{ pstory.text }}
+                                                </div>
+
+                                            </div>
+                                            <div class="userstoryright">
+                                                <span class="material-symbols-outlined likeicon">
+                                                    favorite
+                                                    </span>
+                                                    <span class="likes-count">22</span>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        <div class="user-cmnt-opt">
+                                            <div class="cmnt-user-circle-div">
+                                                <div class="cmnt-user-circle">
+                                                    {% for userdetail in Userdetail %}
+                                                    {% if userdetail.user == user %}
+                                                    <img src="{{ userdetail.Profileimage.url }}"
+                                                        alt="">
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                </div>
+                                            </div>
+                                            <div class="cmnt-input">
+                                                <div class="design-cmnt-input">
+                                                    <form action="" id="commentform" method="post">
+                                                        {% csrf_token %}
+                                                    <div class="input-form">
+                                                        <input type="text" name="storyvalue" placeholder="Share your story here.......">
+                                                    </div>
+                                                    <div class="input-form-icon-opt">
+                                                      
+                                                
+                                                        <button type="submit" name="storyform_submit" style="background-color: inherit; border: inherit;" value="{{ p.id }}">
+    
+                                                       
+                                                        <div class="cmnt-icon-div" >
+                                                            <span class="material-symbols-outlined">
+                                                                send
+                                                            </span>
+                                                        </div>
+                                                    </button>
+                                                    </div>
+                                                </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% if not subscribed %}
+                                        <div class="premiumbuy">
+                                            <span class="premiumlabel">Continue reading & share story with premium </span>
+                                            <span class="subscribebtn"><a href="{% url 'subscribe' %}">Subscribe</a></span>
+                                            <span class="premiumlabeldown">Enjoy every content, features and more..</span>
+
+                                        </div>
+                                        {%endif%}
+
+
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="feeds-child" style="margin: 30px 0;">
+                        <div class="forum">
+                            <div class="makeupflex">
+                                <div class="forumfeedleft">
+                                    <div class="feeduserprofile">
+                                        <a href="">
+                                            <img src="/static/web images/036f28f03b1d245626e9cd0c627a8509.jpg" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="forumfeedright">
+                                    <div class="headingfeed"><span><a href="/community/9" style="text-decoration: none; color: inherit;">Eco-conscious Citizens: Green Living for a Better Planet</a></span>
+                                    </div>
+                                    <div class="descfeed"><span>
+                                      
+                                       
+                                        <a href="/community/9" style="text-decoration: none; color: inherit;">It is a community forum dedicated to individuals passionate about environmental sustainability and living a greener lifestyle. Join us to explore eco-friendly practices, share tips on reducing carbon footprint, discuss renewable energy solutions, and connect with like-minded individuals committed to preserving our planet for future generations. Together, let's empower each other to make environmentally conscious choices and create a more sustainable world for all.</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottomfeed">
+                                <div class="bfleft">
+                                    <div class="feedicons">
+                                        <span class="material-symbols-outlined">
+                                            thumb_up
+                                        </span>
+                                    </div>
+                                    <div class="feedsupportlabel"><span>23</span></div>
+                                    <div class="feedicons">
+                                        <span class="material-symbols-outlined" style="color: rgb(179, 17, 17); margin-bottom: -3px;">
+                                            thumb_down
+                                        </span>
+                                    </div>
+                                    <div class="feedsupportlabel"><span>23</span></div>
+                                    <div class="feedicons">
+                                        <span class="material-symbols-outlined" style="color: grey;">
+                                            reply
+                                        </span>
+                                    </div>
+                                    <div class="feedicons" style="margin-left: 20px;">
+                                        <span class="material-symbols-outlined" style="color: grey;">
+                                            schedule
+                                        </span>
+                                    </div>
+                                    <div class="feedsupportlabel" style="margin-left: 8px;"><span>Posted on : 20 March</span>
+                                    </div>
+                                </div>
+        
+                                <div class="bfright">
+                                    <div class="feedicons">
+                                        <span class="material-symbols-outlined" style="color: grey; margin: 0 10px;   transform: scaleX(-1);">
+                                            reply
+                                        </span>
+                                    </div>
+                                    <div class="feedicons">
+                                        <span class="material-symbols-outlined" style="color: grey; margin: 0 10px; ">
+                                            flag
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+        
+                        </div>
+                    </div>
+                   
+                    <div class="feeds-child">
+                        {% include "eventscard.html" %}
+                    </div>
+                    {% for p in post1 %}
+                    <div class="feeds-child">
+                        <div class="feed-card">
+                            <div class="design-feed">
+                                <div class="feed-header">
+                                    <div class="user-description">
+                                        <div class="user-profile-circle">
+                                            <div class="profile-circle">
+                                                <a href="/myprofile-lg/?pk={{p.user_id}}">
+                                                    {% for userdetail in Userdetail %}
+                                                    {% if userdetail.user == p.user %}
+                                                    <img src="{{ userdetail.Profileimage.url }}"
+                                                        alt="">
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                    </a>
+                                            </div>
+                                        </div>
+                                        <div class="user-profile-name">
+                                            <div class="display-user-name">
+                                                <span class="user-name">
+                                                    {{ p.user.first_name }}
+                                                </span>
+                                            </div>
+                                            <div class="display-user-pdate">
+                                                <span class="minus-icon">
+                                                    <span class="material-symbols-outlined">
+                                                        remove
+                                                    </span>
+                                                </span>
+                                                <span class="feed-pdate">
+                                                    {% if p.created_at %}
+                                                    {% with current_time=now %}
+                                                        {% with time_difference=current_time|timeuntil:p.created_at %}
+                                                            {% if time_difference|floatformat:0 <= 60 %}
+                                                                <p>Created {{ time_difference|floatformat:0 }} minutes ago</p>
+                                                            {% else %}
+                                                                <p>Created at: {{ p.created_at|date:"D, d M Y H:i:s" }}</p>
+                                                            {% endif %}
+                                                        {% endwith %}
+                                                    {% endwith %}
+                                                {% endif %}
+                                                
+                                                
+
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="three-dots-menu">
+                                        <div class="three-dots-menu-icon">
+                                            <div class="threedotclick">
+                                                <span class="material-symbols-outlined onclick-hide">
+                                                    more_vert
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="three-dot-onclick-div">
+                                            <div class="design-three-dot-onclick-div">
+                                                <div class="inner-feed-opt">
+                                                    <div class="inner-feed-opt-icon">
+                                                        <span class="material-symbols-outlined">
+                                                            bookmark
+                                                        </span>
+                                                    </div>
+                                                    <div class="inner-feed-opt-text">
+                                                        <div class="inner-feed-opt-label"><span>Save blog</span></div>
+                                                        <div class="inner-feed-opt-desc"><span>Add this to your saved
+                                                                list.</span></div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="inner-feed-opt">
+                                                    <div class="inner-feed-opt-icon">
+                                                        <span class="material-symbols-outlined">
+                                                            delete_forever
+                                                        </span>
+                                                    </div>
+                                                    <div class="inner-feed-opt-text">
+                                                        <div class="inner-feed-opt-label"><span>Hide this post</span>
+                                                        </div>
+                                                        <div class="inner-feed-opt-desc"><span>Never see this post
+                                                                again.</span></div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="border-line-feed-opt"></div>
+                                                <div class="inner-feed-opt-type-2">
+                                                    <div class="inner-feed-opt-icon">
+                                                        <span class="material-symbols-outlined">
+                                                            all_inclusive
+                                                        </span>
+                                                    </div>
+                                                    <div class="inner-feed-opt-text-type-2">
+                                                        <div class="inner-feed-opt-label-type-2"><span>Copy link</span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="inner-feed-opt-type-2">
+                                                    <div class="inner-feed-opt-icon">
+                                                        <span class="material-symbols-outlined">
+                                                            edit
+                                                        </span>
+                                                    </div>
+                                                    <div class="inner-feed-opt-text-type-2">
+                                                        <div class="inner-feed-opt-label-type-2"><span>Open with
+                                                                editor</span></div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="border-line-feed-opt"></div>
+                                                {% if p.user == user %}
+                                                <form method="POST">
+                                                    {% csrf_token %}
+                                                    <button name="deletepost" style="height: auto; width: 100%; background-color: inherit; border: inherit;" type="submit" value="{{ p.id }}">
+
+                                                    
+                                                <div class="inner-feed-opt">
+                                                    <div class="inner-feed-opt-icon">
+                                                        <span class="material-symbols-outlined">
+                                                            delete
+                                                        </span>
+                                                    </div>
+                                                    <div class="inner-feed-opt-text">
+                                                        <div class="inner-feed-opt-label"><span style="color: rgba(235, 8, 8, 0.946);">Delete</span></div>
+                                                        <div class="inner-feed-opt-desc" style="display: flex;"><span>Delete your post for forever.</span></div>
+                                                    </div>
+
+                                                </div>
+                                            </button >
+                                            </form>
+                                                {% endif %}
+                                                <div class="inner-feed-opt">
+                                                    <div class="inner-feed-opt-icon">
+                                                        <span class="material-symbols-outlined">
+                                                            report
+                                                        </span>
+                                                    </div>
+                                                    <div class="inner-feed-opt-text">
+                                                        <div class="inner-feed-opt-label"><span>Report post</span></div>
+                                                        <div class="inner-feed-opt-desc"><span>We won't let user know
+                                                                who reported this.</span></div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="inner-feed-opt">
+                                                    <div class="inner-feed-opt-icon">
+                                                        <span class="material-symbols-outlined">
+                                                            person_remove
+                                                        </span>
+                                                    </div>
+                                                    <div class="inner-feed-opt-text">
+                                                        <div class="inner-feed-opt-label"><span>Block
+                                                                {{user.first_name}}'s profile</span></div>
+                                                        <div class="inner-feed-opt-desc"><span>You won't be able to see
+                                                                each other.</span></div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="feed-content">
+                                    <div class="inner-feed-div">
+                                        <div class="postcontent">
+                                            {{ p.content }}
+                                        </div>
+                                        <div class="postimgvid">
+                                            {% if p.image %}
+                                            {% if p.image.name|lower|slice:'-4:' == '.mp4' %}
+                                            <video controls autoplay>
+                                                <source src="{{ p.image.url }}" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            {% else %}
+                                            <img src="{{ p.image.url }}" alt="Post Image">
+                                            {% endif %}
+                                            {% endif %}
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="border-line"></div>
+                                <div class="feed-option">
+                                    <div class="inner-feed-option">
+                                        <div class="suggestions design-ss">
+                                            <div class="ss-actual suggesttrigger openss">
+                                                <span>Suggestions</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="stories design-ss">
+                                            <div class="ss-actual storytrigger">
+                                                <span>Stories</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="feedss">
+                                    <div class="feed-comments showss">
+                                        {% if p.comments.all %}
+                                        <div class="readmore-comment">
+                                            
+                                            <a href=""><span>Read more suggestions</span></a>
+                                          
+                                        </div>
+                                        {% endif %}
+                                        <div class="for-overflow">
+                                            {% for c in p.comments.all %}
+                                            <div class="commentsouter">
+                                                <div class="commentleft notowner">
+                                                    <span class="material-symbols-outlined commentlike">
+                                                        arrow_upward
+                                                        </span>
+                                                    <span class="cmntlikecount">343</span>    
+                                                </div>
+                                                <div class="commentleft owner" style="display: none;">
+                                                    <span class="material-symbols-outlined">
+                                                        check
+                                                        </span>
+                                                    <span class="topanswer">Top suggest</span>    
+    
+                                                </div>
+                                                <div class="comments">
+                                                    <div class="style-comment">
+                                                        <div class="comment-header">
+                                                            <div class="commenter-circle-div">
+                                                                <div class="commenter-circle">
+                                                                    <a href="/myprofile-lg/?pk={{c.user_id}}">
+                                                                    {% for userprofile in Userdetail %}
+                                                                    {% if userprofile.user == c.user %}
+                                                                    <img src="{{userprofile.Profileimage.url}}" alt="" style="height: 100%; width: 100%; object-fit: cover; border-radius: 50%;">
+                                                                    {% endif %}
+                                                                    {% endfor %}
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="commenter-name-div">
+                                                              
+                                                                <span class="commenter-name">{{c.user.first_name}}</span>
+                                                               
+                                                                <span class="comment-date"> -comentted at {{ p.created_at|date:"D, d M Y H:i:s" }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="comment-content">
+                                                            <div class="comment-jointer">
+                                                                <div class="cmnt-vertical-line"></div>
+                                                            </div>
+                                                            <div class="comment-flash">
+                                                                <div class="actual-comment">
+                                                                    <span>{{c.text}}</span>
+                                                                </div>
+                                                               
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% if p.user == user %}
+                                                <div class="ownercmntopt">
+                                                    <span class="material-symbols-outlined">
+                                                        check
+                                                        </span>
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                            
+                                            {% endfor %}
+                                            
+                                        </div>
+    
+                                        <div class="user-cmnt-opt">
+                                            <div class="cmnt-user-circle-div">
+                                                <div class="cmnt-user-circle">
+                                                    {% for userdetail in Userdetail %}
+                                                    {% if userdetail.user == user %}
+                                                    <img src="{{ userdetail.Profileimage.url }}"
+                                                        alt="">
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                </div>
+                                            </div>
+                                            <div class="cmnt-input">
+                                                <div class="design-cmnt-input">
+                                                    <form action="" id="commentform" method="post">
+                                                        {% csrf_token %}
+                                                    <div class="input-form">
+                                                        <input type="text" name="commentvalue" placeholder="Comment here.......">
+                                                    </div>
+                                                    <div class="input-form-icon-opt">
+                                                        <div class="cmnt-icon-div">
+                                                            <span class="material-symbols-outlined">
+                                                                add_reaction
+                                                            </span>
+                                                        </div>
+                                                        <div class="cmnt-icon-div">
+                                                            <span class="material-symbols-outlined">
+                                                                image
+                                                            </span>
+                                                        </div>
+                                                        <div class="cmnt-icon-div">
+                                                            <span class="material-symbols-outlined">
+                                                                gif_box
+                                                            </span>
+                                                        </div>
+                                                        <button type="submit" name="commentform_submit" style="background-color: inherit; border: inherit;" value="{{ p.id }}">
+    
+                                                       
+                                                        <div class="cmnt-icon-div" >
+                                                            <span class="material-symbols-outlined">
+                                                                send
+                                                            </span>
+                                                        </div>
+                                                    </button>
+                                                    </div>
+                                                </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="feed-stories">
+                                        <div class="readmore-comment">
+                                            
+                                            <a href=""><span>Read more stories</span></a>
+                                          
+                                        </div>
+                                        {% for pstory in p.stories.all %}
+                                        <div class="userstories">
+                                            <div class="userstoryleft">
+                                                <div class="storyleftheader">
+                                                    <div class="userstorycircle">
+                                                        {% for userdetail in Userdetail %}
+                                                        {% if userdetail.user == pstory.user %}
+                                                        <img src="{{ userdetail.Profileimage.url }}"
+                                                            alt="">
+                                                            {% endif %}
+                                                            {% endfor %}
+                                                    </div>
+                                                    <div class="userstoryname"><span>{{pstory.user.first_name}}</span></div>
+                                                </div>
+                                                <div class="storyactualcontent">
+                                                    {{ pstory.text }}
+                                                </div>
+
+                                            </div>
+                                            <div class="userstoryright">
+                                                <span class="material-symbols-outlined likeicon">
+                                                    favorite
+                                                    </span>
+                                                    <span class="likes-count">22</span>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        <div class="user-cmnt-opt">
+                                            <div class="cmnt-user-circle-div">
+                                                <div class="cmnt-user-circle">
+                                                    {% for userdetail in Userdetail %}
+                                                    {% if userdetail.user == user %}
+                                                    <img src="{{ userdetail.Profileimage.url }}"
+                                                        alt="">
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                </div>
+                                            </div>
+                                            <div class="cmnt-input">
+                                                <div class="design-cmnt-input">
+                                                    <form action="" id="commentform" method="post">
+                                                        {% csrf_token %}
+                                                    <div class="input-form">
+                                                        <input type="text" name="storyvalue" placeholder="Share your story here.......">
+                                                    </div>
+                                                    <div class="input-form-icon-opt">
+                                                      
+                                                
+                                                        <button type="submit" name="storyform_submit" style="background-color: inherit; border: inherit;" value="{{ p.id }}">
+    
+                                                       
+                                                        <div class="cmnt-icon-div" >
+                                                            <span class="material-symbols-outlined">
+                                                                send
+                                                            </span>
+                                                        </div>
+                                                    </button>
+                                                    </div>
+                                                </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% if not subscribed %}
+                                        <div class="premiumbuy">
+                                            <span class="premiumlabel">Continue reading & share story with premium </span>
+                                            <span class="subscribebtn"><a href="{% url 'subscribe' %}">Subscribe</a></span>
+                                            <span class="premiumlabeldown">Enjoy every content, features and more..</span>
+
+                                        </div>
+                                        {%endif%}
+
+
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="feed-rightside">
+        <div class="feed-right-icon">
+            <div class="feed-right-icon-div">
+                <div class="feed-right-collective-icon">
+                    <div class="collect-icon-href" >
+                        <a href="{% url 'dashboard' %}">
+                         <div class="right-icon-for-hover">
+                             <span class="material-symbols-outlined">
+                                 mindfulness
+                                 </span>
+                         </div>
+                        </a>
+ 
+                         <span class="collect-icon-tooltip" id="notification-tooltip">Mindfulness</span>
+                     </div>
+                    
+                    <div class="collect-icon-href openwellbeing" >
+                       
+                         <div class="right-icon-for-hover">
+                            <span class="material-symbols-outlined">
+                                monitoring
+                                </span>
+                         </div>
+                     
+ 
+                         <span class="collect-icon-tooltip" id="notification-tooltip">Monitoring</span>
+                     </div>
+                    
+                    <div class="collect-icon-href" >
+                        <a href="{% url 'upcomings' %}">
+                         <div class="right-icon-for-hover">
+                            <span class="material-symbols-outlined">
+                                calendar_month
+                                </span>
+                         </div>
+                        </a>
+ 
+                         <span class="collect-icon-tooltip" id="notification-tooltip">Upcomings</span>
+                     </div>
+                    <div class="collect-icon" onclick="rightbarclick('notification')">
+                        <div class="right-icon-for-hover">
+                            <span class="material-symbols-outlined">
+                                notifications
+                            </span>
+                        </div>
+
+                        <span class="collect-icon-tooltip" id="notification-tooltip">Notifications</span>
+                    </div>
+                    <div class="collect-icon" onclick="rightbarclick('request')">
+                        <div class="right-icon-for-hover">
+                            <span class="material-symbols-outlined">
+                                group_add
+                            </span>
+                        </div>
+
+                        <span class="collect-icon-tooltip" id="request-tooltip">Requests</span>
+
+                    </div>
+                    <div class="collect-icon" onclick="rightbarclick('saved')" id="clickfindsavelist">
+                        <div class="right-icon-for-hover">
+                            <span class="material-symbols-outlined">
+                                bookmark
+                            </span>
+                        </div>
+
+                        <span class="collect-icon-tooltip" id="saved-tooltip">Saved</span>
+
+                    </div>
+                    <div class="collect-icon" onclick="rightbarclick('setting')">
+                        <div class="right-icon-for-hover"> <span class="material-symbols-outlined">
+                                settings
+                            </span></div>
+
+                        <span class="collect-icon-tooltip" id="setting-tooltip">Setting</span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="onclick-div" id="notification">
+            <div class="design-notification">
+                <div class="notification-head">
+                    <div class="notification-header-text">
+                        <div class="notification-text">
+                            <span>Notifications</span>
+                        </div>
+                        <div class="notification-all-option">
+                            <div class="all-opt-div ">
+                                <div class="inner-all  activenotification">
+                                    <div class="all-text">
+                                        <span>All</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="unread-opt-div">
+                                <div class="inner-unread">
+                                    <div class="unread-text"><span>Unread</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notification-header-icon">
+                        <div class="notification-option-icon">
+                            <div class="horz-three-dot" onclick="shownotificationopt()"><span
+                                    class="material-symbols-outlined haha">
+                                    more_horiz
+                            </div></span>
+                        </div>
+                        <div class="onclick-notific-three-dot">
+                            <div class="design-onclick-notific-three-dot">
+                                <div class="inner-three-dot-opt readallonce"><span class="material-symbols-outlined">
+                                        check
+                                    </span>
+                                    <span>Mark all as read</span>
+                                </div>
+                                <div class="inner-three-dot-opt">
+                                    <span class="material-symbols-outlined">
+                                        open_in_new
+                                    </span>
+                                    <span>Open notifications</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="notification-scroller" id="all-notifications">
+                    <div class="notification-child">
+                        <div class="notification-scroller-header"><span>New</span></div>
+                    </div>
+                    <div class="notification-child">
+                        <div class="notification-bar">
+                            <div class="notification-circle">
+                                <img src="/static/web images/997282cb1ac48f7e4fb9eab06e8a5afc.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                            </div>
+                            <div class="notification-content">
+                                <div class="inner-notification-content">
+                                    <div class="notified-content">
+                                        <span class="notified-user-name">Arush Verma</span>
+                                        <span class="notified-text">
+                                            Invites you for a party event.
+                                        </span>
+                                    </div>
+                                    <div class="notified-time"><span>1 hour ago</span></div>
+                                    <div class="onhover-notified-opt">
+                                        <div class="inner-onhover-notified-opt">
+                                            <span class="material-symbols-outlined hehe">
+                                                more_horiz
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="onclick-notific-content-three-dot">
+                            <div class="design-onclick-notific-three-dot">
+                                <div class="inner-three-dot-opt"><span class="material-symbols-outlined">
+                                        check
+                                    </span>
+                                    <span>Mark as read</span>
+                                </div>
+                                <div class="inner-three-dot-opt">
+                                    <span class="material-symbols-outlined">
+                                        cancel_presentation
+                                    </span>
+                                    <span>Remove this notification</span>
+                                </div>
+                                <div class="inner-three-dot-opt">
+                                    <span class="material-symbols-outlined">
+                                        report
+                                    </span>
+                                    <span>Report issue</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notification-child">
+                        <div class="notification-bar">
+                            <div class="notification-circle">
+                                <img src="/static/web images/04d7024ad3d3d49a31511cf43cd3f3c4.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                            </div>
+                            <div class="notification-content">
+                                <div class="inner-notification-content">
+                                    <div class="notified-content">
+                                        <span class="notified-user-name">Aashish</span>
+                                        <span class="notified-text">
+                                           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt modi ipsam soluta quisquam quasi iste neque nihil. Natus 
+                                        </span>
+                                    </div>
+                                    <div class="notified-time"><span>2 hr ago</span></div>
+                                    <div class="onhover-notified-opt">
+                                        <div class="inner-onhover-notified-opt">
+                                            <span class="material-symbols-outlined hehe">
+                                                more_horiz
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="onclick-notific-content-three-dot">
+                            <div class="design-onclick-notific-three-dot">
+                                <div class="inner-three-dot-opt"><span class="material-symbols-outlined">
+                                        check
+                                    </span>
+                                    <span>Mark as read</span>
+                                </div>
+                                <div class="inner-three-dot-opt">
+                                    <span class="material-symbols-outlined">
+                                        cancel_presentation
+                                    </span>
+                                    <span>Remove this notification</span>
+                                </div>
+                                <div class="inner-three-dot-opt">
+                                    <span class="material-symbols-outlined">
+                                        report
+                                    </span>
+                                    <span>Report issue</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notification-child">
+                        <div class="notification-bar">
+                            <div class="notification-circle">
+                                <img src="/static/web images/4e22beef6d94640c45a1b15f4a158b23.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                            </div>
+                            <div class="notification-content">
+                                <div class="inner-notification-content">
+                                    <div class="notified-content">
+                                        <span class="notified-user-name">Abhinav Pandit</span>
+                                        <span class="notified-text">
+                                           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt modi ipsam soluta quisquam quasi iste neque nihil. Natus 
+                                        </span>
+                                    </div>
+                                    <div class="notified-time"><span>3 hr ago</span></div>
+                                    <div class="onhover-notified-opt">
+                                        <div class="inner-onhover-notified-opt">
+                                            <span class="material-symbols-outlined hehe">
+                                                more_horiz
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="onclick-notific-content-three-dot">
+                            <div class="design-onclick-notific-three-dot">
+                                <div class="inner-three-dot-opt"><span class="material-symbols-outlined">
+                                        check
+                                    </span>
+                                    <span>Mark as read</span>
+                                </div>
+                                <div class="inner-three-dot-opt">
+                                    <span class="material-symbols-outlined">
+                                        cancel_presentation
+                                    </span>
+                                    <span>Remove this notification</span>
+                                </div>
+                                <div class="inner-three-dot-opt">
+                                    <span class="material-symbols-outlined">
+                                        report
+                                    </span>
+                                    <span>Report issue</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notification-child">
+                        <div class="notification-bar">
+                            <div class="notification-circle">
+                                <img src="/static/web images/91ac0ef579b740dda05d49c012f9061d.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                            </div>
+                            <div class="notification-content">
+                                <div class="inner-notification-content">
+                                    <div class="notified-content">
+                                        <span class="notified-user-name">Nakul singh</span>
+                                        <span class="notified-text">
+                                           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt modi ipsam soluta quisquam quasi iste neque nihil. Natus 
+                                        </span>
+                                    </div>
+                                    <div class="notified-time"><span>3 hr ago</span></div>
+                                    <div class="onhover-notified-opt">
+                                        <div class="inner-onhover-notified-opt">
+                                            <span class="material-symbols-outlined hehe">
+                                                more_horiz
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="onclick-notific-content-three-dot">
+                            <div class="design-onclick-notific-three-dot">
+                                <div class="inner-three-dot-opt"><span class="material-symbols-outlined">
+                                        check
+                                    </span>
+                                    <span>Mark as read</span>
+                                </div>
+                                <div class="inner-three-dot-opt">
+                                    <span class="material-symbols-outlined">
+                                        cancel_presentation
+                                    </span>
+                                    <span>Remove this notification</span>
+                                </div>
+                                <div class="inner-three-dot-opt">
+                                    <span class="material-symbols-outlined">
+                                        report
+                                    </span>
+                                    <span>Report issue</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notification-child">
+                        <div class="notification-bar">
+                            <div class="notification-circle">
+                                <img src="/static/web images/5aa17482ddad6b7020f7ffd83e547ca0.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                            </div>
+                            <div class="notification-content">
+                                <div class="inner-notification-content">
+                                    <div class="notified-content">
+                                        <span class="notified-user-name">Anuj Bhatia</span>
+                                        <span class="notified-text">
+                                           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt modi ipsam soluta quisquam quasi iste neque nihil. Natus 
+                                        </span>
+                                    </div>
+                                    <div class="notified-time"><span>3 hr ago</span></div>
+                                    <div class="onhover-notified-opt">
+                                        <div class="inner-onhover-notified-opt">
+                                            <span class="material-symbols-outlined hehe">
+                                                more_horiz
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="onclick-notific-content-three-dot">
+                            <div class="design-onclick-notific-three-dot">
+                                <div class="inner-three-dot-opt"><span class="material-symbols-outlined">
+                                        check
+                                    </span>
+                                    <span>Mark as read</span>
+                                </div>
+                                <div class="inner-three-dot-opt">
+                                    <span class="material-symbols-outlined">
+                                        cancel_presentation
+                                    </span>
+                                    <span>Remove this notification</span>
+                                </div>
+                                <div class="inner-three-dot-opt">
+                                    <span class="material-symbols-outlined">
+                                        report
+                                    </span>
+                                    <span>Report issue</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notification-child">
+                        <div class="notification-bar">
+                            <div class="notification-circle">
+                                <img src="/static/web images/IMG_20221223_175627.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                            </div>
+                            <div class="notification-content">
+                                <div class="inner-notification-content">
+                                    <div class="notified-content">
+                                        <span class="notified-user-name">GS Agrawal</span>
+                                        <span class="notified-text">
+                                           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt modi ipsam soluta quisquam quasi iste neque nihil. Natus 
+                                        </span>
+                                    </div>
+                                    <div class="notified-time"><span>6 hr ago</span></div>
+                                    <div class="onhover-notified-opt">
+                                        <div class="inner-onhover-notified-opt">
+                                            <span class="material-symbols-outlined hehe">
+                                                more_horiz
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="onclick-notific-content-three-dot">
+                            <div class="design-onclick-notific-three-dot">
+                                <div class="inner-three-dot-opt"><span class="material-symbols-outlined">
+                                        check
+                                    </span>
+                                    <span>Mark as read</span>
+                                </div>
+                                <div class="inner-three-dot-opt">
+                                    <span class="material-symbols-outlined">
+                                        cancel_presentation
+                                    </span>
+                                    <span>Remove this notification</span>
+                                </div>
+                                <div class="inner-three-dot-opt">
+                                    <span class="material-symbols-outlined">
+                                        report
+                                    </span>
+                                    <span>Report issue</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="no-unread-notification">
+                    <div class="no-notification-img"><img src="/static/web images/nonotification.png" alt=""></div>
+                    <div class="no-notification-text">
+                        <span>No unread notifications</span>
+                    </div>
+                    <div class="no-notification-text">
+                        <span>You're up to date with notifications.</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="onclick-div" id="request">
+            <div class="design-request">
+                <div class="request-head">
+                    <span>Pending requests</span>
+                </div>
+                <div class="request-content">
+                    <div class="request-scroller">
+                        <div class="request-scroller-child">
+                            <div class="requests-following">
+                                <div class="request-circle"><img src="/static/web images/IMG_20221223_175627.jpg" alt=""></div>
+                                <div class="request-info">
+                                    <div class="follower-name"><span><a href="">GS Agrawal</a></span></div>
+                                    <div class="following-msg"><span>Started following you.</span></div>
+                                    <div class="following-time"><span>1 weeks ago</span></div>
+                                </div>
+                                <div class="follow-icons">
+                                    <div class="follow-delete-icon-div">
+                                        <div class="follow-delete-icon"><span class="material-symbols-outlined">
+                                                close
+                                            </span></div>
+                                    </div>
+                                    <div class="follow-back-icon-div">
+                                        <div class="follow-back-icon"><span>Follow back</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="request-scroller-child">
+                            <div class="requests-following">
+                                <div class="request-circle"><img src="/static/web images/997282cb1ac48f7e4fb9eab06e8a5afc.jpg" alt=""></div>
+                                <div class="request-info">
+                                    <div class="follower-name"><span><a href="">Arush Verma</a></span></div>
+                                    <div class="following-msg"><span>Started following you.</span></div>
+                                    <div class="following-time"><span>2 weeks ago</span></div>
+                                </div>
+                                <div class="follow-icons">
+                                    <div class="follow-delete-icon-div">
+                                        <div class="follow-delete-icon"><span class="material-symbols-outlined">
+                                                close
+                                            </span></div>
+                                    </div>
+                                    <div class="follow-back-icon-div">
+                                        <div class="follow-back-icon"><span>Follow back</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="request-scroller-child">
+                            <div class="requests-following">
+                                <div class="request-circle"><img src="/static/web images/04d7024ad3d3d49a31511cf43cd3f3c4.jpg" alt=""></div>
+                                <div class="request-info">
+                                    <div class="follower-name"><span><a href="">Aashish</a></span></div>
+                                    <div class="following-msg"><span>Started following you.</span></div>
+                                    <div class="following-time"><span>2 weeks ago</span></div>
+                                </div>
+                                <div class="follow-icons">
+                                    <div class="follow-delete-icon-div">
+                                        <div class="follow-delete-icon"><span class="material-symbols-outlined">
+                                                close
+                                            </span></div>
+                                    </div>
+                                    <div class="follow-back-icon-div">
+                                        <div class="follow-back-icon"><span>Follow back</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="request-scroller-child">
+                            <div class="requests-following">
+                                <div class="request-circle"><img src="/static/web images/4e22beef6d94640c45a1b15f4a158b23.jpg" alt=""></div>
+                                <div class="request-info">
+                                    <div class="follower-name"><span><a href="">Abhinav Pandit</a></span></div>
+                                    <div class="following-msg"><span>Started following you.</span></div>
+                                    <div class="following-time"><span>2 weeks ago</span></div>
+                                </div>
+                                <div class="follow-icons">
+                                    <div class="follow-delete-icon-div">
+                                        <div class="follow-delete-icon"><span class="material-symbols-outlined">
+                                                close
+                                            </span></div>
+                                    </div>
+                                    <div class="follow-back-icon-div">
+                                        <div class="follow-back-icon"><span>Follow back</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="request-scroller-child">
+                            <div class="requests-following">
+                                <div class="request-circle"><img src="/static/web images/91ac0ef579b740dda05d49c012f9061d.jpg" alt=""></div>
+                                <div class="request-info">
+                                    <div class="follower-name"><span><a href="">Raisy tailor</a></span></div>
+                                    <div class="following-msg"><span>Started following you.</span></div>
+                                    <div class="following-time"><span>3 weeks ago</span></div>
+                                </div>
+                                <div class="follow-icons">
+                                    <div class="follow-delete-icon-div">
+                                        <div class="follow-delete-icon"><span class="material-symbols-outlined">
+                                                close
+                                            </span></div>
+                                    </div>
+                                    <div class="follow-back-icon-div">
+                                        <div class="follow-back-icon"><span>Follow back</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="onclick-div" id="saved">
+            <div class="design-saved">
+                <div class="saved-header">
+                    <div class="saved-head-text"><span>Saved</span></div>
+                    <div class="saved-head-full-icon">
+                        <a href=""><span>See all</span></a>
+                    </div>
+                </div>
+                <div class="saved-content">
+                    <div class="saved-scroller">
+                        <div class="saved-scroller-child">
+                            <div class="saved-scroller-card">
+                                <div class="saved-circle">
+                                    <div class="saved-display">
+                                        <img src="/static/web images/c2ad33a82981b5e85099a3ab40ffa507.jpg" alt="" style="height: 100%; width: 100%; border-radius: 5px;">
+                                    </div>
+                                </div>
+                                <div class="saved-desc">
+                                    <div class="saved-desc-texts">
+                                        <div class="saved-desc-title"><span>Think out of the box</span></div>
+                                        <div class="saved-desc-short"><span>Category</span>
+                                            <span class="material-symbols-outlined">
+                                                fiber_manual_record
+                                            </span><span>Books</span>
+                                        </div>
+                                        <div class="saved-time"><span class="material-symbols-outlined">
+                                                fiber_manual_record
+                                            </span><span>Saved 1 day ago</span></div>
+                                    </div>
+                                </div>
+                                <div class="saved-icon-right">
+                                    <span class="material-symbols-outlined save-filled bookmark-icon">
+                                        bookmark
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="saved-scroller-child">
+                            <div class="saved-scroller-card">
+                                <div class="saved-circle">
+                                    <div class="saved-display">                                        <img src="/static/web images/385e19bb0f1b6047725ad5a4858f9b0d.jpg" alt="" style="height: 100%; width: 100%; border-radius: 5px;">
+                                    </div>
+                                </div>
+                                <div class="saved-desc">
+                                    <div class="saved-desc-texts">
+                                        <div class="saved-desc-title"><span>Wider girls</span></div>
+                                        <div class="saved-desc-short"><span>Category</span>
+                                            <span class="material-symbols-outlined">
+                                                fiber_manual_record
+                                            </span><span>Books</span>
+                                        </div>
+                                        <div class="saved-time"><span class="material-symbols-outlined">
+                                                fiber_manual_record
+                                            </span><span>Saved 3 days ago</span></div>
+                                    </div>
+                                </div>
+                                <div class="saved-icon-right">
+                                    <span class="material-symbols-outlined save-filled bookmark-icon">
+                                        bookmark
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="saved-scroller-child">
+                            <div class="saved-scroller-card">
+                                <div class="saved-circle">
+                                    <div class="saved-display">
+                                        <img src="/static/web images/f489a0b2c574d719b316efa9aa60d973.jpg" alt="" style="height: 100%; width: 100%; border-radius: 5px;">
+                                    </div>
+                                </div>
+                                <div class="saved-desc">
+                                    <div class="saved-desc-texts">
+                                        <div class="saved-desc-title"><span>Speak with no fear</span></div>
+                                        <div class="saved-desc-short"><span>Category</span>
+                                            <span class="material-symbols-outlined">
+                                                fiber_manual_record
+                                            </span><span>Books</span>
+                                        </div>
+                                        <div class="saved-time"><span class="material-symbols-outlined">
+                                                fiber_manual_record
+                                            </span><span>Saved 5 days ago</span></div>
+                                    </div>
+                                </div>
+                                <div class="saved-icon-right">
+                                    <span class="material-symbols-outlined save-filled bookmark-icon">
+                                        bookmark
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="saved-scroller-child">
+                            <div class="saved-scroller-card">
+                                <div class="saved-circle">
+                                    <div class="saved-display">
+                                        <img src="/static/web images/74c36e632fb0e38d8ae5803419a89284.jpg" alt="" style="height: 100%; width: 100%; border-radius: 5px;">
+                                    </div>
+                                </div>
+                                <div class="saved-desc">
+                                    <div class="saved-desc-texts">
+                                        <div class="saved-desc-title"><span>Hyper focus</span></div>
+                                        <div class="saved-desc-short"><span>Category</span>
+                                            <span class="material-symbols-outlined">
+                                                fiber_manual_record
+                                            </span><span>Books</span>
+                                        </div>
+                                        <div class="saved-time"><span class="material-symbols-outlined">
+                                                fiber_manual_record
+                                            </span><span>Saved 5 days ago</span></div>
+                                    </div>
+                                </div>
+                                <div class="saved-icon-right">
+                                    <span class="material-symbols-outlined save-filled bookmark-icon">
+                                        bookmark
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="saved-scroller-child">
+                            <div class="saved-scroller-card">
+                                <div class="saved-circle">
+                                    <div class="saved-display">
+                                        <img src="/static/web images/bd46bf5c613da4dd592e135254c68b67.jpg" alt="" style="height: 100%; width: 100%; border-radius: 5px;">
+                                    </div>
+                                </div>
+                                <div class="saved-desc">
+                                    <div class="saved-desc-texts">
+                                        <div class="saved-desc-title"><span>I am a money magnet</span></div>
+                                        <div class="saved-desc-short"><span>Category</span>
+                                            <span class="material-symbols-outlined">
+                                                fiber_manual_record
+                                            </span><span>Books</span>
+                                        </div>
+                                        <div class="saved-time"><span class="material-symbols-outlined">
+                                                fiber_manual_record
+                                            </span><span>Saved 5 days ago</span></div>
+                                    </div>
+                                </div>
+                                <div class="saved-icon-right">
+                                    <span class="material-symbols-outlined save-filled bookmark-icon">
+                                        bookmark
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="onclick-div" id="setting">
+            <div class="design-setting">
+                <div class="setting-profile-opt-div">
+                    <a href="{% url 'myprofile-lg' %}">
+                        <div class="setting-profile-opt-div-inner">
+                            <div class="setting-circle-div">
+                                <div class="setting-circle">
+                                    {% for userdetail in Userdetail %}
+                                                    {% if userdetail.user == user %}
+                                                    <img src="{{ userdetail.Profileimage.url }}"
+                                                        alt="" >
+                                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="setting-profile-name">
+                                <span>{{ user.first_name}}</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="setting-privacy-div  set-same">
+                    <div class="set-same-inner">
+                        <div class="set-left-icon">
+                            <div class="set-icon-circle">
+                                <span class="material-symbols-outlined">
+                                    settings
+                                </span>
+
+                            </div>
+                        </div>
+                        <div class="set-middle-text"><span>Settings & privacy</span></div>
+                        <div class="set-right-icon">
+                            <span class="material-symbols-outlined">
+                                arrow_forward_ios
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="help-support-div set-same">
+                    <div class="set-same-inner">
+                        <div class="set-left-icon">
+                            <div class="set-icon-circle">
+                                <span class="material-symbols-outlined">
+                                    help
+                                </span>
+                            </div>
+                        </div>
+                        <div class="set-middle-text"><span>Help & support</span></div>
+                        <div class="set-right-icon">
+                            <span class="material-symbols-outlined">
+                                arrow_forward_ios
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="feedback-div set-same">
+                    <div class="set-same-inner">
+                        <div class="set-left-icon">
+                            <div class="set-icon-circle">
+                                <span class="material-symbols-outlined">
+                                    feedback
+                                </span>
+                            </div>
+                        </div>
+                        <div class="set-middle-text"><span>Give feedback</span></div>
+                        <div class="set-right-icon">
+                            <span class="material-symbols-outlined">
+                                arrow_forward_ios
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <a href="{% url 'logout' %}">
+                    <div class="logout-div set-same">
+                        <div class="set-same-inner">
+                            <div class="set-left-icon">
+                                <div class="set-icon-circle">
+                                    <span class="material-symbols-outlined">
+                                        logout
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="set-middle-text"><span>Logout</span></div>
+                            <div class="set-right-icon"></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% include "post_input.html" %}
+    {% include "eventForm.html" %}
+    {% include "storyadd.html" %}
+    {% include "storyview.html" %}
+    {% include "editpannel.html" %}
+    {% include "wellbeing.html" %}
+
+</div>
+{% endblock %}

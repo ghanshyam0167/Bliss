@@ -1,0 +1,84 @@
+<div class="viewstory">
+    <div class="viewstorydesign">
+        <div class="viewstorydesignback">
+            <div class="userstoryscroll">
+                {% for s in story %}
+                <div class="userstoryscrollchild">
+                    <div class="userstory">
+                        <div class="viewstoryuser">
+                            <div class="viewstoryusercircle">
+                                <a href="">
+                                    {% for userdetail in Userdetail %}
+                                    {% if userdetail.user == s.user %}
+                                    <img src="{{ userdetail.Profileimage.url }}"
+                                        alt="">
+                                        {% endif %}
+                                        {% endfor %}
+                                </a>
+                            </div>
+                            <div class="viewstoryuserdetail">
+                                <a href="">{{s.user.first_name}}</a>
+                                <span class="storytime">- {{ s.created_at|date:"D, d M Y H:i:s" }}</span>
+                            </div>
+    
+                        </div>
+                         
+                        <div class="storycontent withtext">
+                            
+                            {% if s.storyfile %}
+                            <input type="hidden" id="takingvalueforbackground" value="{{ s.contentbackground }}">
+
+                            <img src="{{s.storyfile.url}}" alt="">
+                            {% else %}
+                            <div class="storytextcontent">
+                                <input type="hidden" id="takingvalueforstyle" value='{{ s.contentfstyle }}'>
+                                <span>{{ s.contenttext }}</span>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                
+              
+               
+            </div>
+            <div class="emojisstory">
+                <span>
+                    <lottie-player src="https://lottie.host/3be2b636-cb3c-47b6-bf21-b6a9fd4346ab/TVR7nHRhoa.json"  speed="1" style="width: 50px; height: 50px" loop   direction="1" mode="normal" class="emojiplay"></lottie-player>
+                </span>
+                <span>
+                    <lottie-player src="https://lottie.host/331852b4-6d53-4eef-91b6-c65ad8b22e5b/DY5P9hRu3c.json"  speed="1" style="width: 50px; height: 50px" loop  direction="1" mode="normal" class="emojiplay"></lottie-player>
+                </span>
+                <span>
+                    <lottie-player src="https://lottie.host/166639b9-b532-443c-b544-a50b033a3817/FLkO7uW5a7.json"  speed="1" style="width: 42px; height: 42px" loop   direction="1" mode="normal" class="emojiplay"></lottie-player>                </span>
+                <span>
+                    <lottie-player src="https://lottie.host/a9b70409-b1e6-495f-a97f-6e303f461ca3/sJyaPN7ZWy.json"  speed="1" style="width: 80px; height: 80px" loop   direction="1" mode="normal" class="emojiplay"></lottie-player>
+                </span>
+                <span>
+                    <lottie-player src="https://lottie.host/81fdc22d-24d5-4886-ab95-75ec4f7b78d5/ndA5hToU6S.json" speed="1" style="width: 60px; height: 60px" loop  direction="1" mode="normal" class="emojiplay"></lottie-player>
+                </span>
+                <span>
+                    <lottie-player src="https://lottie.host/74494fc4-8498-441e-a4aa-c87e66e83f7e/NHCbqPLxRa.json" speed="1" style="width: 80px; height: 80px" loop   direction="1" mode="normal" class="emojiplay"></lottie-player>
+                </span>
+                <span>
+                    <lottie-player src="https://lottie.host/ecd4199f-1d75-4e7a-ae7a-e84916113bc6/1w9IDJGooG.json" speed="1" style="width: 40px; height: 40px" loop   direction="1" mode="normal" class="emojiplay"></lottie-player>                </span>
+            </div>
+            <div class="stories-btn-left vleft viewstorybtn">
+                <span class="material-symbols-outlined">
+                    arrow_back_ios_new
+                </span>
+            </div>
+            <div class="stories-btn-right vright viewstorybtn">
+                <span class="material-symbols-outlined">
+                    arrow_forward_ios
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="clsviewstory">
+        <span class="material-symbols-outlined">
+            close
+            </span>
+    </div>
+</div>

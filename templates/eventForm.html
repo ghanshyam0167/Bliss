@@ -1,0 +1,921 @@
+
+
+
+    <div class="eventform">
+        <div class="inner-event-form">
+            <div class="designing-event-form">
+                <form action="" method="post" id="Formevent" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" name="tillmonth" id="tillmonth">
+                    <input type="hidden" name="tillday" id="tillday">
+                    <input type="hidden" name="tillyear" id="tillyear">
+                    <div class="form-inputs">
+                        <div class="headingofpannel">
+                            <div class="pannel-head-icon">
+                                <span class="material-symbols-outlined pannel-icons">
+                                    event
+                                </span>
+                            </div>
+                            <div class="pannel-head-text"><span>What's your event about?</span></div>
+                        </div>
+                        <div class="chips">
+                            <div class="chips-child">
+                                <div class="chip-line">
+                                    <div class="chip-actual activechip"></div>
+                                </div>
+                                <div class="chip-text activechip">
+                                    <span>Details</span>
+                                </div>
+                            </div>
+                            <div class="chips-child">
+                                <div class="chip-line">
+                                    <div class="chip-actual"></div>
+                                </div>
+                                <div class="chip-text">
+                                    <span>Date and location</span>
+                                </div>
+                            </div>
+                            <div class="chips-child">
+                                <div class="chip-line">
+                                    <div class="chip-actual"></div>
+                                </div>
+                                <div class="chip-text">
+                                    <span>Guests</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chips-content-drag">
+                            <div class="chips-content details currentpage">
+
+                                <div class="event-title">
+                                    <div class="event-title-label"><span>Title</span></div>
+                                    <div class="title-input">
+                                        <input type="text" id="Inputtitle" placeholder="Add your event title" name="eventformverify">
+                                    </div>
+
+                                </div>
+                                <div class="event-category">
+                                    <div class="event-title-label"><span>Category</span></div>
+                                    <div class="category-input">
+                                        <div class="category-input-left">
+                                            <input type="text" id="InputCategory" class="InputCategory"
+                                                placeholder="Add a custom category" name="InputCategory" style="display: none;">
+                                            <span class="select-default">Select a category</span>
+                                        </div>
+                                        <div class="category-input-right">
+                                            <span class="material-symbols-outlined">
+                                                expand_more
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="event-desc">
+                                    <div class="event-title-label"><span>Description</span></div>
+                                    <div class="txtArea-desc">
+                                        <textarea name="eventdesc" id="TextAreaDesc"
+                                            placeholder="Add a description to encourage guests to attend to your event"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="chips-content dates-location">
+                                <div class="date-time">
+                                    <div class="event-title-label"><span>Date</span></div>
+                                    <div class="inputsdatedivs">
+                                        <div class="date-time-fields datetrigger">
+                                            <div class="timedate-flass">
+                                                <span style="font-family: 'inter', sans-serif;"
+                                                    class="month-span">Jan</span>&nbsp;
+                                                <span style="font-family: 'inter', sans-serif;"
+                                                    class="day-span">16</span>
+                                                <span style="font-family: 'inter', sans-serif;">,</span>&nbsp;
+                                                <span style="font-family: 'inter', sans-serif;"
+                                                    class="year-span">2024</span>
+                                                <input type="hidden" id="month" class="hiddenInput" name="month">
+                                                <input type="hidden" id="day" class="hiddenInput" name="day">
+                                                <input type="hidden" id="year" class="hiddenInput" name="year">
+                                            </div>
+                                            <div class="timedate-icon">
+                                                <span class="material-symbols-outlined">
+                                                    event
+                                                </span>
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="onclick-date-time-field">
+                                            <div class="inner-onclick-dtf">
+                                                <div class="td-column">
+                                                    <div class="td-column-child">
+                                                        <div class="td-child-content"><span></span></div>
+                                                        <div class="td-child-content"><span></span></div>
+                                                        <div class="td-child-content"><span>Jan</span></div>
+                                                        <div class="td-child-content"><span>Feb</span></div>
+                                                        <div class="td-child-content"><span>Mar</span></div>
+                                                        <div class="td-child-content"><span>Apr</span></div>
+                                                        <div class="td-child-content"><span>May</span></div>
+                                                        <div class="td-child-content"><span>Jun</span></div>
+                                                        <div class="td-child-content"><span>Jul</span></div>
+                                                        <div class="td-child-content"><span>Aug</span></div>
+                                                        <div class="td-child-content"><span>Sep</span></div>
+                                                        <div class="td-child-content"><span>Oct</span></div>
+                                                        <div class="td-child-content"><span>Nov</span></div>
+                                                        <div class="td-child-content"><span>Dec</span></div>
+                                                        <div class="td-child-content"><span></span></div>
+                                                        <div class="td-child-content"><span></span></div>
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="td-column">
+                                                    <div class="td-column-child">
+                                                        <div class="td-child-content"><span></span></div>
+                                                        <div class="td-child-content"><span></span></div>
+                                                        <div class="td-child-content"><span>1</span></div>
+                                                        <div class="td-child-content"><span>2</span></div>
+                                                        <div class="td-child-content"><span>3</span></div>
+                                                        <div class="td-child-content"><span>4</span></div>
+                                                        <div class="td-child-content"><span>5</span></div>
+                                                        <div class="td-child-content"><span>6</span></div>
+                                                        <div class="td-child-content"><span>7</span></div>
+                                                        <div class="td-child-content"><span>8</span></div>
+                                                        <div class="td-child-content"><span>9</span></div>
+                                                        <div class="td-child-content"><span>10</span></div>
+                                                        <div class="td-child-content"><span>11</span></div>
+                                                        <div class="td-child-content"><span>12</span></div>
+                                                        <div class="td-child-content"><span>13</span></div>
+                                                        <div class="td-child-content"><span>14</span></div>
+                                                        <div class="td-child-content"><span>15</span></div>
+                                                        <div class="td-child-content"><span>16</span></div>
+                                                        <div class="td-child-content"><span>17</span></div>
+                                                        <div class="td-child-content"><span>18</span></div>
+                                                        <div class="td-child-content"><span>19</span></div>
+                                                        <div class="td-child-content"><span>20</span></div>
+                                                        <div class="td-child-content"><span>21</span></div>
+                                                        <div class="td-child-content"><span>22</span></div>
+                                                        <div class="td-child-content"><span>23</span></div>
+                                                        <div class="td-child-content"><span>24</span></div>
+                                                        <div class="td-child-content"><span>25</span></div>
+                                                        <div class="td-child-content"><span>26</span></div>
+                                                        <div class="td-child-content"><span>27</span></div>
+                                                        <div class="td-child-content"><span>28</span></div>
+                                                        <div class="td-child-content"><span>29</span></div>
+                                                        <div class="td-child-content"><span>30</span></div>
+                                                        <div class="td-child-content"><span>31</span></div>
+                                                        <div class="td-child-content"><span></span></div>
+                                                        <div class="td-child-content"><span></span></div>
+
+
+                                                    </div>
+                                                </div>
+                                                <div class="td-column">
+                                                    <div class="td-column-child">
+                                                        <div class="td-child-content"><span></span></div>
+                                                        <div class="td-child-content"><span></span></div>
+                                                        <div class="td-child-content"><span>2024</span></div>
+                                                        <div class="td-child-content"><span>2025</span></div>
+                                                        <div class="td-child-content"><span>2026</span></div>
+                                                        <div class="td-child-content"><span>2027</span></div>
+                                                        <div class="td-child-content"><span>2028</span></div>
+                                                        <div class="td-child-content"><span>2029</span></div>
+                                                        <div class="td-child-content"><span>2030</span></div>
+                                                        <div class="td-child-content"><span>2031</span></div>
+                                                        <div class="td-child-content"><span>2032</span></div>
+                                                        <div class="td-child-content"><span>2033</span></div>
+                                                        <div class="td-child-content"><span>2034</span></div>
+                                                        <div class="td-child-content"><span>2035</span></div>
+                                                        <div class="td-child-content"><span></span></div>
+                                                        <div class="td-child-content"><span></span></div>
+
+
+
+                                                    </div>
+                                                </div>
+                                                <div class="td-picker-row"></div>
+                                            </div>
+                                        </div>
+                                        <div class="onclick-from-time-field">
+                                            <div class="inner-onclick-dtf">
+                                                <div class="ft-column">
+                                                    <div class="ft-column-child">
+                                                        <div class="ft-child-content fhourt"><span></span></div>
+                                                        <div class="ft-child-content fhourt"><span></span></div>
+                                                        <div class="ft-child-content fhourt"><span>00</span></div>
+                                                        <div class="ft-child-content fhourt"><span>01</span></div>
+                                                        <div class="ft-child-content fhourt"><span>02</span></div>
+                                                        <div class="ft-child-content fhourt"><span>03</span></div>
+                                                        <div class="ft-child-content fhourt"><span>04</span></div>
+                                                        <div class="ft-child-content fhourt"><span>05</span></div>
+                                                        <div class="ft-child-content fhourt"><span>06</span></div>
+                                                        <div class="ft-child-content fhourt"><span>07</span></div>
+                                                        <div class="ft-child-content fhourt"><span>08</span></div>
+                                                        <div class="ft-child-content fhourt"><span>09</span></div>
+                                                        <div class="ft-child-content fhourt"><span>10</span></div>
+                                                        <div class="ft-child-content fhourt"><span>11</span></div>
+                                                        <div class="ft-child-content fhourt"><span>12</span></div>
+                                                        <div class="ft-child-content fhourt"><span>13</span></div>
+                                                        <div class="ft-child-content fhourt"><span>14</span></div>
+                                                        <div class="ft-child-content fhourt"><span>15</span></div>
+                                                        <div class="ft-child-content fhourt"><span>16</span></div>
+                                                        <div class="ft-child-content fhourt"><span>18</span></div>
+                                                        <div class="ft-child-content fhourt"><span>19</span></div>
+                                                        <div class="ft-child-content fhourt"><span>20</span></div>
+                                                        <div class="ft-child-content fhourt"><span>21</span></div>
+                                                        <div class="ft-child-content fhourt"><span>22</span></div>
+                                                        <div class="ft-child-content fhourt"><span>23</span></div>
+                                                        <div class="ft-child-content fhourt"><span>24</span></div>
+                                                        <div class="ft-child-content fhourt"><span></span></div>
+                                                        <div class="ft-child-content fhourt"><span></span></div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="ft-column">
+                                                    <div class="ft-column-child">
+                                                        <div class="ft-child-content fmint"><span></span></div>
+                                                        <div class="ft-child-content fmint"><span></span></div>
+                                                        <div class="ft-child-content fmint"><span>00</span></div>
+                                                        <div class="ft-child-content fmint"><span>01</span></div>
+                                                        <div class="ft-child-content fmint"><span>02</span></div>
+                                                        <div class="ft-child-content fmint"><span>03</span></div>
+                                                        <div class="ft-child-content fmint"><span>04</span></div>
+                                                        <div class="ft-child-content fmint"><span>05</span></div>
+                                                        <div class="ft-child-content fmint"><span>06</span></div>
+                                                        <div class="ft-child-content fmint"><span>07</span></div>
+                                                        <div class="ft-child-content fmint"><span>08</span></div>
+                                                        <div class="ft-child-content fmint"><span>09</span></div>
+                                                        <div class="ft-child-content fmint"><span>10</span></div>
+                                                        <div class="ft-child-content fmint"><span>11</span></div>
+                                                        <div class="ft-child-content fmint"><span>12</span></div>
+                                                        <div class="ft-child-content fmint"><span>13</span></div>
+                                                        <div class="ft-child-content fmint"><span>14</span></div>
+                                                        <div class="ft-child-content fmint"><span>15</span></div>
+                                                        <div class="ft-child-content fmint"><span>16</span></div>
+                                                        <div class="ft-child-content fmint"><span>18</span></div>
+                                                        <div class="ft-child-content fmint"><span>19</span></div>
+                                                        <div class="ft-child-content fmint"><span>20</span></div>
+                                                        <div class="ft-child-content fmint"><span>21</span></div>
+                                                        <div class="ft-child-content fmint"><span>22</span></div>
+                                                        <div class="ft-child-content fmint"><span>23</span></div>
+                                                        <div class="ft-child-content fmint"><span>24</span></div>
+                                                        <div class="ft-child-content fmint"><span>25</span></div>
+                                                        <div class="ft-child-content fmint"><span>26</span></div>
+                                                        <div class="ft-child-content fmint"><span>27</span></div>
+                                                        <div class="ft-child-content fmint"><span>28</span></div>
+                                                        <div class="ft-child-content fmint"><span>29</span></div>
+                                                        <div class="ft-child-content fmint"><span>30</span></div>
+                                                        <div class="ft-child-content fmint"><span>31</span></div>
+                                                        <div class="ft-child-content fmint"><span>32</span></div>
+                                                        <div class="ft-child-content fmint"><span>33</span></div>
+                                                        <div class="ft-child-content fmint"><span>34</span></div>
+                                                        <div class="ft-child-content fmint"><span>35</span></div>
+                                                        <div class="ft-child-content fmint"><span>36</span></div>
+                                                        <div class="ft-child-content fmint"><span>37</span></div>
+                                                        <div class="ft-child-content fmint"><span>38</span></div>
+                                                        <div class="ft-child-content fmint"><span>39</span></div>
+                                                        <div class="ft-child-content fmint"><span>40</span></div>
+                                                        <div class="ft-child-content fmint"><span>41</span></div>
+                                                        <div class="ft-child-content fmint"><span>42</span></div>
+                                                        <div class="ft-child-content fmint"><span>43</span></div>
+                                                        <div class="ft-child-content fmint"><span>44</span></div>
+                                                        <div class="ft-child-content fmint"><span>46</span></div>
+                                                        <div class="ft-child-content fmint"><span>46</span></div>
+                                                        <div class="ft-child-content fmint"><span>47</span></div>
+                                                        <div class="ft-child-content fmint"><span>48</span></div>
+                                                        <div class="ft-child-content fmint"><span>49</span></div>
+                                                        <div class="ft-child-content fmint"><span>50</span></div>
+                                                        <div class="ft-child-content fmint"><span>51</span></div>
+                                                        <div class="ft-child-content fmint"><span>52</span></div>
+                                                        <div class="ft-child-content fmint"><span>53</span></div>
+                                                        <div class="ft-child-content fmint"><span>54</span></div>
+                                                        <div class="ft-child-content fmint"><span>55</span></div>
+                                                        <div class="ft-child-content fmint"><span>56</span></div>
+                                                        <div class="ft-child-content fmint"><span>57</span></div>
+                                                        <div class="ft-child-content fmint"><span>58</span></div>
+                                                        <div class="ft-child-content fmint"><span>59</span></div>
+                                                        <div class="ft-child-content fmint"><span>60</span></div>
+                                                        <div class="ft-child-content fmint"><span></span></div>
+                                                        <div class="ft-child-content fmint"><span></span></div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="ft-picker-row"></div>
+                                            </div>
+                                        </div>
+                                        <div class="onclick-to-time-field">
+                                            <div class="inner-onclick-dtf">
+                                                <div class="tt-column">
+                                                    <div class="ft-column-child">
+                                                        <div class="ft-child-content thourt"><span></span></div>
+                                                        <div class="ft-child-content thourt"><span></span></div>
+                                                        <div class="ft-child-content thourt"><span>00</span></div>
+                                                        <div class="ft-child-content thourt"><span>01</span></div>
+                                                        <div class="ft-child-content thourt"><span>02</span></div>
+                                                        <div class="ft-child-content thourt"><span>03</span></div>
+                                                        <div class="ft-child-content thourt"><span>04</span></div>
+                                                        <div class="ft-child-content thourt"><span>05</span></div>
+                                                        <div class="ft-child-content thourt"><span>06</span></div>
+                                                        <div class="ft-child-content thourt"><span>07</span></div>
+                                                        <div class="ft-child-content thourt"><span>08</span></div>
+                                                        <div class="ft-child-content thourt"><span>09</span></div>
+                                                        <div class="ft-child-content thourt"><span>10</span></div>
+                                                        <div class="ft-child-content thourt"><span>11</span></div>
+                                                        <div class="ft-child-content thourt"><span>12</span></div>
+                                                        <div class="ft-child-content thourt"><span>13</span></div>
+                                                        <div class="ft-child-content thourt"><span>14</span></div>
+                                                        <div class="ft-child-content thourt"><span>15</span></div>
+                                                        <div class="ft-child-content thourt"><span>16</span></div>
+                                                        <div class="ft-child-content thourt"><span>18</span></div>
+                                                        <div class="ft-child-content thourt"><span>19</span></div>
+                                                        <div class="ft-child-content thourt"><span>20</span></div>
+                                                        <div class="ft-child-content thourt"><span>21</span></div>
+                                                        <div class="ft-child-content thourt"><span>22</span></div>
+                                                        <div class="ft-child-content thourt"><span>23</span></div>
+                                                        <div class="ft-child-content thourt"><span>24</span></div>
+                                                        <div class="ft-child-content thourt"><span></span></div>
+                                                        <div class="ft-child-content thourt"><span></span></div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="tt-column">
+                                                    <div class="ft-column-child">
+                                                        <div class="ft-child-content tmint"><span></span></div>
+                                                        <div class="ft-child-content tmint"><span></span></div>
+                                                        <div class="ft-child-content tmint"><span>00</span></div>
+                                                        <div class="ft-child-content tmint"><span>01</span></div>
+                                                        <div class="ft-child-content tmint"><span>02</span></div>
+                                                        <div class="ft-child-content tmint"><span>03</span></div>
+                                                        <div class="ft-child-content tmint"><span>04</span></div>
+                                                        <div class="ft-child-content tmint"><span>05</span></div>
+                                                        <div class="ft-child-content tmint"><span>06</span></div>
+                                                        <div class="ft-child-content tmint"><span>07</span></div>
+                                                        <div class="ft-child-content tmint"><span>08</span></div>
+                                                        <div class="ft-child-content tmint"><span>09</span></div>
+                                                        <div class="ft-child-content tmint"><span>10</span></div>
+                                                        <div class="ft-child-content tmint"><span>11</span></div>
+                                                        <div class="ft-child-content tmint"><span>12</span></div>
+                                                        <div class="ft-child-content tmint"><span>13</span></div>
+                                                        <div class="ft-child-content tmint"><span>14</span></div>
+                                                        <div class="ft-child-content tmint"><span>15</span></div>
+                                                        <div class="ft-child-content tmint"><span>16</span></div>
+                                                        <div class="ft-child-content tmint"><span>18</span></div>
+                                                        <div class="ft-child-content tmint"><span>19</span></div>
+                                                        <div class="ft-child-content tmint"><span>20</span></div>
+                                                        <div class="ft-child-content tmint"><span>21</span></div>
+                                                        <div class="ft-child-content tmint"><span>22</span></div>
+                                                        <div class="ft-child-content tmint"><span>23</span></div>
+                                                        <div class="ft-child-content tmint"><span>24</span></div>
+                                                        <div class="ft-child-content tmint"><span>25</span></div>
+                                                        <div class="ft-child-content tmint"><span>26</span></div>
+                                                        <div class="ft-child-content tmint"><span>27</span></div>
+                                                        <div class="ft-child-content tmint"><span>28</span></div>
+                                                        <div class="ft-child-content tmint"><span>29</span></div>
+                                                        <div class="ft-child-content tmint"><span>30</span></div>
+                                                        <div class="ft-child-content tmint"><span>31</span></div>
+                                                        <div class="ft-child-content tmint"><span>32</span></div>
+                                                        <div class="ft-child-content tmint"><span>33</span></div>
+                                                        <div class="ft-child-content tmint"><span>34</span></div>
+                                                        <div class="ft-child-content tmint"><span>35</span></div>
+                                                        <div class="ft-child-content tmint"><span>36</span></div>
+                                                        <div class="ft-child-content tmint"><span>37</span></div>
+                                                        <div class="ft-child-content tmint"><span>38</span></div>
+                                                        <div class="ft-child-content tmint"><span>39</span></div>
+                                                        <div class="ft-child-content tmint"><span>40</span></div>
+                                                        <div class="ft-child-content tmint"><span>41</span></div>
+                                                        <div class="ft-child-content tmint"><span>42</span></div>
+                                                        <div class="ft-child-content tmint"><span>43</span></div>
+                                                        <div class="ft-child-content tmint"><span>44</span></div>
+                                                        <div class="ft-child-content tmint"><span>46</span></div>
+                                                        <div class="ft-child-content tmint"><span>46</span></div>
+                                                        <div class="ft-child-content tmint"><span>47</span></div>
+                                                        <div class="ft-child-content tmint"><span>48</span></div>
+                                                        <div class="ft-child-content tmint"><span>49</span></div>
+                                                        <div class="ft-child-content tmint"><span>50</span></div>
+                                                        <div class="ft-child-content tmint"><span>51</span></div>
+                                                        <div class="ft-child-content tmint"><span>52</span></div>
+                                                        <div class="ft-child-content tmint"><span>53</span></div>
+                                                        <div class="ft-child-content tmint"><span>54</span></div>
+                                                        <div class="ft-child-content tmint"><span>55</span></div>
+                                                        <div class="ft-child-content tmint"><span>56</span></div>
+                                                        <div class="ft-child-content tmint"><span>57</span></div>
+                                                        <div class="ft-child-content tmint"><span>58</span></div>
+                                                        <div class="ft-child-content tmint"><span>59</span></div>
+                                                        <div class="ft-child-content tmint"><span>60</span></div>
+                                                        <div class="ft-child-content tmint"><span></span></div>
+                                                        <div class="ft-child-content tmint"><span></span></div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="ft-picker-row"></div>
+                                            </div>
+                                        </div>
+                                        <div class="time-label"><span>From</span></div>
+                                        <div class="date-time-fields fromtime">
+                                            <div class="timedate-flass">
+                                                <span style="font-family: 'inter', sans-serif;"
+                                                    class="fromhour-span">12</span>&nbsp;
+                                                <div class="time-dots">
+                                                    <span class="material-symbols-outlined">
+                                                        fiber_manual_record
+                                                    </span>
+                                                    <span class="material-symbols-outlined">
+                                                        fiber_manual_record
+                                                    </span>
+                                                </div>
+
+                                                &nbsp; <span style="font-family: 'inter', sans-serif;"
+                                                    class="fromminutes-span">00</span>
+                                                
+
+
+
+                                            </div>
+
+                                            <div class="timedate-icon">
+                                                <span class="material-symbols-outlined">
+                                                    schedule
+                                                </span>
+                                            </div>
+                                            
+                                            <input type="hidden" id="fromhour" class="hiddenInput" name="fhour">
+                                            <input type="hidden" id="fromminutes" class="hiddenInput"
+                                                name="fmin">
+                                            <input type="hidden" id="fromampm" name="fampm">    
+                                        </div>
+                                        <div class="time-label"><span>To</span></div>
+
+                                        <div class="date-time-fields totime">
+                                            <div class="timedate-flass">
+                                                <span style="font-family: 'inter', sans-serif;"
+                                                    class="tohour-span">12</span>&nbsp;
+                                                <div class="time-dots">
+                                                    <span class="material-symbols-outlined">
+                                                        fiber_manual_record
+                                                    </span>
+                                                    <span class="material-symbols-outlined">
+                                                        fiber_manual_record
+                                                    </span>
+                                                </div>
+
+                                                &nbsp; <span style="font-family: 'inter', sans-serif;"
+                                                    class="tominutes-span">00</span>
+                                            </div>
+                                            <div class="timedate-icon">
+                                                <span class="material-symbols-outlined">
+                                                    schedule
+                                                </span>
+                                            </div>
+                                            
+                                            <input type="hidden" id="tohour" class="hiddenInput" name="thour">
+                                            <input type="hidden" id="tominutes" class="hiddenInput" name="tmin">
+                                            <input type="hidden" id="toampm" class="hiddenInput" name="tampm">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="frequency">
+                                    <div class="event-title-label"><span>Frequency</span></div>
+                                    <div class="frequencyinputs">
+                                        <div class="onlyoncediv choosedOpt">
+                                            <div class="chooseicons onlyonceicon">
+                                                <span class="material-symbols-outlined">
+                                                    adjust
+                                                </span>
+                                            </div>
+                                            <div class="onlyonce-label">
+                                                <span>Only once</span>
+                                            </div>
+                                        </div>
+                                        <div class="manytimes">
+                                            <div class="chooseicons manytimesicon">
+                                                <span class="material-symbols-outlined">
+                                                    adjust
+                                                </span>
+                                            </div>
+
+                                            <div class="manytimes-inputs">
+                                                <div class="manytimes-label">
+                                                    <span>Every</span>
+                                                </div>
+                                                <div class="every-input-times">
+                                                    <div class="times-input">
+                                                        <input type="number" name="every" id="times" class="times" value="0" maxlength="2"
+                                                            placeholder="0">
+                                                    </div>
+                                                    <div class="times-add-minus">
+                                                        <span class="material-symbols-outlined adder">
+                                                            add
+                                                        </span>
+                                                        <span class="material-symbols-outlined minus">
+                                                            remove
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="basis-input">
+                                                    <div class="display-basis"> <span class="insertbasis">choose</span></div>
+                                                    <div class="basis-drop-icon">
+                                                        <span class="material-symbols-outlined">
+                                                            expand_more
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="vaccum"></div>
+                                                <div class="manytimes-label endafter">
+                                                    <span>Ends after</span>
+                                                </div>
+                                                <div class="every-input-times">
+                                                    <div class="times-input">
+                                                        <input type="number" name="Occurences" id="Occurences" class="times" value="0" maxlength="2"
+                                                            placeholder="0">
+                                                    </div>
+                                                    <div class="times-add-minus">
+                                                        <span class="material-symbols-outlined adder">
+                                                            add
+                                                        </span>
+                                                        <span class="material-symbols-outlined minus">
+                                                            remove
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="manytimes-label endafter">
+                                                    <span>Occurences</span>
+                                                </div>
+                                                <div class="basis-selection">
+                                                    <ul>
+                                                        <li>&nbsp;Daily&nbsp;</li>
+                                                        <li>Weekly</li>
+                                                        <li>Monthly</li>
+                                                        <li>Quarterly</li>
+                                                        <li>Yearly</li>
+                                                        <input type="hidden" id="insertbasisvalue" name="basis">
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="location">
+                                    <div class="event-title-label"><span>Location</span></div>
+                                    <div class="inner-location">
+                                        <div class="physical locselected">
+                                            <div class="choose-icon physicalicon">
+                                                <span class="material-symbols-outlined">
+                                                    adjust
+                                                </span>
+                                            </div>
+                                            <div class="onlyonce-label">
+                                                <span>Physical</span>
+                                            </div>
+                                        </div>
+                                        <div class="address-input forphysical showforaddress">
+                                            <input type="text" name="physical" placeholder="Add your event address" id="eventaddress">
+                                        </div>
+
+
+                                        <div class="online">
+                                            <div class="choose-icon virtualicon">
+                                                <span class="material-symbols-outlined">
+                                                    adjust
+                                                </span>
+                                            </div>
+                                            <div class="onlyonce-label">
+                                                <span>Virtual</span>
+                                            </div>
+                                        </div>
+                                        <div class="address-input forvirtual">
+                                            <input type="url" name="url-adress" placeholder="Paste your url link" id="urllink">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="chips-content guests">
+                                <div class="guest-name">
+                                    <div class="event-title-label"><span>Special guests</span></div>
+                                    <div class="guest-name-input">
+                                        <div class="input-add">
+                                            <div class="Input-guest">
+                                                <input type="text" id="Inputguest1" class="Inputguest"
+                                                    placeholder="Add special guest(if any)" name="guest">
+                                            </div>
+                                        </div>
+                                       <div class="input-add-icons">
+                                        <div class="add-input-icon">
+                                            <span class="material-symbols-outlined addinputtrigger">
+                                                add
+                                            </span>
+                                        </div>
+                                       </div>
+                                        
+                                    </div>
+
+                                </div>
+                                <div class="ticket-price">
+                                    <div class="event-title-label"><span>Tickets price</span></div>
+                                    <div class="inner-location">
+                                        <div class="physical freediv selectticket">
+                                            <div class="choose-icon freeicon">
+                                                <span class="material-symbols-outlined">
+                                                    adjust
+                                                </span>
+                                            </div>
+                                            <div class="onlyonce-label">
+                                                <span>Free</span>
+                                            </div>
+                                        </div>
+                                        <div class="online feediv">
+                                            <div class="choose-icon feeicon">
+                                                <span class="material-symbols-outlined">
+                                                    adjust
+                                                </span>
+                                            </div>
+                                            <div class="onlyonce-label">
+                                                <span>Ticket fee</span>
+                                            </div>
+                                        </div>
+                                        <div class="address-input entryfee">
+                                            <div class="currency"><span>Rs.</span></div>
+                                            <input type="number" id="Entry-fee" name="fee">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="agelimit">
+                                    <div class="event-title-label"><span>Age limit</span></div>
+                                    <div class="checkbox-design">
+                                        <input type="radio" id="checkbox1" name="option" class="agecheck" value="All age group can participate">
+                                        <label for="checkbox1">All age group</label>
+
+                                    </div>
+                                    <div class="checkbox-design">
+                                        <input type="radio" id="checkbox2" name="option" class="agecheck" value="Only age group above 13 can participate">
+                                        <label for="checkbox2">Above 13+</label>
+
+
+                                    </div>
+                                    <div class="checkbox-design">
+                                        <input type="radio" id="checkbox3" name="option" class="agecheck" value="Only age group above 18 can participate">
+                                        <label for="checkbox3">Above 18+</label>
+
+
+                                    </div>
+                                    <div class="checkbox-design">
+                                        <input type="radio" id="checkbox4" name="option"  class="agecheck" value="Only age group above 45 can participate">
+                                        <label for="checkbox4">More than 45+</label>
+
+                                    </div>
+                                    <input type="hidden" id="agerestriction" name="req">
+                                    
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="select-category-list">
+                            <div class="design-category-list">
+                                <ul>
+                                    <li class="add-custom">
+                                        <div class="add-icon">
+                                            <span class="material-symbols-outlined addcustom">
+                                                add
+                                            </span>
+                                        </div>
+                                        <div class="add-custom-label addcustom"><span class="addcustom ">Add
+                                                custom category</span></div>
+                                    </li>
+                                    <li>Green Living Expo</li>
+                                    <li>Environmental Conservation Conference</li>
+                                    <li>Clean Energy Symposium</li>
+                                    <li>Organic Gardening Workshop</li>
+                                    <li>Pollution Prevention Conference</li>
+                                    <li>Tree Planting Initiative</li>
+                                    <li>Eco-Friendly Fashion Show</li>
+                                    <li>Wildlife Conservation Workshop</li>
+                                    <li>Green Business Summit</li>
+                                    <li>Eco-Friendly Home Design Seminar</li>
+                                    <li>Earth Day Celebration</li>
+                                    <li>Water Conservation Workshop</li>
+                                    <li>Comedy Night</li>
+                                    <li>Trivia Night</li>
+                                    <li>Outdoor Movie Night</li>
+                                    <li>Talent Show</li>
+                                    <li>Outdoor Yoga Retreat</li>
+                                    <li>Hiking Expedition</li>
+                                    <li>Photography Walkabout</li>
+                                    <li>Costume Party</li>
+                                    <li>Birthday Bash</li>
+                                    <li>New Job Celebration</li>
+                                    <li>Anniversary Celebration</li>
+                                    <li>Baby Shower</li>
+                                    <li>Engagement Party</li>
+                                    <li>Retirement Party</li>
+                                    <li>Reunion Gathering</li>
+                                    <li>Family Reunion</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-btns">
+                            <div class="btns-left">
+                                <div class="btn-back-design">
+                                    <button type="button" id="Back-btn" style="display: none;">Back</button>
+                                </div>
+                            </div>
+                            <div class="btns-right">
+                                <div class="btn-next-design">
+                                    <button id="Next-btn" type="button">Next</button>
+                                    <button id="Next-btn-2" type="submit" style="display: none;">Post</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="form-preview">
+                        <div class="headingofpannel">
+                            <div class="pannel-head-icon">
+                                <span class="material-symbols-outlined">
+                                    feature_search
+                                    </span>
+                            </div>
+                            <div class="pannel-head-text"><span>Your invitation card will look like</span></div>
+                        </div>
+                        <div class="flexpreview">
+                            <div class="frontcard choosedcard">
+                                <div class="designpreviewcard">
+                                    <div class="backgroundcolordiv"></div>
+                                    <div class="preview-card-image">
+                                        <input type="file" id="preview-card-img" accept="image/*" onchange="handleFileSelect(this)" name="eventimg" >
+                                        <label for="preview-card-img" class="preview-card-img-label">
+                                            <div class="add-img-vid">
+                                                <div class="defaul-add-img-vid-icon">
+                                                 <span class="material-symbols-outlined">
+                                                     add_to_photos
+                                                     </span>
+                                                </div>
+                                                <div class="add-img-vid-label"><span>Add photos/videos</span></div>
+                                                <div class="add-img-vid-drag-drop">or drag and drop</div>
+             
+                                               </div>
+                                             
+                                        </label>
+                                        <div class="preview"></div>
+                                    </div>
+                                    <div class="preview-card-details">
+                                        <div class="card-event-invite">
+                                            <div class="card-user">
+                                                <a href="">
+                                                    {% for userdetail in Userdetail %}
+                            {% if userdetail.user == user %}
+                            <img src="{{ userdetail.Profileimage.url }}"
+                                alt="">
+                                {% endif %}
+                                {% endfor %}
+                                                </a>
+                                               
+                                            </div>
+                                            <div class="card-title-handle">
+                                                <p><a href="">{{ user.first_name }}</a> invites for <span class="tobeinserted">"Event title"</span> event </p>
+                                                
+                                           &nbsp;
+                                      
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="card-details-middle">
+                                            <div class="middle-left">
+                                                <div class="event-label"><span>Live Event</span></div>
+                                                <div class="event-fee"><span>&#8377;</span>&nbsp;<span class="insertfee">Free tickets</span></div>
+                                            </div>
+                                            <div class="middle-right">
+                                                <div class="register-btn">
+                                                    <div class="inner-register-btn">
+                                                        <span>Register</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-details-end">
+                                            <div class="end-left">
+                                                <div class="event-details-opt">
+                                                    <div class="event-details-label"><span>Event Details</span></div>
+                                                    <div class="event-details-label-icon">
+                                                        <span class="material-symbols-outlined">
+                                                            arrow_upward
+                                                            </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="end-right"></div>
+                                        </div>
+                                    </div>
+                                    <div class="delete-preview-card-img">
+                                        <span class="material-symbols-outlined clspreviewimg">
+                                            close
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="onhovercard">
+                                <div class="designpreviewcard">
+                                    <div class="preview">
+                                    
+                                    </div>
+                                    <div class="onhover-card-details">
+                                        <div class="onhover-event-title"><span class="onhoverinsertingtitle">"Event title"</span></div>
+                                        <div class="onhover-event-category"><span class="onhoverinsertingcat">( "Event category" )</span></div>
+                                        <div class="onhover-event-desciption"><span class="onhoverinsertingdes">"Your event description will shown here"</span></div>
+                                        <div class="onhover-horz-border"></div>
+                                        <div class="special-guests-label"><span>Special Guests</span></div>
+                                        <div class="special-guest-design">
+                                            <div class="guest-name-display">
+                                                <div class="star-icon">
+                                                    <span class="material-symbols-outlined">
+                                                    star
+                                                    </span></div>
+                                                <div class="star-name"><span class="insertstarname">Guest name goes here</span></div>    
+                                            </div>
+                                        </div>
+                                        <div class="onhover-horz-border"></div>
+
+                                        <div class="onhover-card-labels"><span>Informations</span></div>
+                                        <div class="information-design">
+                                            <div class="id-icon"><span class="material-symbols-outlined">
+                                                currency_rupee
+                                                </span></div>
+                                            <div class="id-icon-name"><span class="insertfee">Free tickets</span></div>    
+                                        </div>
+                                        <div class="information-design">
+                                            <div class="id-icon"><span class="material-symbols-outlined">
+                                                calendar_today
+                                                </span></div>
+                                            <div class="id-icon-name"><span class="insertdate">"Event date"</span></div>    
+                                        </div>
+                                        <div class="information-design">
+                                            <div class="id-icon"><span class="material-symbols-outlined">
+                                                schedule
+                                                </span></div>
+                                            <div class="id-icon-name">
+                                                <span>From</span>&nbsp;
+                                                <span class="inserttimefh">"Event time"</span>
+                                                <span style="font-size: 18px;">:</span>
+                                                <span class="inserttimefm"></span>
+                                                <span class="fampm">AM</span>&nbsp;
+                                                <span>---</span>
+                                                &nbsp;
+                                                <span>To</span>&nbsp;
+                                                <span class="inserttimeth">"Event time"</span>
+                                                <span style="font-size: 18px;">:</span>
+                                                <span class="inserttimetm"></span>
+                                                <span class="tampm">AM</span>
+                                            </div>    
+                                        </div>
+                                        <div class="information-design displayoccurence">
+                                            <div class="id-icon"><span class="material-symbols-outlined">
+                                                restart_alt
+                                                </span></div>
+                                            <div class="id-icon-name">
+                                                <span>Event will held for continous</span>&nbsp;
+                                                <span class="insertmax"></span>&nbsp;
+                                                <span>times a</span>&nbsp;
+                                                <span class="insertbasisspan">"Event frequency"</span>&nbsp;
+                                                <span>till</span>&nbsp;
+                                                <span class="inserttill">"date"</span>
+                                            </div>    
+                                        </div>
+                                        <div class="information-design">
+                                            <div class="id-icon"><span class="material-symbols-outlined">
+                                                location_on
+                                                </span></div>
+                                            <div class="id-icon-name"><span class="insertaddress">"Event Address"</span></div>    
+                                        </div>
+                                        <div class="onhover-card-labels"><span>Requirements</span></div>
+                                        <div class="information-design">
+                                            <div class="id-icon"><span class="material-symbols-outlined">
+                                                person
+                                                </span></div>
+                                            <div class="id-icon-name"><span class="insertrequirement">"Age limit"</span></div>    
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+   
+        <div class="closingeventform">
+            <span class="material-symbols-outlined">
+                close
+                </span>
+        </div>
+    </div>
+
+

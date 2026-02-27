@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="rightcolumn" id="search" >
+    <div class="searchdiv" id="defaultvid">
+        <div class="searchbar">
+            <div class="searchicon"><span class="material-symbols-outlined">
+                    search
+                </span></div>
+            <input type="text" id="search-input" onkeyup="search(), shhi()"
+                placeholder="News, articles and more">
+            <div class="closeicon" onclick="clearsearch()">
+                <span class="material-symbols-outlined">
+                    close
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="popular-div" id="popular-div">
+        <div class="popular-search-text">
+            <h2>popular searches</h2>
+        </div>
+        <div class="popular-cards">
+            {% for pop in popularsearch %}
+            <div class="card-type-2" style="background-image: url('{{ pop.S_image.url }}');">
+                <div class="card-hover-div">
+                    <div class="card-hover-image" style="background-image: url('{{ pop.S_image.url }}');"></div>
+                    <div class="card-hover-image-down">
+                        <div class="btndiv">
+                            <div class="read-btn-div">
+                                <button>
+                                    <span>
+                                        <span class="material-symbols-outlined">
+                                            play_arrow
+                                        </span>
+                                        <span>Read now</span>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="add-btn-div">
+                                <span class="material-symbols-outlined">
+                                    add
+                                </span>
+                            </div>
+                        </div>
+                        <div class="info-div">
+
+                            <span>{{pop.s_pdate}}</span>
+                            <span class="info-dot-icon"><span class="material-symbols-outlined dots">
+                                    fiber_manual_record
+                                </span></span>
+                            <span>{{pop.s_author}}</span>
+                            <span class="info-dot-icon"><span class="material-symbols-outlined dots">
+                                    fiber_manual_record
+                                </span></span>
+                            <span>{{pop.s_lng}}</span>
+                        </div>
+                        <div class="para-div">
+                            <p>{{pop.s_desc}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         {% endfor %}
+
+        </div>
+    </div>
+    <div class="onsearchdiv" id="onsearchdiv">
+        {%  for content in searchdata %}
+        <div class="card-type-2 searchcards" data-value = "{{content.s_title}}" style="background-image: url('{{ content.S_image.url }}');">
+            <div class="card-hover-div">
+                <div class="card-hover-image" style="background-image: url('{{content.S_image.url}}');"></div>
+                <div class="card-hover-image-down">
+                    <div class="btndiv">
+                        <div class="read-btn-div">
+                            <button>
+                                <span>
+                                    <span class="material-symbols-outlined">
+                                        play_arrow
+                                    </span>
+                                    <span>Read now</span>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="add-btn-div">
+                            <span class="material-symbols-outlined">
+                                add
+                            </span>
+                        </div>
+                    </div>
+                    <div class="info-div">
+
+                        <span>{{content.s_pdate}}</span>
+                        <span class="info-dot-icon"><span class="material-symbols-outlined dots">
+                                fiber_manual_record
+                            </span></span>
+                        <span>{{ content.s_author }}</span>
+                        <span class="info-dot-icon"><span class="material-symbols-outlined dots">
+                                fiber_manual_record
+                            </span></span>
+                        <span>{{content.s_lng}}</span>
+                    </div>
+                    <div class="para-div">
+                        <p>{{content.s_desc}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 

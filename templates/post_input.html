@@ -1,0 +1,111 @@
+<div class="taking-post-input">
+    <div class="inner-taking-post">
+        <div class="design-taking-input">
+            <div class="taking-post-top">
+                <div class="create-post-text"><span>Create post</span></div>
+                <div class="close-post-icon">
+                    <span class="material-symbols-outlined">
+                        close
+                        </span>
+                </div>
+            </div>
+            <div class="border-horz-line"></div>
+            <div class="profile-details">
+                <div class="profile-left-icon">
+                    <a href="{% url 'myprofile-lg' %}">
+                        <span> {% for userdetail in Userdetail %}
+                            {% if userdetail.user == user %}
+                            <img src="{{ userdetail.Profileimage.url }}"
+                                alt="">
+                                {% endif %}
+                                {% endfor %}</span>
+                    </a>
+                </div>
+                <div class="profile-right-detail">
+                    <div class="user-while-taking-name"><span>{{ user.first_name }}</span></div>
+                    <div class="post-public">
+                        <div class="globe-contain-with-txt">
+                            <div class="globe-icon">
+                                <span class="material-symbols-outlined">
+                                    public
+                                    </span>
+                            </div>
+                            <div class="public-txt"><span>Public</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form action="" id="post-upload-form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+            <div class="post-input-area">
+                <div class="post-input-child for-default-full">
+                    <div class="input-txt-area">
+                        {{ Uploadform.Textinput }}
+                     </div>
+                </div>
+                    <div class="post-input-child img-vid-field">
+                        <div class="photo-input">
+                            <div class="custom-upload">
+                                {{ Uploadform.imgVidfield }}
+                                <label for="upload" id="upload-img-vid">
+                                  <div class="add-img-vid">
+                                   <div class="defaul-add-img-vid-icon">
+                                    <span class="material-symbols-outlined">
+                                        add_to_photos
+                                        </span>
+                                   </div>
+                                   <div class="add-img-vid-label"><span>Add photos/videos</span></div>
+                                   <div class="add-img-vid-drag-drop">or drag and drop</div>
+
+                                  </div>
+                                </label>
+                                <div id="previewupload"></div>
+                            </div>
+                            <div class="close-photo-input">
+                                <span class="material-symbols-outlined">
+                                    close
+                                    </span>
+                            </div>
+                         </div>
+                    </div>
+            </div>
+            <div class="add-to">
+                <div class="add-to-label"><span>Add to your blog</span></div>
+                <div class="add-to-opt">
+                    <div class="add-to-icon-div">
+                        <span class="material-symbols-outlined image">
+                            photo_library
+                            </span>
+                    </div>
+                    <div class="add-to-icon-div">
+                        <input type="file" id="fileInput" onchange="readPDF(this)" style="display: none;">
+                        <label for="fileInput">
+                        <span class="material-symbols-outlined file">
+                            attach_file
+                            </span>
+                        </label>
+                    </div>
+                    <div class="add-to-icon-div">
+                        <span class="material-symbols-outlined event">
+                            event_note
+                            </span>
+                    </div>
+                    <div class="add-to-icon-div">
+                        <span class="material-symbols-outlined reaction">
+                            add_reaction
+                            </span>
+                    </div>
+                    <div class="add-to-icon-div">
+                        <span class="material-symbols-outlined gif">
+                            gif_box
+                            </span>
+                    </div>
+                </div>
+            </div>
+            <div class="submit-post">
+                <button id="upload-btn" disabled name="postupload_submit">Post</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>

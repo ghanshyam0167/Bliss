@@ -1,0 +1,927 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bliss</title>
+    <link rel="icon" type="image/x-icon" href="/static/logo/favicon.ico">
+    <script src="https://kit.fontawesome.com/a268eb4fa1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" type="text/css" href="/static/update.css">
+</head>
+
+<body>
+    <div class="rightcolumn" id="myprofile">
+        <div class="design-myprofile">
+            <div class="myprofile-left">
+                <div class="inner-myprofile-left">
+                    <div class="inprofile-weblogo">
+                        <a href="{% url 'home' %}"> <span><img src="/static/logo/FINAL.png"
+                                    alt=""></span></a>
+                        <div class="goback">
+
+                            <a href="{% url 'home' %}">
+                                <span class="material-symbols-outlined">
+                                    arrow_back
+                                </span>
+                                <span>Back</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ip-left-scroller">
+                        <div class="ip-left-scrolling-child">
+                            <div class="ip-profile-card">
+                                <div class="inner-ip-profile-card">
+                                    <div class="ip-profile-card-circle">
+                                        <div class="ip-profile-card-circle-actual">
+                                            <!-- <img src="data:image/png;base64,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"
+                                                alt=""> -->
+                                            <img src="{{profiledetail.userprofileimage.url}}"
+                                                alt="">
+                                        </div>
+                                    </div>
+                                    <div class="ip-profile-card-username">
+                                        <span>{{ profiledetail.username }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% if user.first_name == profiledetail.username %}
+                        <div class="ip-left-scrolling-child">
+                            <div class="ip-general-div">
+                                <div class="design-general">
+                                    <div class="general-label"><span>General</span></div>
+                                    <a href="">
+                                        <div class="general-list-item">
+                                            <div class="item-icon">
+                                                <span class="material-symbols-outlined">
+                                                    bookmark
+                                                </span>
+                                            </div>
+                                            <div class="item-label"><span>Saved list</span></div>
+                                        </div>
+                                    </a>
+                                    <a href="">
+                                        <div class="general-list-item">
+                                            <div class="item-icon">
+                                                <span class="material-symbols-outlined">
+                                                    notifications
+                                                </span>
+                                            </div>
+                                            <div class="item-label"><span>Notifications</span></div>
+                                        </div>
+                                    </a>
+                                    <a href="">
+                                        <div class="general-list-item">
+                                            <div class="item-icon">
+                                                <span class="material-symbols-outlined">
+                                                    rss_feed
+                                                </span>
+                                            </div>
+                                            <div class="item-label"><span>Feeds</span></div>
+                                        </div>
+                                    </a>
+                                    <a href="">
+                                        <div class="general-list-item">
+                                            <div class="item-icon">
+                                                <span class="material-symbols-outlined">
+                                                    event
+                                                </span>
+                                            </div>
+                                            <div class="item-label"><span>Events</span></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ip-left-scrolling-child">
+                            <div class="ip-setting-div">
+                                <div class="design-ip-setting">
+                                    <div class="setting-card">
+                                        <div class="text-setting-privacy"><span>Settings & privacy</span></div>
+                                        <div class="accordion-icon">
+                                            <span class="material-symbols-outlined">
+                                                expand_more
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ip-left-scrolling-child">
+                            <div class="onclick-ip-setting">
+                                <div class="design-onclick-ip-setting">
+                                    <a href="">
+                                        <div class="setting-list-card">
+                                            <div class="setting-rel-icon">
+                                                <span class="material-symbols-outlined">
+                                                    settings
+                                                </span>
+                                            </div>
+                                            <div class="setting-rel-label"><span>Settings</span></div>
+                                        </div>
+                                    </a>
+                                    <a href="">
+                                        <div class="setting-list-card">
+                                            <div class="setting-rel-icon">
+                                                <span class="material-symbols-outlined">
+                                                    account_circle
+                                                </span>
+                                            </div>
+                                            <div class="setting-rel-label"><span>Privacy</span></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ip-left-scrolling-child">
+                            <div class="ip-setting-div">
+                                <div class="design-ip-setting">
+                                    <div class="setting-card">
+                                        <div class="text-setting-privacy"><span>Help & support</span></div>
+                                        <div class="accordion-icon">
+                                            <span class="material-symbols-outlined">
+                                                expand_more
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ip-left-scrolling-child">
+                            <div class="onclick-ip-setting">
+                                <div class="design-onclick-ip-setting">
+                                    <a href="">
+                                        <div class="setting-list-card">
+                                            <div class="setting-rel-icon">
+                                                <span class="material-symbols-outlined">
+                                                    help
+                                                </span>
+                                            </div>
+                                            <div class="setting-rel-label"><span>Help</span></div>
+                                        </div>
+                                    </a>
+                                    <a href="">
+                                        <div class="setting-list-card">
+                                            <div class="setting-rel-icon">
+                                                <span class="material-symbols-outlined">
+                                                    unknown_document
+                                                </span>
+                                            </div>
+                                            <div class="setting-rel-label"><span>Support</span></div>
+                                        </div>
+                                    </a>
+                                    <a href="">
+                                        <div class="setting-list-card">
+                                            <div class="setting-rel-icon">
+                                                <span class="material-symbols-outlined">
+                                                    report
+                                                </span>
+                                            </div>
+                                            <div class="setting-rel-label"><span>Report a problem</span></div>
+                                        </div>
+                                    </a>
+                                    <a href="">
+                                        <div class="setting-list-card">
+                                            <div class="setting-rel-icon">
+                                                <span class="material-symbols-outlined">
+                                                    rate_review
+                                                </span>
+                                            </div>
+                                            <div class="setting-rel-label"><span>Feedback</span></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ip-left-scrolling-child" id="logout-div">
+                            <div class="ip-logout-div">
+                                <a href="{% url 'logout' %}">
+                                    <div class="design-logout">
+                                        <div class="logout-icon"><span class="material-symbols-outlined">
+                                                logout
+                                            </span></div>
+                                        <div class="logout-text"><span>Logout</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        {%else%}
+                        <div class="ip-left-scrolling-child">
+                            <div class="ip-general-div">
+                                <div class="design-general">
+                                    <div class="general-label"><span>General</span></div>
+                                    <a href="">
+                                        <div class="general-list-item">
+                                            <div class="item-icon">
+                                                <span class="material-symbols-outlined">
+                                                    bookmark
+                                                </span>
+                                            </div>
+                                            <div class="item-label"><span>Achievments</span></div>
+                                        </div>
+                                    </a>
+                                    <a href="">
+                                        <div class="general-list-item">
+                                            <div class="item-icon">
+                                                <span class="material-symbols-outlined">
+                                                    notifications
+                                                </span>
+                                            </div>
+                                            <div class="item-label"><span>Communities</span></div>
+                                        </div>
+                                    </a>
+                                    <a href="">
+                                        <div class="general-list-item">
+                                            <div class="item-icon">
+                                                <span class="material-symbols-outlined">
+                                                    rss_feed
+                                                </span>
+                                            </div>
+                                            <div class="item-label"><span>Feeds</span></div>
+                                        </div>
+                                    </a>
+                                    <a href="">
+                                        <div class="general-list-item">
+                                            <div class="item-icon">
+                                                <span class="material-symbols-outlined">
+                                                    event
+                                                </span>
+                                            </div>
+                                            <div class="item-label"><span>Events</span></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="myprofile-right">
+                <div class="inner-myprofile-right">
+                    <div class="myprofile-top">
+                        <div class="cover-image">
+                            <!-- <img src="/static/web images/WhatsApp Image 2024-03-19 at 11.24.17 PM.jpeg" alt=""> -->
+                            <img src="https://flowbite.com/docs/images/examples/image-3@2x.jpg" alt="">
+                            <div class="edit-cover-image">
+                                <div class="edit-camera-icon-c">
+                                    <span class="material-symbols-outlined">
+                                        photo_camera
+                                    </span>
+                                </div>
+                                <div class="edit-cover-text"><span>Edit cover photo</span></div>
+                            </div>
+                        </div>
+                        <div class="profile-image">
+                            <div class="inner-profile-image">
+                                <!-- <img
+                                    src="data:image/png;base64,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"
+                                    alt=""> -->
+                                <img src="{{profiledetail.userprofileimage.url}}" alt="">
+                            </div>
+                            <div class="edit-profile-icon">
+                                <a href="">
+                                    <span class="material-symbols-outlined">
+                                        photo_camera
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="profile-desc">
+                            <div class="profile-desc-left">
+                                <div class="user-profile-name-ip"><span>{{ profiledetail.username }}</span></div>
+                                <div class="follower-desc">
+                                    <div class="follower-desc-content"><span>432</span></div>
+                                    <div class="follower-desc-content"><span>Follower</span></div>
+                                    <div class="follower-desc-content"><span class="material-symbols-outlined">
+                                            fiber_manual_record
+                                        </span></div>
+                                    <div class="follower-desc-content"><span>654</span></div>
+                                    <div class="follower-desc-content"><span>Following</span></div>
+                                </div>
+                            </div>
+                            <div class="profile-desc-right">
+                                {% if not user.first_name == profiledetail.username %}
+                                <div class="followopt">
+                                    <span>Follow</span>
+                                </div>
+                                {%endif%}
+                                <div class="editprofile-div">
+                                    <div class="editprofilr-icon">
+                                        <span class="material-symbols-outlined">
+                                            edit
+                                        </span>
+                                    </div>
+                                    <div class="editprofilr-label"><span>Edit profile</span></div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="myprofile-middle">
+                        <div class="inner-myprofile-middle">
+                            <div class="profile-horz-nav-left">
+                                <div class="navbar-bottom-border ifactive">
+                                    <div class="horz-navbar-items"><span>Posts</span></div>
+                                </div>
+                                <div class="navbar-bottom-border">
+                                    <div class="horz-navbar-items"><span>About</span></div>
+                                </div>
+                                <div class="navbar-bottom-border">
+                                    <div class="horz-navbar-items"><span>Photos</span></div>
+                                </div>
+                                <div class="navbar-bottom-border">
+                                    <div class="horz-navbar-items"><span>Drafts</span></div>
+                                </div>
+                                <div class="navbar-bottom-border">
+                                    <div class="horz-navbar-items"><span>Events</span></div>
+                                </div>
+
+
+                            </div>
+                            <div class="profile-horz-nav-right"></div>
+                        </div>
+                    </div>
+                    <div class="myprofile-bottom">
+                        <div class="myprofile-feed-container">
+                            <div class="inner-feed-container">
+                                <div class="feeds-child">
+                                    <div class="user-post-opt" id="ip-user-post-opt">
+                                        <div class="inner-post-opt">
+                                            <div class="post-opt-up">
+                                                <div class="user-post-circle-div">
+                                                    <div class="user-post-circle">
+                                                       
+                                                        <img src="{{ profiledetail.userprofileimage.url }}"
+                                                            alt="">
+                                                       
+                                                    </div>
+                                                </div>
+                                                <div class="post-input-div">
+                                                    <div class="post-input">
+                                                        <a><span>Post a blog, reach more.</span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="post-opt-border"></div>
+                                            <div class="post-opt-down">
+                                                <div class="post-opt-down-small-divs">
+                                                    <div class="opt-forpost openwithimgfield">
+                                                        <span class="material-symbols-outlined">
+                                                            image
+                                                        </span>
+                                                        <span>Photos</span>
+                                                    </div>
+                                                </div>
+                                                <div class="post-opt-down-small-divs">
+                                                    <div class="opt-forpost">
+                                                        <span class="material-symbols-outlined">
+                                                            attach_file
+                                                        </span>
+                                                        <span>Attach file</span>
+                                                    </div>
+                                                </div>
+                                                <div class="post-opt-down-small-divs">
+                                                    <div class="opt-forpost openeventform">
+                                                        <span class="material-symbols-outlined">
+                                                            event
+                                                        </span>
+                                                        <span>Event</span>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% for p in post %}
+                    <div class="feeds-child">
+                        <div class="feed-card">
+                            <div class="design-feed">
+                                <div class="feed-header">
+                                    <div class="user-description">
+                                        <div class="user-profile-circle">
+                                            <div class="profile-circle">
+                                                <a href="">
+                                                
+                                                    <img src="{{ profiledetail.userprofileimage.url }}"
+                                                        alt="">
+                                                    
+                                                    </a>
+                                            </div>
+                                        </div>
+                                        <div class="user-profile-name">
+                                            <div class="display-user-name">
+                                                <span class="user-name">
+                                                    {{ p.user.first_name }}
+                                                </span>
+                                            </div>
+                                            <div class="display-user-pdate">
+                                                <span class="minus-icon">
+                                                    <span class="material-symbols-outlined">
+                                                        remove
+                                                    </span>
+                                                </span>
+                                                <span class="feed-pdate">
+                                                    {% if p.created_at %}
+                                                    {% with current_time=now %}
+                                                        {% with time_difference=current_time|timeuntil:p.created_at %}
+                                                            {% if time_difference|floatformat:0 <= 60 %}
+                                                                <p>Created {{ time_difference|floatformat:0 }} minutes ago</p>
+                                                            {% else %}
+                                                                <p>Created at: {{ p.created_at|date:"D, d M Y H:i:s" }}</p>
+                                                            {% endif %}
+                                                        {% endwith %}
+                                                    {% endwith %}
+                                                {% endif %}
+                                                
+                                                
+
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="three-dots-menu">
+                                        <div class="three-dots-menu-icon">
+                                            <div class="threedotclick">
+                                                <span class="material-symbols-outlined onclick-hide">
+                                                    more_vert
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="three-dot-onclick-div">
+                                            <div class="design-three-dot-onclick-div">
+                                                <div class="inner-feed-opt">
+                                                    <div class="inner-feed-opt-icon">
+                                                        <span class="material-symbols-outlined">
+                                                            bookmark
+                                                        </span>
+                                                    </div>
+                                                    <div class="inner-feed-opt-text">
+                                                        <div class="inner-feed-opt-label"><span>Save blog</span></div>
+                                                        <div class="inner-feed-opt-desc"><span>Add this to your saved
+                                                                list.</span></div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="inner-feed-opt">
+                                                    <div class="inner-feed-opt-icon">
+                                                        <span class="material-symbols-outlined">
+                                                            delete_forever
+                                                        </span>
+                                                    </div>
+                                                    <div class="inner-feed-opt-text">
+                                                        <div class="inner-feed-opt-label"><span>Hide this post</span>
+                                                        </div>
+                                                        <div class="inner-feed-opt-desc"><span>Never see this post
+                                                                again.</span></div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="border-line-feed-opt"></div>
+                                                <div class="inner-feed-opt-type-2">
+                                                    <div class="inner-feed-opt-icon">
+                                                        <span class="material-symbols-outlined">
+                                                            all_inclusive
+                                                        </span>
+                                                    </div>
+                                                    <div class="inner-feed-opt-text-type-2">
+                                                        <div class="inner-feed-opt-label-type-2"><span>Copy link</span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="inner-feed-opt-type-2">
+                                                    <div class="inner-feed-opt-icon">
+                                                        <span class="material-symbols-outlined">
+                                                            edit
+                                                        </span>
+                                                    </div>
+                                                    <div class="inner-feed-opt-text-type-2">
+                                                        <div class="inner-feed-opt-label-type-2"><span>Open with
+                                                                editor</span></div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="border-line-feed-opt"></div>
+                                                {% if p.user == user %}
+                                                <form method="POST">
+                                                    {% csrf_token %}
+                                                    <button name="deletepost" style="height: auto; width: 100%; background-color: inherit; border: inherit;" type="submit" value="{{ p.id }}">
+
+                                                    
+                                                <div class="inner-feed-opt">
+                                                    <div class="inner-feed-opt-icon">
+                                                        <span class="material-symbols-outlined">
+                                                            delete
+                                                        </span>
+                                                    </div>
+                                                    <div class="inner-feed-opt-text">
+                                                        <div class="inner-feed-opt-label"><span style="color: rgba(235, 8, 8, 0.946);">Delete</span></div>
+                                                        <div class="inner-feed-opt-desc" style="display: flex;"><span>Delete your post for forever.</span></div>
+                                                    </div>
+
+                                                </div>
+                                            </button >
+                                            </form>
+                                                {% endif %}
+                                                <div class="inner-feed-opt">
+                                                    <div class="inner-feed-opt-icon">
+                                                        <span class="material-symbols-outlined">
+                                                            report
+                                                        </span>
+                                                    </div>
+                                                    <div class="inner-feed-opt-text">
+                                                        <div class="inner-feed-opt-label"><span>Report post</span></div>
+                                                        <div class="inner-feed-opt-desc"><span>We won't let user know
+                                                                who reported this.</span></div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="inner-feed-opt">
+                                                    <div class="inner-feed-opt-icon">
+                                                        <span class="material-symbols-outlined">
+                                                            person_remove
+                                                        </span>
+                                                    </div>
+                                                    <div class="inner-feed-opt-text">
+                                                        <div class="inner-feed-opt-label"><span>Block
+                                                                {{user.first_name}}'s profile</span></div>
+                                                        <div class="inner-feed-opt-desc"><span>You won't be able to see
+                                                                each other.</span></div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="feed-content">
+                                    <div class="inner-feed-div">
+                                        <div class="postcontent">
+                                            {{ p.content }}
+                                        </div>
+                                        <div class="postimgvid">
+                                            {% if p.image %}
+                                            {% if p.image.name|lower|slice:'-4:' == '.mp4' %}
+                                            <video controls autoplay>
+                                                <source src="{{ p.image.url }}" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            {% else %}
+                                            <img src="{{ p.image.url }}" alt="Post Image">
+                                            {% endif %}
+                                            {% endif %}
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="border-line"></div>
+                                <div class="feed-option">
+                                    <div class="inner-feed-option">
+                                        <div class="suggestions design-ss">
+                                            <div class="ss-actual suggesttrigger openss">
+                                                <span>Suggestions</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="stories design-ss">
+                                            <div class="ss-actual storytrigger">
+                                                <span>Stories</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="feedss">
+                                    <div class="feed-comments showss">
+                                        {% if p.comments.all %}
+                                        <div class="readmore-comment">
+                                            
+                                            <a href=""><span>Read more suggestions</span></a>
+                                          
+                                        </div>
+                                        {% endif %}
+                                        <div class="for-overflow">
+                                            {% for c in p.comments.all %}
+                                            <div class="commentsouter">
+                                                <div class="commentleft notowner">
+                                                    <span class="material-symbols-outlined commentlike">
+                                                        arrow_upward
+                                                        </span>
+                                                    <span class="cmntlikecount">343</span>    
+                                                </div>
+                                                <div class="commentleft owner" style="display: none;">
+                                                    <span class="material-symbols-outlined">
+                                                        check
+                                                        </span>
+                                                    <span class="topanswer">Top suggest</span>    
+    
+                                                </div>
+                                                <div class="comments">
+                                                    <div class="style-comment">
+                                                        <div class="comment-header">
+                                                            <div class="commenter-circle-div">
+                                                                <div class="commenter-circle">
+                                                                    {% for userprofile in Userdetail %}
+                                                                    {% if userprofile.user == c.user %}
+                                                                    <img src="{{userprofile.Profileimage.url}}" alt="" style="height: 100%; width: 100%; object-fit: cover; border-radius: 50%;">
+                                                                    {% endif %}
+                                                                    {% endfor %}
+                                                                </div>
+                                                            </div>
+                                                            <div class="commenter-name-div">
+                                                              
+                                                                <span class="commenter-name">{{c.user.first_name}}</span>
+                                                               
+                                                                <span class="comment-date"> -comentted at {{ p.created_at|date:"D, d M Y H:i:s" }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="comment-content">
+                                                            <div class="comment-jointer">
+                                                                <div class="cmnt-vertical-line"></div>
+                                                            </div>
+                                                            <div class="comment-flash">
+                                                                <div class="actual-comment">
+                                                                    <span>{{c.text}}</span>
+                                                                </div>
+                                                               
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% if p.user == user %}
+                                                <div class="ownercmntopt">
+                                                    <span class="material-symbols-outlined">
+                                                        check
+                                                        </span>
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                            
+                                            {% endfor %}
+                                            
+                                        </div>
+    
+                                        <div class="user-cmnt-opt">
+                                            <div class="cmnt-user-circle-div">
+                                                <div class="cmnt-user-circle">
+                                                    {% for userdetail in Userdetail %}
+                                                    {% if userdetail.user == user %}
+                                                    <img src="{{ userdetail.Profileimage.url }}"
+                                                        alt="">
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                </div>
+                                            </div>
+                                            <div class="cmnt-input">
+                                                <div class="design-cmnt-input">
+                                                    <form action="" id="commentform" method="post">
+                                                        {% csrf_token %}
+                                                    <div class="input-form">
+                                                        <input type="text" name="commentvalue" placeholder="Comment here.......">
+                                                    </div>
+                                                    <div class="input-form-icon-opt">
+                                                        <div class="cmnt-icon-div">
+                                                            <span class="material-symbols-outlined">
+                                                                add_reaction
+                                                            </span>
+                                                        </div>
+                                                        <div class="cmnt-icon-div">
+                                                            <span class="material-symbols-outlined">
+                                                                image
+                                                            </span>
+                                                        </div>
+                                                        <div class="cmnt-icon-div">
+                                                            <span class="material-symbols-outlined">
+                                                                gif_box
+                                                            </span>
+                                                        </div>
+                                                        <button type="submit" name="commentform_submit" style="background-color: inherit; border: inherit;" value="{{ p.id }}">
+    
+                                                       
+                                                        <div class="cmnt-icon-div" >
+                                                            <span class="material-symbols-outlined">
+                                                                send
+                                                            </span>
+                                                        </div>
+                                                    </button>
+                                                    </div>
+                                                </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="feed-stories">
+                                        <div class="readmore-comment">
+                                            
+                                            <a href=""><span>Read more stories</span></a>
+                                          
+                                        </div>
+                                        {% for pstory in p.stories.all %}
+                                        <div class="userstories">
+                                            <div class="userstoryleft">
+                                                <div class="storyleftheader">
+                                                    <div class="userstorycircle">
+                                                        {% for userdetail in Userdetail %}
+                                                        {% if userdetail.user == pstory.user %}
+                                                        <img src="{{ userdetail.Profileimage.url }}"
+                                                            alt="">
+                                                            {% endif %}
+                                                            {% endfor %}
+                                                    </div>
+                                                    <div class="userstoryname"><span>{{pstory.user.first_name}}</span></div>
+                                                </div>
+                                                <div class="storyactualcontent">
+                                                    {{ pstory.text }}
+                                                </div>
+
+                                            </div>
+                                            <div class="userstoryright">
+                                                <span class="material-symbols-outlined likeicon">
+                                                    favorite
+                                                    </span>
+                                                    <span class="likes-count">22</span>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        <div class="user-cmnt-opt">
+                                            <div class="cmnt-user-circle-div">
+                                                <div class="cmnt-user-circle">
+                                                    {% for userdetail in Userdetail %}
+                                                    {% if userdetail.user == user %}
+                                                    <img src="{{ userdetail.Profileimage.url }}"
+                                                        alt="">
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                </div>
+                                            </div>
+                                            <div class="cmnt-input">
+                                                <div class="design-cmnt-input">
+                                                    <form action="" id="commentform" method="post">
+                                                        {% csrf_token %}
+                                                    <div class="input-form">
+                                                        <input type="text" name="storyvalue" placeholder="Share your story here.......">
+                                                    </div>
+                                                    <div class="input-form-icon-opt">
+                                                      
+                                                
+                                                        <button type="submit" name="storyform_submit" style="background-color: inherit; border: inherit;" value="{{ p.id }}">
+    
+                                                       
+                                                        <div class="cmnt-icon-div" >
+                                                            <span class="material-symbols-outlined">
+                                                                send
+                                                            </span>
+                                                        </div>
+                                                    </button>
+                                                    </div>
+                                                </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="premiumbuy">
+                                            <span class="premiumlabel">Continue reading & share story with premium </span>
+                                            <span class="subscribebtn"><a href="{% url 'subscribe' %}">Subscribe</a></span>
+                                            <span class="premiumlabeldown">Enjoy every content, features and more..</span>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                            </div>
+                        </div>
+                        <div class="myprofile-desc-container">
+                            <div class="inner-desc-container">
+                                <div class="inner-desc-container-top">
+                                    <div class="inner-desc-container-label"><span>About me</span></div>
+                                    <div class="inner-desc-container-items">
+                                        <div class="inner-items-icon"><span class="material-symbols-outlined">
+                                                location_on
+                                            </span></div>
+                                        <div class="inner-items-text"><span class="default">From&nbsp;<span
+                                                    class="dynamic-user-data">Chandigarh</span></span></div>
+                                    </div>
+                                    <div class="inner-desc-container-items">
+                                        <div class="inner-items-icon"><span class="material-symbols-outlined">
+                                                work
+                                            </span></div>
+                                        <div class="inner-items-text"><span class="default">Works at &nbsp;<span
+                                                    class="dynamic-user-data">Currently a student</span></span></div>
+                                    </div>
+                                    <div class="inner-desc-container-items">
+                                        <div class="inner-items-icon"><span class="material-symbols-outlined">
+                                                school
+                                            </span></div>
+                                        <div class="inner-items-text"><span class="default">Studied at&nbsp;<span
+                                                    class="dynamic-user-data">Chitkara university</span></span></div>
+                                    </div>
+
+                                    <div class="inner-desc-container-items">
+                                        <div class="inner-items-icon"><span class="material-symbols-outlined">
+                                                home
+                                            </span></div>
+                                        <div class="inner-items-text"><span class="default">Lives in&nbsp;<span
+                                                    class="dynamic-user-data">Delhi NCR, India</span></span></div>
+                                    </div>
+                                </div>
+                                <div class="inner-desc-container-middle">
+                                    <div class="inner-desc-container-label"><span>Social media links</span></div>
+                                    <div class="inner-desc-container-items">
+                                        <div class="inner-items-icon"><span class="material-symbols-outlined">
+                                                school
+                                            </span></div>
+                                        <div class="inner-items-text"><span class="default">Facebook : &nbsp;<span
+                                                    class="dynamic-user-data">facebook_id.com</span></span></div>
+                                    </div>
+                                    <div class="inner-desc-container-items">
+                                        <div class="inner-items-icon"><span class="material-symbols-outlined">
+                                                school
+                                            </span></div>
+                                        <div class="inner-items-text"><span class="default">Linkedin : &nbsp;<span
+                                                    class="dynamic-user-data">linkedin_id.com</span></span></div>
+                                    </div>
+                                    <div class="inner-desc-container-items">
+                                        <div class="inner-items-icon"><span class="material-symbols-outlined">
+                                                school
+                                            </span></div>
+                                        <div class="inner-items-text"><span class="default">Github : &nbsp;<span
+                                                    class="dynamic-user-data">github.id.com</span></span></div>
+                                    </div>
+                                </div>
+                                <div class="inner-desc-container-bottom">
+                                    <div class="inner-desc-container-label"><span>Followers</span></div>
+                                    <div class="inner-desc-container-grid">
+                                        <div class="followercard">
+                                            <div class="followerimgdiv">
+                                                <img src="/static/web images/04d7024ad3d3d49a31511cf43cd3f3c4.jpg" style="object-fit: fill;"
+                                                    alt="">
+                                            </div>
+                                            <div class="followername">
+                                                <span>Aashish</span>
+                                            </div>
+                                        </div>
+                                        <div class="followercard">
+                                            <div class="followerimgdiv">
+                                                <img src="/static/web images/4e22beef6d94640c45a1b15f4a158b23.jpg"
+                                                    alt="">
+                                            </div>
+                                            <div class="followername">
+                                                <span>Abhinav Pandit</span>
+                                            </div>
+                                        </div>
+                                        <div class="followercard">
+                                            <div class="followerimgdiv">
+                                                <img src="/static/web images/7e36a39d54b666b0102da9dc1e7d8967.jpg"
+                                                    alt="">
+                                            </div>
+                                            <div class="followername">
+                                                <span>Gaurav</span>
+                                            </div>
+                                        </div>
+                                        <div class="followercard">
+                                            <div class="followerimgdiv">
+                                                <img src="/static/web images/997282cb1ac48f7e4fb9eab06e8a5afc.jpg"
+                                                    alt="">
+                                            </div>
+                                            <div class="followername">
+                                                <span>Arush Verma</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% include "post_input.html" %}
+            {% include "eventForm.html" %}
+
+        </div>
+
+    </div>
+
+
+</body>
+<script type="text/javascript" src="{% static 'feeprojecr.js' %}"></script>
+
+</html>

@@ -1,0 +1,170 @@
+
+
+<div class="storyform" style="display: none;">
+    <div class="design-storyform">
+        <div class="storyformleft">
+            <div class="lefttop">
+                <div class="closestoryform">
+                    <span class="material-symbols-outlined">
+                        close
+                        </span>
+                </div>
+                <div class="weblogoform">
+                    <!-- <img src="/static/logo/android-chrome-192x192.png" alt=""> -->
+                </div>
+            </div>
+            <div class="border-horz"></div>
+            <div class="label-yourstory"><span>Your Story</span></div>
+            <div class="si-user">
+                <div class="si-user-circle">
+                    {% for userdetail in Userdetail %}
+                    {% if userdetail.user == user %}
+                    <img src="{{ userdetail.Profileimage.url }}"
+                        alt="">
+                        {% endif %}
+                        {% endfor %}
+                </div>
+                <div class="si-user-name"><span>{{user.first_name}}</span></div>
+                
+
+            </div>
+            <div class="border-horz" style="margin: 20px 0;"></div>
+            <div class="story-text-inputs">
+                <form action="" id="storytext" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="storyfieldsubmit">
+                    <div class="designstoryinputs">
+                        <div class="st-input">
+                            <div class="textlabel"><span>Text</span></div>
+                            <textarea name="storytextcontent" id="story-user-text" placeholder="Start typing"></textarea>
+                        </div>
+                        <div class="sf-input">
+                            <div class="textlabel"><span>Style</span></div>
+                            <div class="familyselect">
+                                <div class="aaicon"><span>Aa</span></div>
+                                <div class="uldiv">
+                                   <span class="selectedli">Casual</span>
+                                </div>
+                                <div class="dropicon">
+                                    <span class="material-symbols-outlined">
+                                        expand_more
+                                        </span>
+                                </div>
+                            </div>
+                            <div class="selectstyle">
+                                <ul class="ul">
+                                    <input type="hidden" name="storyfontstyle" id="storyfontstyle" value="'Roboto', Corbel, Avenir, 'Lucida Grande', 'Lucida Sans', sans-serif">
+                                    <li class="li">Clean</li>
+                                    <li class="li">Madimi</li>
+                                    <li class="li">Fancy</li>
+                                    <li class="li">Headline</li>
+                                    <li class="li">Casual</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="sb-input">
+                            <div class="textlabel"><span>Background</span></div>
+                            <div class="colorcircle">
+                                <input type="hidden" name="storybackground" id="storybackground" value="linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)">
+                                <div class="colorchoose choosedcolour" style="background-color: #FBAB7E;
+                                background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+                                "></div>
+                                <div class="colorchoose" style=" background-color: #8BC6EC;
+                                background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+                                "></div>
+                                <div class="colorchoose" style="background-color: #85FFBD;
+                                background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
+                                "></div>
+                                <div class="colorchoose" style="background-color: #8EC5FC;
+                                background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+                                "></div>
+                                <div class="colorchoose" style="background-color: #D9AFD9;
+                                background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);
+                                "></div>
+                                <div class="colorchoose" style="background-color: #0093E9;
+                                background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+                                "></div>
+                                <div class="colorchoose" style="background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);"></div>
+                                <div class="colorchoose" style="background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);"></div>
+                                <div class="colorchoose" style="background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);"></div>
+                                <div class="colorchoose" style="background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);"></div>
+                                <div class="colorchoose" style="background-image: linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%);"></div>  
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="bottombtnopt">
+                <div class="discard-btn">Discard</div>
+                <button name ="storyfieldsubmit" id="storysubmitbtn" type="submit" style="height: auto; width: auto; background-color: inherit; border: inherit;">
+                <div class="share-btn" >Share to Story</div>
+            </button>
+            </div>
+        </div>
+        <div class="storyformright">
+            <div class="rightmiddle">
+                <div class="create-story imgwith">
+                   <form action="" id="storyfile" method="POST" enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    <input type="hidden" name="storyfieldsubmit">
+                   
+                    <input type="file" accept="image/*" id="storyimginput" name="storyfilecontent" onchange="handleFileSelect1(this)">
+                
+                    <label for="storyimginput" id="storyimginputlabel"></label></form>
+                    <div class="create-story-icon">
+                        <span class="material-symbols-outlined">
+                            photo_library
+                            </span>
+                    </div>
+                    <div class="create-story-name"><span>Create a Photo story</span></div>
+                </div>
+                <div class="create-story textwith">
+                    <div class="create-story-icon alpha"><span>Aa</span></div>
+                    <div class="create-story-name"><span>Create a Text story</span></div>
+                </div>
+                <div class="preview-story">
+                    <div class="previewlabel"><span>Preview</span></div>
+                    <div class="previewbottom">
+                        <div class="designpreview">
+                            <div class="toshowpreview">
+                                <div class="actualpreviewstory" id="actualpreviewstory"></div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="preview-story-text">
+                    <div class="previewlabel"><span>Preview</span></div>
+                    <div class="previewbottom">
+                        <div class="designpreview">
+                            <div class="toshowpreview">
+                                <div class="actualpreviewedit">
+                                    <div class="st-overflow-div">
+                                        <span class="story-text ">Start typing
+                                        </span>
+                                        <span class="toinsertedittext"></span>
+        
+                                    </div>
+                                    <div class="seemore">
+                                        <div class="seemorelabel"><span class="seelabel">See more</span></div>
+                                        <div class="seemoreicon">
+                                            <i class="material-symbols-outlined">
+                                                expand_more
+                                            </i>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

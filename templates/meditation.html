@@ -1,0 +1,458 @@
+{% extends "mindfullbase.html" %}
+{% block content %}
+
+<div class="innerright ">
+    <div class="rightcontentlabel"><span>Meditation</span></div>
+    <div class="meditationcontent">
+        <div class="ecleft">
+            <div class="contentvideo" style="height: 500px;">
+                <div class="excessday">
+                    <div class="designexcessday">
+                        <div class="excessdayhead">
+                            <span>Ugh Ahh!! , You are up to date</span>
+
+                        </div>
+                        <div class="excessdayhead2">
+                            Give yourself some rest and continue tomorrow
+                        </div>
+                        <div class="restimg">
+                            <img src="/static/web images/early-morning-concept-illustration_114360-7352.avif" alt="">
+                        </div>
+                        <div class="excessdayhead2">
+                            Still want to push yourself?
+                        </div>
+                        <div class="excesshidebtn">Unlock</div>
+                    </div>
+                </div>
+                <img src="/static/web images/meditation-posture-drawing-480w.webp" alt="" class="medimg showimg">
+                <img src="/static/web images/float_cushion_ergonomically_designed_to_find_proper_posture_for_meditation_05.webp"
+                    alt="" class="medimg">
+                <img src="/static/web images/meditation-poses.gif" alt="" class="medimg">
+                <img src="/static/web images/meditation-poses.gif" alt="" class="medimg">
+
+
+            </div>
+            <div class="belowvcontent">
+                <div class="belowcontenthead">
+                    <span class="picdesc">You must know and care</span>
+                </div>
+                <div class="buttonsmedimg">
+                    <span class="material-symbols-outlined togglemedimg" style="display: none;">
+                        arrow_back
+                    </span>
+                    <span class="material-symbols-outlined togglemedimg">
+                        arrow_forward
+                    </span>
+
+                </div>
+               
+                <div class="contentoverviewlabel"> <span>Progress</span></div>
+                <div class="medchart">
+                    <canvas id="linechart" style="height: 100%; width: 80%;"></canvas>
+                    <script>
+
+                        const data = {
+                            labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6'],
+                            datasets: [
+                                {
+                                    label: 'Time',
+                                    data: [2, 5, 10, 2, 0, 0, 0],
+                                    borderColor: 'rgb(75, 192, 192)',
+                                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                                    pointStyle: 'circle',
+                                    pointRadius: 10,
+                                    pointHoverRadius: 15
+                                }
+                            ]
+                        };
+                        const config = {
+                            type: 'line',
+                            data: data,
+                            options: {
+                                responsive: false,
+                                plugins: {
+
+                                    tooltip: {
+                                        enabled: true,
+                                        backgroundColor: '#6D7E8C',
+                                        bodyFontSize: 100,
+                                    },
+                                    legend: {
+                                        position: "bottom",
+                                        align: "center",
+                                        labels: {
+                                            font: {
+                                                size: 16
+
+                                            },
+                                            color: "#44B78B",
+                                        }
+
+                                    },
+
+
+
+                                },
+                                scales: {
+                                    y: {
+                                        ticks: {
+
+                                            color: 'green',
+                                            font: {
+                                                size: 16
+                                            }
+
+
+                                        },
+                                        grid: {
+                                            color: 'white',
+                                            lineWidth: 0.2,
+
+                                        }
+                                    },
+                                    x: {
+                                        ticks: {
+
+                                            color: 'green',
+                                            font: {
+                                                size: 16
+                                            }
+
+
+                                        },
+                                        grid: {
+                                            color: 'white',
+                                            lineWidth: 0.2,
+
+                                        }
+                                    },
+
+                                }
+
+
+                            }
+                        };
+
+                        const actions = [
+                            {
+                                name: 'pointStyle: circle (default)',
+                                handler: (chart) => {
+                                    chart.data.datasets.forEach(dataset => {
+                                        dataset.pointStyle = 'circle';
+                                    });
+                                    chart.update();
+                                }
+                            },
+                            {
+                                name: 'pointStyle: cross',
+                                handler: (chart) => {
+                                    chart.data.datasets.forEach(dataset => {
+                                        dataset.pointStyle = 'cross';
+                                    });
+                                    chart.update();
+                                }
+                            },
+                            {
+                                name: 'pointStyle: crossRot',
+                                handler: (chart) => {
+                                    chart.data.datasets.forEach(dataset => {
+                                        dataset.pointStyle = 'crossRot';
+                                    });
+                                    chart.update();
+                                }
+                            },
+                            {
+                                name: 'pointStyle: dash',
+                                handler: (chart) => {
+                                    chart.data.datasets.forEach(dataset => {
+                                        dataset.pointStyle = 'dash';
+                                    });
+                                    chart.update();
+                                }
+                            },
+                            {
+                                name: 'pointStyle: line',
+                                handler: (chart) => {
+                                    chart.data.datasets.forEach(dataset => {
+                                        dataset.pointStyle = 'line';
+                                    });
+                                    chart.update();
+                                }
+                            },
+                            {
+                                name: 'pointStyle: rect',
+                                handler: (chart) => {
+                                    chart.data.datasets.forEach(dataset => {
+                                        dataset.pointStyle = 'rect';
+                                    });
+                                    chart.update();
+                                }
+                            },
+                            {
+                                name: 'pointStyle: rectRounded',
+                                handler: (chart) => {
+                                    chart.data.datasets.forEach(dataset => {
+                                        dataset.pointStyle = 'rectRounded';
+                                    });
+                                    chart.update();
+                                }
+                            },
+                            {
+                                name: 'pointStyle: rectRot',
+                                handler: (chart) => {
+                                    chart.data.datasets.forEach(dataset => {
+                                        dataset.pointStyle = 'rectRot';
+                                    });
+                                    chart.update();
+                                }
+                            },
+                            {
+                                name: 'pointStyle: star',
+                                handler: (chart) => {
+                                    chart.data.datasets.forEach(dataset => {
+                                        dataset.pointStyle = 'star';
+                                    });
+                                    chart.update();
+                                }
+                            },
+                            {
+                                name: 'pointStyle: triangle',
+                                handler: (chart) => {
+                                    chart.data.datasets.forEach(dataset => {
+                                        dataset.pointStyle = 'triangle';
+                                    });
+                                    chart.update();
+                                }
+                            },
+                            {
+                                name: 'pointStyle: false',
+                                handler: (chart) => {
+                                    chart.data.datasets.forEach(dataset => {
+                                        dataset.pointStyle = false;
+                                    });
+                                    chart.update();
+                                }
+                            }
+                        ];
+                        const ctx = document.getElementById('linechart').getContext('2d');
+                        const chart = new Chart(ctx, config);
+                    </script>
+
+                </div>
+                <div class="enrolleddate">
+                    <span>Reach 10 min milestone daily to earn 10 </span>
+                    <span class="material-symbols-outlined" id="coin">
+                        monetization_on
+                    </span>&nbsp;
+                    <span>- automatically credited to your account</span>
+                </div>
+
+
+
+                <div class="contentoverviewlabel"> <span>Overview</span></div>
+                <div class="overviewpara">
+                    <p>
+                        Meditation is a practice that involves focusing attention inward to calm the mind and achieve a state of deep relaxation. Originating from ancient spiritual traditions, meditation has evolved into various techniques and approaches that promote mental clarity, emotional balance, and spiritual growth. By cultivating mindfulness and awareness, practitioners can observe their thoughts and feelings without judgment, leading to reduced stress, improved concentration, and enhanced overall well-being. Common meditation techniques include mindfulness meditation, focused breathing, loving-kindness meditation, and transcendental meditation, each offering unique benefits and pathways to inner peace. Regular meditation practice has been associated with numerous health benefits, including reduced anxiety, better sleep quality, and increased resilience to life's challenges. Whether practiced individually or in group settings, meditation offers a powerful tool for self-discovery, inner transformation, and profound relaxation.
+                    </p>
+                </div>
+                <div class="contentoverviewlabel" style="color: var(--primary-accent);"> <span>Do's</span>
+                </div>
+                <div class="dodontlist">
+                    <ul style="color: seagreen;">
+                        <li>Sit or lie down in a position that is comfortable for you, ensuring your spine is straight and your body is relaxed.</li>
+                        <li> Use your breath as an anchor for your attention. Notice the sensation of each inhale and exhale, allowing your breath to guide you into a state of presence.</li>
+                        <li>Establish a consistent meditation routine, even if it's just for a few minutes each day. Regular practice can help you develop mindfulness and reap the benefits of meditation over time.</li>
+                        <li>Meditation is a skill that takes time to develop. Be patient with yourself and approach your practice with kindness and compassion, free from self-judgment.</li>
+                        <li>Explore various meditation techniques, such as mindfulness, loving-kindness, or guided meditation, to find what resonates best with you.</li>
+
+                    </ul>
+                </div>
+                <div class="contentoverviewlabel" style="color: red;"> <span>Dont's</span></div>
+                <div class="dodontlist">
+                    <ul style="color: brown;">
+                        <li>Avoid forcing yourself into a meditation posture that causes discomfort or strain. Meditation should feel easeful and natural, not forced.</li>
+                        <li>Meditation is a gradual process, and the benefits may not be immediately apparent. Avoid expecting instant results and instead focus on the journey of self-discovery and growth.</li>
+                        <li>Trying to push away or suppress thoughts and emotions can create tension and resistance. Instead, acknowledge them with gentleness and allow them to pass through your awareness.</li>
+                        <li>Avoid criticizing yourself if you find your mind wandering or if your meditation session doesn't go as planned. Every meditation experience is valuable, regardless of its outcome.</li>
+                        <li>Meditation is a personal practice, and everyone's experience is unique. Avoid comparing yourself to others or judging your practice based on someone else's experience.</li>
+                    </ul>
+                </div>
+                <div class="contentoverviewlabel"> <span>Benfit's</span></div>
+                <div class="overviewpara">
+                    <p>Meditation offers a myriad of benefits for both the mind and body. Regular practice has been shown to reduce stress, promote relaxation, and enhance overall emotional well-being. It can improve focus, concentration, and cognitive function, leading to greater mental clarity and productivity. Additionally, meditation has been linked to reduced symptoms of anxiety and depression, increased self-awareness, and a greater sense of inner peace and contentment. Its positive effects extend beyond the meditation cushion, influencing various aspects of life and contributing to a more balanced and fulfilling existence.
+                    </p>
+                </div>
+                <div class="feedbackform">
+                    <form action="" id="Formfeedback">
+                        <div class="feedbacklabel">Share your feedback</div>
+                        <div class="feedbackpara">
+                            <p>Your review will help us improve our content and <br> make it user friendly
+                                for more users</p>
+                        </div>
+                        <div class="rateexpereince">
+                            <p>Rate expereince</p>
+                        </div>
+                        <div class="fbstars">
+                            <div class="stars">
+                                <span class="material-symbols-outlined">
+                                    star
+                                </span>
+                            </div>
+                            <div class="stars">
+                                <span class="material-symbols-outlined">
+                                    star
+                                </span>
+                            </div>
+                            <div class="stars">
+                                <span class="material-symbols-outlined">
+                                    star
+                                </span>
+                            </div>
+                            <div class="stars">
+                                <span class="material-symbols-outlined">
+                                    star
+                                </span>
+                            </div>
+                            <div class="stars">
+                                <span class="material-symbols-outlined">
+                                    star
+                                </span>
+                            </div>
+                        </div>
+                        <div class="rateexpereince">
+                            <p>Send your review(optional)</p>
+                        </div>
+                        <div class="feedbacktext">
+                            <textarea name="" id="feedbacktextarea" placeholder="Enter your review"></textarea>
+                        </div>
+                        <div class="sendbtn"> <button type="submit">Send</button></div>
+
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="ecright">
+            <div class="ecrigghthead"><span>Timer</span></div>
+            <div class="timeropt">
+                <div class="timeroptup">
+                    <div class="timer" id="timer">
+                        <div class="timerclock">
+                            <div class="timerstop">
+                                <span id="minutes">02</span>
+                                <span>:</span>
+                                <span id="seconds">00</span>
+                            </div>
+                            <div class="timerstopic"><span class="startstop">Start</span></div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="timeroptdown">
+                    <div class="chooselevel"><span>Select time</span></div>
+                    <div class="timeopt">
+                        <select name="" id="timeoptselect">
+
+                            <option value="02">02 : 00</option>
+                            <option value="05">05 : 00</option>
+                            <option value="10">10 : 00</option>
+                            <option value="20">20 : 00</option>
+                            <option value="25">25 : 00</option>
+                            <option value="30">30 : 00</option>
+                            <option value="35">35 : 00</option>
+                            <option value="40">40 : 00</option>
+                            <option value="45">45 : 00</option>
+                            <option value="50">50 : 00</option>
+                            <option value="55">55 : 00</option>
+                            <option value="60">60 : 00</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="ecrigghthead" style="margin-top: 20px;"><span>Background music</span></div>
+            <div class="bgmusic">
+                <div class="bgmusicchild">
+                    <div class="bgplay">
+                        <span class="material-symbols-outlined changeplaybtn">
+                            play_arrow
+                        </span>
+                    </div>
+                    <div class="musicname">
+                        <span>scott-buckley-moonlight</span>
+                        <span>04 : 14</span>
+                    </div>
+                    <audio src="/static/music/scott-buckley-moonlight(chosic.com).mp3" type="audio/mpeg"
+                        class="bgaudio">
+
+                    </audio>
+                </div>
+                <div class="bgmusicchild">
+                    <div class="bgplay">
+                        <span class="material-symbols-outlined changeplaybtn">
+                            play_arrow
+                        </span>
+                    </div>
+                    <div class="musicname">
+                        <span>Soothing Serenity</span>
+                        <span>04 : 14</span>
+                    </div>
+                    <audio src="/static/music/scott-buckley-moonlight(chosic.com).mp3" type="audio/mpeg"
+                        class="bgaudio">
+
+                    </audio>
+                </div>
+                <div class="bgmusicchild">
+                    <div class="bgplay">
+                        <span class="material-symbols-outlined changeplaybtn">
+                            play_arrow
+                        </span>
+                    </div>
+                    <div class="musicname">
+                        <span>Tranquil Oasis</span>
+                        <span>04 : 14</span>
+                    </div>
+                    <audio src="/static/music/scott-buckley-moonlight(chosic.com).mp3" type="audio/mpeg"
+                        class="bgaudio">
+
+                    </audio>
+                </div>
+                <div class="bgmusicchild">
+                    <div class="bgplay">
+                        <span class="material-symbols-outlined changeplaybtn">
+                            play_arrow
+                        </span>
+                    </div>
+                    <div class="musicname">
+                        <span>Calm Reflections</span>
+                        <span>04 : 14</span>
+                    </div>
+                    <audio src="/static/music/scott-buckley-moonlight(chosic.com).mp3" type="audio/mpeg"
+                        class="bgaudio">
+
+                    </audio>
+                </div>
+                <div class="bgmusicchild">
+                    <div class="bgplay">
+                        <span class="material-symbols-outlined changeplaybtn">
+                            play_arrow
+                        </span>
+                    </div>
+                    <div class="musicname">
+                        <span>Healing Harmonies</span>
+                        <span>04 : 14</span>
+                    </div>
+                    <audio src="/static/music/scott-buckley-moonlight(chosic.com).mp3" type="audio/mpeg"
+                        class="bgaudio">
+
+                    </audio>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,153 @@
+<div class="wellbeingwhole">
+    <div class="innerwellbeing">
+        <div class="wellbeingtop">
+            <div class="wtleft">
+                <div class="togglechart">
+                    <select name="" id="selectcharttype">
+                        <option value="Screen time1" >Screen time - (By section)</option>
+                        <option value="Screen time2">Screen time - (Daily)</option>
+                       
+                    </select>
+                </div>
+                <div class="wellchart">
+                    <canvas id="wellchart" class="forwell"></canvas>
+                    <canvas id="wellchart2" class="forwell"></canvas>
+                    <canvas id="wellchart3" class="forwell"></canvas>
+                    <script src="/static/wellchart.js"></script>
+                </div>
+            </div>
+            <div class="wtright">           
+                <div class="wtrightsubhead"><span>Ways to disconnect</span></div>
+                <div class="wellopt">
+                    <div class="welloptleft">
+                        <span>Set reminders</span>
+                        <span>Notification Pop up - "Screen time limit reached!</span>
+                    </div>
+                    <div class="welloptright">
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                          </label>
+                         
+                    </div>
+                </div>
+                <div class="wellopt">
+                    <div class="welloptleft">
+                        <span>Allow notification</span>
+                        <span>Notification will be turned off</span>
+                    </div>
+                    <div class="welloptright">
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                          </label>
+                         
+                    </div>
+                </div>
+                <div class="wellopt">
+                  <div class="welloptleft">
+                      <span>Quiet mode</span>
+                      <span>off</span>
+                  </div>
+                  <div class="welloptright">
+                      <label class="switch">
+                          <input type="checkbox" >
+                          <span class="slider round"></span>
+                        </label>
+                       
+                  </div>
+              </div>
+              <div class="wellopt">
+                <div class="welloptleft">
+                    <span>Auto logout</span>
+                    <span>You will be automatically log out </span>
+                </div>
+                <div class="welloptright">
+                    <label class="switch">
+                        <input type="checkbox" >
+                        <span class="slider round"></span>
+                      </label>
+                     
+                </div>
+            </div>
+            <div class="wellopt">
+              <div class="welloptleft">
+                  <span>Focus mode</span>
+                  <span>Temporarily hiding non-essential elements </span>
+              </div>
+              <div class="welloptright">
+                  <label class="switch">
+                      <input type="checkbox">
+                      <span class="slider round"></span>
+                    </label>
+                   
+              </div>
+          </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<style>
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 10px;
+    }
+    
+    .switch input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+      -webkit-user-select: none;
+    }
+    
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 22px;
+      width: 22px;
+      left: 0%;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: white;
+      -webkit-transition: .4s;
+      transition:left .4s ease;
+    }
+    
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+    
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+    
+    input:checked + .slider:before {
+      
+      left: 92%;
+    }
+    
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
+    
+    .slider.round:before {
+      border-radius: 50%;
+    }
+    </style>

@@ -1,0 +1,359 @@
+{% extends 'base.html' %}
+{% block content %}
+      
+<div class="rightcolumn" id="news">
+    <div class="main001">
+        <div class="mainvideo" style="position: fixed;">
+            {% for i in videos %}
+            <video id="video1" class="video" src="{{ i.video_file.url }}" id="myvideo"
+                style="height: 100%; width: 100%; object-fit: cover; transition: object-fit 1s ease;" autoplay muted
+                >
+            </video>
+           {% endfor %}
+           <div class="videoback"></div>
+            <div class="mainvideodescribe">
+                {% for i in videos %}
+                <div class="innerdescribe-left">
+                    <div class="video-des-img"><img
+                            src="{{ i.video_img_show.url }}"
+                            alt="" srcset=""></div>
+                    <div class="detail-video">
+                        <span>{{ i.video_pdate }}</span>
+                        <span class="material-symbols-outlined dots">
+                            fiber_manual_record
+                        </span>
+                        <span>{{ i.video_author }}</span>
+                        <span class="material-symbols-outlined dots">
+                            fiber_manual_record
+                        </span>
+                        <span>{{ i.video_lng }}</span>
+                    </div>
+                    <div class="video-para">
+                        <p>{{ i.video_desc }}</p>
+                    </div>
+                    <div class="video-button">
+                        <button class="video-read-btn"><span class="material-symbols-outlined">
+                                play_arrow
+                            </span>read more</button>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="innerdescribe-right">
+                    <div class="videoscrollar">
+                        <div class="videoscrollar-bar">
+                            {% for i in videos %}
+                            <div class="videoscrollar-bar-child">
+                                <div class="videoscrollar-bar-child-content" 
+                                    ><img src="{{ i.video_img_preview.url }}" alt="" srcset=""></div>
+                            </div>
+                           {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="back-effect">
+        <div class="effectness-second">
+            <div class="horz">
+                <div class="fixed">
+                    <h1>Trendy</h1>
+                    <h2>new release</h2>
+                    <p>Experience the thrill of diving into the latest literary gems fresh off the press, ready to ignite your imagination and captivate your senses.</p>
+                    <div class="fixed-last-text">
+                        <div class="fixed-icon"><i class="fas fa-arrow-right"></i> </div>explore all books
+                    </div>
+                </div>
+                <div class="horz-scroll">
+                    <div class="main">
+                        <div class="main-scroll-div">
+                            <div class="cover">
+                                <div class="btn-child-1">
+                                    <button class="icon" onclick="scrolll(0)">
+                                        <i class="fas fa-angle-left"> </i>
+                                    </button>
+                                </div>
+                                <div class="scroll-images" id="scroll-images-1">
+                                    {% for card in entry1 %}
+                                    <div class="child">
+                                        <div class="slider-image">
+                                            <a href="test.html">
+                                                <img src="{{card.card_image.url}}">
+                                                <div class="slider-image-hover-text">
+                                                    <div class="slider-image-hover-text-1">India</div>
+                                                    <div class="slider-image-hover-text-2">{{card.card_desc}}</div>
+                                                    <div class="slider-image-hover-text-3"> Read more<i
+                                                            class="fa-solid fa-arrow-right"></i></div>
+                                                </div>
+                                                <div class="slider-img-text">India</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                
+                                </div>
+                                <div class="btn-child-2">
+                                    <button class="icon" onclick="scrollr(0)">
+                                        <i class="fas fa-angle-right"> </i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="horz-background">
+                <div class="horz">
+                    <div class="fixed">
+                        <h1>Horror</h1>
+                        <h2>Hair-raising</h2>
+                        <p>A wide range of meaningful volunteering options in the world.</p>
+                        <div class="fixed-last-text">
+                            <div class="fixed-icon"><i class="fas fa-arrow-right"></i> </div>explore all books
+                        </div>
+                    </div>
+                    <div class="horz-scroll">
+                        <div class="main">
+                            <div class="main-scroll-div">
+                                <div class="cover">
+                                    <div class="btn-child-1">
+                                        <button class="icon" onclick="scrolll(1)">
+                                            <i class="fas fa-angle-left"> </i>
+                                        </button>
+                                    </div>
+                                    <div class="scroll-images" id="scroll-images-2">
+                                        {% for card in entry2 %}
+                                        <div class="child">
+                                            <div class="slider-image">
+                                                <a href="test.html">
+                                                    <img src="{{card.card_image.url}}">
+                                                    <div class="slider-image-hover-text">
+                                                        <div class="slider-image-hover-text-1">Tanzania</div>
+                                                        <div class="slider-image-hover-text-2">Lorem ipsum dolor sit
+                                                            amet
+                                                            consectetur adipisicing elit.</div>
+                                                        <div class="slider-image-hover-text-3"> 65 Opportunities<i
+                                                                class="fa-solid fa-arrow-right"></i></div>
+                                                    </div>
+                                                    <div class="slider-img-text">Tanzania</div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="btn-child-2">
+                                        <button class="icon" onclick="scrollr(1)">
+                                            <i class="fas fa-angle-right"> </i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="horz">
+                <div class="fixed">
+                    <h1>Mindful</h1>
+                    <h2>sharp your brain</h2>
+                    <p>Sharpen your mind with these thought-provoking, mindful reads.</p>
+                    <div class="fixed-last-text">
+                        <div class="fixed-icon"><i class="fas fa-arrow-right"></i> </div>explore all books
+                    </div>
+                </div>
+                <div class="horz-scroll">
+                    <div class="main">
+                        <div class="main-scroll-div">
+                            <div class="cover">
+                                <div class="btn-child-1">
+                                    <button class="icon" onclick="scrolll(2)">
+                                        <i class="fas fa-angle-left"> </i>
+                                    </button>
+                                </div>
+                                <div class="scroll-images" id="scroll-images-1">
+                                    {% for card in entry3 %}
+                                    <div class="child">
+                                        <div class="slider-image">
+                                            <a href="test.html">
+                                                <img src="{{card.card_image.url}}">
+                                                <div class="slider-image-hover-text">
+                                                    <div class="slider-image-hover-text-1">India</div>
+                                                    <div class="slider-image-hover-text-2">{{card.card_desc}}</div>
+                                                    <div class="slider-image-hover-text-3"> Read more<i
+                                                            class="fa-solid fa-arrow-right"></i></div>
+                                                </div>
+                                                <div class="slider-img-text">India</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                
+                                </div>
+                                <div class="btn-child-2">
+                                    <button class="icon" onclick="scrollr(2)">
+                                        <i class="fas fa-angle-right"> </i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="horz-background">
+                <div class="horz">
+                    <div class="fixed">
+                        <h1>Sci-fi</h1>
+                        <h2>Get some thrill</h2>
+                        <p>Science fiction (sci-fi) books are a genre of literature that explore imaginative and speculative concepts, often based on scientific principles, technological advancements, or futuristic settings.</p>
+                        <div class="fixed-last-text">
+                            <div class="fixed-icon"><i class="fas fa-arrow-right"></i> </div>explore all books
+                        </div>
+                    </div>
+                    <div class="horz-scroll">
+                        <div class="main">
+                            <div class="main-scroll-div">
+                                <div class="cover">
+                                    <div class="btn-child-1">
+                                        <button class="icon" onclick="scrolll(3)">
+                                            <i class="fas fa-angle-left"> </i>
+                                        </button>
+                                    </div>
+                                    <div class="scroll-images" id="scroll-images-2">
+                                        {% for card in entry2 %}
+                                        <div class="child">
+                                            <div class="slider-image">
+                                                <a href="test.html">
+                                                    <img src="{{card.card_image.url}}">
+                                                    <div class="slider-image-hover-text">
+                                                        <div class="slider-image-hover-text-1">Tanzania</div>
+                                                        <div class="slider-image-hover-text-2">Lorem ipsum dolor sit
+                                                            amet
+                                                            consectetur adipisicing elit.</div>
+                                                        <div class="slider-image-hover-text-3"> 65 Opportunities<i
+                                                                class="fa-solid fa-arrow-right"></i></div>
+                                                    </div>
+                                                    <div class="slider-img-text">Tanzania</div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="btn-child-2">
+                                        <button class="icon" onclick="scrollr(3)">
+                                            <i class="fas fa-angle-right"> </i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         
+            <div class="horz">
+                <div class="fixed">
+                    <h1>Romantic</h1>
+                    <h2>Feel love</h2>
+                    <p>Romantic books, often falling under the genre of romance fiction, explore the complexities of love, relationships, and human connection..</p>
+                    <div class="fixed-last-text">
+                        <div class="fixed-icon"><i class="fas fa-arrow-right"></i> </div>explore all books
+                    </div>
+                </div>
+                <div class="horz-scroll">
+                    <div class="main">
+                        <div class="main-scroll-div">
+                            <div class="cover">
+                                <div class="btn-child-1">
+                                    <button class="icon" onclick="scrolll(4)">
+                                        <i class="fas fa-angle-left"> </i>
+                                    </button>
+                                </div>
+                                <div class="scroll-images" id="scroll-images-1">
+                                    {% for card in entry5 %}
+                                    <div class="child">
+                                        <div class="slider-image">
+                                            <a href="test.html">
+                                                <img src="{{card.card_image.url}}">
+                                                <div class="slider-image-hover-text">
+                                                    <div class="slider-image-hover-text-1">India</div>
+                                                    <div class="slider-image-hover-text-2">{{card.card_desc}}</div>
+                                                    <div class="slider-image-hover-text-3"> Read more<i
+                                                            class="fa-solid fa-arrow-right"></i></div>
+                                                </div>
+                                                <div class="slider-img-text">India</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                
+                                </div>
+                                <div class="btn-child-2">
+                                    <button class="icon" onclick="scrollr(4)">
+                                        <i class="fas fa-angle-right"> </i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <footer class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="footer-col">
+                            <h4>programs</h4>
+                            <ul>
+                                <li><a href="test.html">working holiday</a></li>
+                                <li><a href="test.html">volunteer abroad</a></li>
+                                <li><a href="test.html">internship programs</a></li>
+                                <li><a href="test.html">courses & study</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>destinations</h4>
+                            <ul>
+                                <li><a href="test.html">africa</a></li>
+                                <li><a href="test.html">north america</a></li>
+                                <li><a href="test.html">europe</a></li>
+                                <li><a href="test.html">asia</a></li>
+                                <li><a href="test.html">australia</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>bloggy</h4>
+                            <ul>
+                                <li><a href="test.html">about us</a></li>
+                                <li><a href="test.html">contact us</a></li>
+                                <li><a href="test.html">blogs</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>follow us</h4>
+                            <div class="social-links">
+                                <a href="test.html"><i class="fab fa-facebook-f"></i></a>
+                                <a href="test.html"><i class="fab fa-twitter"></i></a>
+                                <a href="test.html"><i class="fab fa-instagram"></i></a>
+                                <a href="test.html"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="last-row">
+                    <p class="last-row-p"><a href="#">terms & conditions</a> </p>
+                    <p class="last-row-p">|</p>
+                    <p class="last-row-p"><a href="#">imprint</a></p>
+                    <p class="last-row-p">|</p>
+                    <p class="last-row-p"><a href="#">privacy policy</a></p>
+                    <p class="last-row-p">|</p>
+                    <p class="last-row-p">copyright &copy; 2023-2027 Bloggy</p>
+                </div>
+        
+            </footer>
+        </div>
+    </div>
+</div>
+    {% endblock %} 

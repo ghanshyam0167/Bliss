@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bliss</title>
+    <link rel="icon" type="image/x-icon" href="/static/logo/Asset 11@1080x-8.png">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Marhey:wght@300..700&family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto|Open+Sans|Lato|Montserrat');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --purple: #5A618C;
+            --grey: #6D7E8C;
+            --darkgreen: #8EA65B;
+            --brightgreen: #C8F230;
+            --moderategreen: #B7D93D;
+            --midnightblue: #101720;
+            --deepnavyblue: #011222;
+            --charcolblack: #171717;
+            --richblack: #020D19;
+            --oilblack: #0c0c0c;
+            --darkslategrey: #0D1717;
+            --obsidian: #0B1215;
+            --primary: #44B78b;
+            --primary-accent: #93D7B7;
+            --secondary-accent: #44B78B;
+            --link-color: #93D7B7;
+            --body-fg: #C1CAD2;
+            --body-bg: #0e1117;
+            --logo-bg: #272c27;
+            --text-l10: #93D7B7;
+            --text-l20: #C9F0DD;
+            --onhover-bg: rgb(59 59 59 / 23%);
+            --fontfamilyRobo: "Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
+
+        }
+
+
+        body {
+            height: 100vh;
+            width: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url("https://media.istockphoto.com/id/1323720539/vector/abstract-seamless-pattern-on-a-newspaper-theme.jpg?s=612x612&w=0&k=20&c=qyhndAIdB2jsO3dKBzoDHsgT_N5pqsGXajpCUYcz708=");
+            background-size: cover;
+            background-position: center;
+
+        }
+
+        .opacmain {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            z-index: 1;
+            background-color: var(--deepnavyblue);
+        }
+
+        .main {
+            height: auto;
+            width: 1100px;
+            display: flex;
+            flex-direction: row;
+            border-radius: 8px;
+            z-index: 1;
+            box-shadow: 0 2px 4px rgb(255, 255, 255, 0.4);
+        }
+
+        .inner-left {
+            height: 600px;
+            width: 60%;
+            border-radius: 8px 0 0 8px;
+            background: url("https://media.istockphoto.com/id/1323720539/vector/abstract-seamless-pattern-on-a-newspaper-theme.jpg?s=612x612&w=0&k=20&c=qyhndAIdB2jsO3dKBzoDHsgT_N5pqsGXajpCUYcz708=") center/cover no-repeat;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .inner-left::after {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background-color: #011222a1;
+        }
+
+        .marque {
+            height: 33.33%;
+            width: 100%;
+            padding: 1.8% 0;
+            overflow: hidden;
+            white-space: nowrap;
+            z-index: 1;
+        }
+
+        #marque1,
+        #marque3 {
+            background-color: rgba(128, 128, 128, 0.666);
+            border-radius: 8px;
+            display: flex;
+            justify-content: left;
+        }
+
+        .scrolling_image {
+            height: 172px;
+            width: 140px;
+            z-index: 2;
+            border-radius: 8px;
+            overflow: hidden;
+            filter: brightness(90%);
+
+        }
+
+        #animatescroll_1,
+        #animatescroll_3 {
+            height: 100%;
+            width: max-content;
+            animation: scrollimage_right 20s infinite;
+            transition: margin-left ease;
+
+        }
+
+        #animatescroll_2 {
+            height: 100%;
+            width: max-content;
+            animation: scrollimage_left 20s infinite;
+            transition: margin-left ease;
+
+        }
+
+        @keyframes scrollimage_right {
+            0% {
+                margin-left: -190%;
+            }
+
+            10% {
+                margin-left: -160%;
+            }
+
+            20% {
+                margin-left: -130%;
+            }
+
+            30% {
+                margin-left: -100%;
+            }
+
+            40% {
+                margin-left: -70%;
+            }
+
+            50% {
+                margin-left: -40%;
+            }
+
+            60% {
+                margin-left: -10%;
+            }
+
+            70% {
+                margin-left: 2%;
+            }
+
+            100% {
+                margin-left: -190%;
+            }
+        }
+
+        @keyframes scrollimage_left {
+            0% {
+                margin-left: 0%;
+            }
+
+            10% {
+                margin-left: -10%;
+            }
+
+            20% {
+                margin-left: -40%;
+            }
+
+            30% {
+                margin-left: -70%;
+            }
+
+            40% {
+                margin-left: -100%;
+            }
+
+            50% {
+                margin-left: -130%;
+            }
+
+            60% {
+                margin-left: -160%;
+            }
+
+            70% {
+                margin-left: -190%;
+            }
+
+            100% {
+                margin-left: 0%;
+            }
+        }
+
+
+
+
+        .inner-right {
+            background-color: var(--deepnavyblue);
+            border-radius: 0 8px 8px 0;
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .inner-right-columns {
+            display: flex;
+            align-items: center;
+        }
+
+        #lg-text {
+            height: 100px;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            padding: 10px;
+            margin: 30px 0;
+        }
+
+        .logo {
+            height: 100%;
+            width: 40%;
+            padding: 4px;
+            display: flex;
+            justify-content: right;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+            width: 50px;
+            object-fit: fill;
+        }
+
+        .title {
+            height: 100%;
+            width: 60%;
+            padding: 4px;
+            display: flex;
+            justify-content: left;
+            align-items: end;
+            font-size: 40px;
+            color: white;
+            font-family: "Marhey", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 700;
+            font-style: normal;
+
+        }
+        .title span{
+            height: max-content;
+            width: max-content;
+            margin-bottom: -10px;
+ 
+        }
+
+        #faulty {
+            height: 25px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            font-size: 14px;
+            letter-spacing: 1px;
+            color: red;
+            font-family: "inter", sans-serif;
+            font-weight: 400;
+            text-transform: capitalize;
+
+        }
+
+        #faulty span {
+            width: max-content;
+        }
+
+        #email-input-div {
+            height: 50px;
+            width: calc(100% - 60px);
+            display: flex;
+            flex-direction: row;
+            margin: 3px 30px 3px 30px;
+            background-color: #bdc2c3d6;
+            border-radius: 8px;
+        }
+
+        .email-logo {
+            width: 10%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .email-input {
+            width: 90%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .inputs {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: inherit;
+            border-radius: 25px;
+            outline: none;
+            transition: box-shadow 0.3s, border-color 0.3s;
+            font-size: 18px;
+            background-color: inherit;
+            letter-spacing: 1px;
+        }
+
+        .inputs::placeholder {
+            color: black;
+            text-transform: capitalize;
+        }
+
+        #email-faulty {
+            height: 20px;
+            width: 100%;
+            display: none;
+            justify-content: left;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: red;
+            font-family: "inter", sans-serif;
+            font-weight: 400;
+            padding-left: 40px;
+            text-transform: capitalize;
+        }
+
+        #password-input-div {
+            height: 50px;
+            width: calc(100% - 60px);
+            display: flex;
+            flex-direction: row;
+            margin: 3px 30px 3px 30px;
+            background-color: #bdc2c3d6;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .password-logo {
+            width: 10%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .password-input {
+            width: 80%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #password-faulty {
+            height: 20px;
+            width: 100%;
+            display: none;
+            justify-content: left;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: red;
+            font-family: "inter", sans-serif;
+            font-weight: 400;
+            padding-left: 40px;
+            text-transform: capitalize;
+        }
+
+        #login-btn-div {
+            height: 80px;
+            width: 100%;
+            margin-top: 30px;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #submitButton {
+            height: 60%;
+            width: 80%;
+            background-color: #0a0754;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: background-color 0.5s ease-in-out;
+        }
+
+        #submitButton:disabled {
+            background-color: #849091bc;
+        }
+
+        #signup-option-div {
+            height: 30px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .option-text {
+            height: 100%;
+            width: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            letter-spacing: 1px;
+            font-family: "inter", sans-serif;
+            margin: 0 4px;
+            font-size: 16px;
+        }
+
+        .option-link {
+            height: 100%;
+            width: auto;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            margin: 0 4px;
+            text-transform: capitalize;
+            cursor: pointer;
+
+        }
+
+        .option-link a {
+            width: max-content;
+            color: blue;
+            text-decoration: none;
+            letter-spacing: 1px;
+            font-family: "inter", sans-serif;
+            font-size: 18px;
+        }
+
+        #hide_show_icon {
+            cursor: pointer;
+        }
+    </style>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+</head>
+
+<body>
+    <div class="opacmain">
+        <div class="main">
+            <div class="inner-left">
+                <div class="marque" id="marque1">
+                    <div class="animatescroll" id="animatescroll_1">
+                        {% for i in books_image %}
+                        <img src="{{ i.book_image.url }}" alt="Image" style="margin: 0 3px;" class="scrolling_image">
+                        {% endfor %}
+                    </div>
+
+                </div>
+                <div class="marque" id="marque2">
+                    <div class="animatescroll" id="animatescroll_2">
+                        {% for i in magazines_image %}
+                        <img src="{{ i.magazines_image.url }}" alt="Image" style="margin: 0 3px;"
+                            class="scrolling_image">
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="marque" id="marque3">
+                    <div class="animatescroll" id="animatescroll_3">
+                        {% for i in books_image_2 %}
+                        <img src="{{ i.book_image_2.url }}" alt="Image" style="margin: 0 3px;" class="scrolling_image">
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+            <div class="inner-right">
+                <div class="inner-right-columns" id="lg-text">
+                    <div class="logo">
+                        <img src="/static/logo/FINAL.png" alt="img" srcset="">
+                    </div>
+                    <div class="title"><span>liss</span></div>
+                </div>
+                {% if show %}
+                <div class="inner-right-columns" id="faulty"><span>Please enter valid credentials*</span></div>
+                {% endif %}
+                <form id="LoginForm" method="POST">
+                    {% csrf_token %}
+                    <div class="inner-right-columns" id="email-input-div">
+                        <div class="email-logo">
+                            <span class="material-symbols-outlined">
+                                mail
+                            </span>
+                        </div>
+                        <div class="email-input"> {{ form1.UserName }}</div>
+
+                    </div>
+                    <div class="inner-right-columns" id="email-faulty"><span>Please enter valid email address*</span>
+                    </div>
+                    <div class="inner-right-columns" id="password-input-div">
+                        <div class="password-logo">
+                            <span class="material-symbols-outlined">
+                                password
+                            </span>
+                        </div>
+                        <div class="password-input">
+                            {{ form1.PassWord }}
+                        </div>
+                        <div class="email-logo">
+                            <span class="material-symbols-outlined" onclick="show_hide()" id="hide_show_icon">
+                                visibility_off
+                            </span>
+                        </div>
+                    </div>
+                    <div class="inner-right-columns"><span id="password-faulty">Minimum 8 Character Required*</span>
+                    </div>
+                    <div class="inner-right-columns" id="login-btn-div">
+                        <button id="submitButton">Login</button>
+                    </div>
+                    <div class="inner-right-columns" id="signup-option-div">
+                        <div class="option-text"><span>Don't have an account?</span></div>
+                        <div class="option-link"><a href="{% url 'register' %}">Sign up</a></div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('LoginForm');
+        const submitButton = document.getElementById('submitButton');
+        const field1 = document.getElementById('username');
+        const msg1 = document.getElementById('email-faulty')
+        const field2 = document.getElementById('password');
+        const msg2 = document.getElementById('password-faulty')
+        //validating the username input field
+        function validateColorsusername() {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const field1Value = field1.value.trim();
+            if (!(regex.test(field1Value))) {
+                msg1.style.display = "flex";
+            }
+            else {
+                msg1.style.display = "none";
+            }
+        }
+        //validating password input field
+
+        function validateColorspassword() {
+            const field2Value = field2.value.trim();
+            if (!(field2Value.length >= 8)) {
+                msg2.style.display = "flex";
+            }
+            else {
+                msg2.style.display = "none";
+            }
+        }
+        // Function to check if both fields are valid
+        function validateFields() {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            const field1Value = field1.value.trim();
+            const field2Value = field2.value.trim();
+
+            if (regex.test(field1Value) && field2Value.length >= 8) {
+                return field1Value && field2Value;
+
+            }
+        }
+        // Function to enable/disable the submit button
+        function updateSubmitButton() {
+            submitButton.disabled = !validateFields();
+        }
+
+        // Event listeners for input in both fields
+        field1.addEventListener('input', updateSubmitButton);
+        field1.addEventListener('input', validateColorsusername);
+        field2.addEventListener('input', updateSubmitButton);
+        field2.addEventListener('input', validateColorspassword);
+
+        // Initially disable the submit button
+        updateSubmitButton();
+    });
+    function show_hide() {
+        var passwordInput = document.getElementById("password");
+        var toggleButton = document.getElementById("hide_show_icon");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleButton.innerText = "visibility";
+        } else {
+            passwordInput.type = "password";
+            toggleButton.innerText = "visibility_off";
+
+        }
+    }
+
+</script>
+
+</html>

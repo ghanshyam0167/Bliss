@@ -1,0 +1,307 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUY</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    :root {
+    --purple: #5A618C;
+    --grey: #6D7E8C;
+    --darkgreen: #8EA65B;
+    --brightgreen: #C8F230;
+    --moderategreen: #B7D93D;
+    --midnightblue: #101720;
+    --deepnavyblue: #011222;
+    --charcolblack: #171717;
+    --richblack: #020D19;
+    --oilblack: #0c0c0c;
+    --darkslategrey: #0D1717;
+    --obsidian: #0B1215;
+    --primary: #44B78b;
+    --primary-accent: #93D7B7;
+    --secondary-accent: #44B78B;
+    --link-color: #93D7B7;
+    --body-fg: #C1CAD2;
+    --body-bg: #0e1117;
+    --logo-bg: #272c27;
+    --text-l10: #93D7B7;
+    --text-l20: #C9F0DD;
+    --onhover-bg: rgb(59 59 59 / 23%);
+    --fontfamilyRobo: "Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
+
+}
+
+    body {
+    font-family:
+    'Montserrat', sans-serif;
+}
+.pricing {
+    background-color: var(--deepnavyblue);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 2em;
+}
+.table {
+    margin: 4em 1.5em;
+    text-align: center;
+    position: relative;
+    width: 300px; /* Adjust as needed */
+}
+.table-header {
+    width: 100%;
+    height: 13em;
+    background: linear-gradient(331deg, #321d58, #7344c8);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    clip-path: polygon(0 0,100% 0%,100% 80%,50% 100%,0 80%);
+}
+.shadow-container {
+    filter: drop-shadow(0 1em 1em rgba(0,0,0,0.2));
+}
+.price {
+    background-color: var(--primary-accent);
+    width: 7em;
+    height: 7em;
+    position: absolute;
+    top: -3.5em;
+    left: 50%;
+    transform: translate(-50%);
+    padding: 1.5em 1em 1em 1em;
+    border-radius: 50%;
+    z-index: 1;
+    box-shadow: 0 1em 1em rgba(0,0,0,0.3);
+}
+.price {
+    margin-top: -30px;
+}
+.price h1 {
+    font-size: 2.5em;
+    color: #637ab7;
+}
+.price small {
+    color: #999;
+}
+.title {
+    color: #fff;
+    text-transform: uppercase;
+}
+.title h1 {
+    margin: 0.3em;
+    font-size: 1.8em;
+    letter-spacing: 4px;
+}
+.title p {
+    font-size: 0.8em;
+    letter-spacing: 1px;
+}
+.table-body {
+    width: 100%;
+    margin: -4em auto 0 auto;
+    padding: 4em 1em 1em 1em;
+    background-color: var(--onhover-bg);
+    border-radius: 10px;
+    box-shadow: 0 0 4em rgb(0,0,0,.1);
+}
+.body-title h2 {
+    margin: 1em 0 0.2em 0;
+    color: whitesmoke;
+}
+.body-title p {
+    color: var(--body-fg);
+}
+.table ul {
+    list-style: none;
+    margin: 2em 0;
+}
+.table li {
+    padding: 1.3em 0;
+    color: #999;
+    font-size: 0.9em;
+}
+.table li:nth-child(odd) {
+    background-color: rgba(128, 128, 128, 0.338);
+}
+.table li i {
+    margin-right: 0.3em;
+}
+.table li .fa-check {
+    color: #00ff44;
+}
+.table button {
+    background: linear-gradient(331deg, #321d58, #7344c8);
+    color: #fff;
+    border: none;
+    border-radius: 5em;
+    padding: 1.1em 2.3em;
+    text-transform: uppercase;
+    font-weight: 600;
+    position: absolute;
+    bottom: -1.5em;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: 0.3s;
+    cursor: pointer;
+}
+.table button-hover {
+    background: #fff !important;
+    color: #111;
+}
+.table:nth-child(odd) {
+    font-size: 15px;
+}
+.table:nth-child(2) .table-header,.table:nth-child(2) button {
+    background: linear-gradient(331deg, #b71a50, #ff3c7d);
+}
+.table:nth-child(2) .price h1 {
+    color: #ff3c7d
+}
+.table:nth-child(3) .table-header,.table:nth-child(3) button {
+    background: linear-gradient(331deg, #cf3c31, #ff5d51);
+}
+.table:nth-child(3) .price h1 {
+    color: #ff5d51;
+}
+</style>
+<body>
+    <section class="pricing">
+        <div class="table">
+            <div class="price">
+                
+                <h1>&#8377;99</h1>
+                <large>/month</large> 
+            </div>
+            <div class="shadow-container">
+                <div class="table-header">
+                    <div class="title">
+                        <h1>Basic</h1>
+                        <p>Get start today </p>
+                    </div>
+                </div>
+            </div>
+            <div class="table-body">
+                <div class="body-title">
+                    <h2>Features</h2>
+                    <p>All premium contents</p>
+                </div>
+                <ul>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <span>Stories section</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <span>Editing features</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <span>Lorem ipsum dolor sit amet</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-times"></i>
+                        <span>Lorem ipsum dolor sit amet</span>
+                    </li>
+                </ul>
+            </div>
+            <button>Buy now</button>
+        </div>
+        <div class="table">
+            <div class="price">
+                <h1>&#8377;199</h1>
+                <large>/3 months</large>
+            </div>
+            <div class="shadow-container">
+                <div class="table-header">
+                    <div class="title">
+                        <h1>Starter</h1>
+                        <p>Saving &#8377;100 a quarter</p>
+                    </div>
+                </div>
+            </div>
+            <div class="table-body">
+                <div class="body-title">
+                    <h2>Features</h2>
+                    <p>All premium contents</p>
+                </div>
+                <ul>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <span>Stories section</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <span>Editing features</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <span>Lorem ipsum dolor sit amet</span>
+                    </li>
+                    <li>
+                    <i class="fas fa-check"></i>
+                    <span>Lorem ipsum dolor sit amet</span>
+                    </li>
+                </ul>
+            </div>
+            <a href="/home/?pk=1">
+                <button>Free trial</button>
+            </a>
+      
+        </div>
+        <div class="table">
+            <div class="price">
+                <h1>&#8377;599</h1>
+                <large>/Year</large>
+            </div>
+            <div class="shadow-container">
+                <div class="table-header">
+                    <div class="title">
+                        <h1>Premium</h1>
+                        <p>Saving &#8377;590 a year </p>
+                    </div>
+                </div>
+            </div>
+            <div class="table-body">
+                <div class="body-title">
+                    <h2>Features</h2>
+                    <p>All premium contents</p>
+                </div>
+                <ul>
+                    <li>
+                        <i class="fas fa fa-check"></i>
+                        <span>Stories section</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <span>Editing features</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <span>Lorem ipsum dolor sit amet</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        <span>Lorem ipsum dolor sit amet</span>
+                    </li>
+                </ul>
+            </div>
+            <button>Buy now</button>
+        </div>
+    </section>
+    
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" src="{% static 'feeprojecr.js' %}"></script>
+
+</html>

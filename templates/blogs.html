@@ -1,0 +1,424 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="rightcolumn" id="blogs">
+    <div class="main001">
+        <div class="mainvideo" style="position: fixed;">
+            {% for i in videos %}
+            <video id="video1" class="video" src="{{ i.video_file.url }}" id="myvideo"
+                style="height: 100%; width: 100%; object-fit: cover; transition: object-fit 1s ease;" autoplay muted>
+            </video>
+
+            {% endfor %}
+            <div class="videoback"></div>
+            <div class="mainvideodescribe">
+                {% for i in videos %}
+                <div class="innerdescribe-left">
+                    <div class="video-des-img"><img src="{{ i.video_img_show.url }}" alt="" srcset=""></div>
+                    <div class="detail-video">
+                        <span>{{ i.video_pdate }}</span>
+                        <span class="material-symbols-outlined dots">
+                            fiber_manual_record
+                        </span>
+                        <span>{{ i.video_author }}</span>
+                        <span class="material-symbols-outlined dots">
+                            fiber_manual_record
+                        </span>
+                        <span>{{ i.video_lng }}</span>
+                    </div>
+                    <div class="video-para">
+                        <p>{{ i.video_desc }}</p>
+                    </div>
+                    <div class="video-button">
+                        <a href="{% url 'content0' %}" style="text-decoration: none;">
+                            <button class="video-read-btn"><span class="material-symbols-outlined">
+                                    play_arrow
+                                </span>read more</button>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="innerdescribe-right">
+                    <div class="videoscrollar">
+                        <div class="videoscrollar-bar">
+                            <div class="mainvid-left-btn mainvideoscrollbtns">
+                                <span class="material-symbols-outlined ">
+                                    arrow_back_ios_new
+                                </span>
+                            </div>
+                            {% for i in videos %}
+                            <div class="videoscrollar-bar-child ">
+                                <div class="videoscrollar-bar-child-content"><img src="{{ i.video_img_preview.url }}"
+                                        alt="" srcset=""></div>
+                            </div>
+                            {% endfor %}
+                            <div class="mainvid-right-btn mainvideoscrollbtns">
+                                <span class="material-symbols-outlined ">
+                                    arrow_forward_ios
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="back-effect">
+        <div class="effectness-second">
+            <div class="horz">
+                <div class="fixed">
+                    <h1>Mental peace</h1>
+                    <h2>Solutions</h2>
+                    <p>Let go of resentment and anger by practicing forgiveness towards yourself and others.</p>
+                    <div class="fixed-last-text">
+                        <div class="fixed-icon"><i class="fas fa-arrow-right"></i> </div>explore all Articles
+                    </div>
+                </div>
+                <div class="horz-scroll">
+                    <div class="main">
+                        <div class="main-scroll-div">
+                            <div class="cover">
+                                <div class="btn-child-1">
+                                    <button class="icon" onclick="scrolll(0)">
+                                        <i class="fas fa-angle-left"> </i>
+                                    </button>
+                                </div>
+                                <div class="scroll-images" id="scroll-images-1">
+                                    {% for card in entry1 %}
+                                    <div class="child">
+                                        <div class="slider-image">
+                                            <a href="test.html">
+                                                <img src="{{ card.card_image.url }}">
+                                                <div class="slider-image-hover-text">
+                                                    <div class="slider-image-hover-text-1">India</div>
+                                                    <div class="slider-image-hover-text-2">{{card.card_desc}}</div>
+                                                    <div class="slider-image-hover-text-3"> Read more<i
+                                                            class="fa-solid fa-arrow-right"></i></div>
+                                                </div>
+                                                <div class="slider-img-text">India</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+
+                                </div>
+                                <div class="btn-child-2">
+                                    <button class="icon" onclick="scrollr(0)">
+                                        <i class="fas fa-angle-right"> </i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="horz-background">
+                <div class="horz">
+                    <div class="fixed">
+                        <h1>Tourism</h1>
+                        <h2>Go on a Tour</h2>
+                        <p>explore a destination, whether you're interested in history, culture, adventure, or simply
+                            relaxing and enjoying the scenery.</p>
+                        <div class="fixed-last-text">
+                            <div class="fixed-icon"><i class="fas fa-arrow-right"></i> </div>explore all Articles
+                        </div>
+                    </div>
+                    <div class="horz-scroll">
+                        <div class="main">
+                            <div class="main-scroll-div">
+                                <div class="cover">
+                                    <div class="btn-child-1">
+                                        <button class="icon" onclick="scrolll(1)">
+                                            <i class="fas fa-angle-left"> </i>
+                                        </button>
+                                    </div>
+                                    <div class="scroll-images" id="scroll-images-2">
+                                        {% for card in entry2%}
+                                        <div class="child">
+                                            <div class="slider-image">
+                                                <a href="test.html">
+                                                    <img src="{{card.card_image.url}}" style="object-fit: fill;">
+                                                    <div class="slider-image-hover-text">
+                                                        <div class="slider-image-hover-text-1">Tanzania</div>
+                                                        <div class="slider-image-hover-text-2">{{card.card_desc}}</div>
+                                                        <div class="slider-image-hover-text-3"> Read more<i
+                                                                class="fa-solid fa-arrow-right"></i></div>
+                                                    </div>
+                                                    <div class="slider-img-text">Tanzania</div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        {%endfor%}
+                                    </div>
+                                    <div class="btn-child-2">
+                                        <button class="icon" onclick="scrollr(1)">
+                                            <i class="fas fa-angle-right"> </i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="horz">
+                <div class="fixed">
+                    <h1>Exercise</h1>
+                    <h2>Be physically fit</h2>
+                    <p>Embrace the Extraordinary: Sculpting Your Unique Path to Physical Fitness. Unlock Your Body's
+                        Potential: Unconventional Paths to Peak Physical Fitness</p>
+                    <div class="fixed-last-text">
+                        <div class="fixed-icon"><i class="fas fa-arrow-right"></i> </div>explore all articles
+                    </div>
+                </div>
+                <div class="horz-scroll">
+                    <div class="main">
+                        <div class="main-scroll-div">
+                            <div class="cover">
+                                <div class="btn-child-1">
+                                    <button class="icon" onclick="scrolll(2)">
+                                        <i class="fas fa-angle-left"> </i>
+                                    </button>
+                                </div>
+                                <div class="scroll-images" id="scroll-images-1">
+                                    {% for card in entry3 %}
+                                    <div class="child">
+                                        <div class="slider-image">
+                                            <a href="test.html">
+                                                <img src="{{card.card_image.url}}">
+                                                <div class="slider-image-hover-text">
+                                                    <div class="slider-image-hover-text-1">India</div>
+                                                    <div class="slider-image-hover-text-2">{{card.card_desc}}</div>
+                                                    <div class="slider-image-hover-text-3"> Read more<i
+                                                            class="fa-solid fa-arrow-right"></i></div>
+                                                </div>
+                                                <div class="slider-img-text"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+
+                                </div>
+                                <div class="btn-child-2">
+                                    <button class="icon" onclick="scrollr(2)">
+                                        <i class="fas fa-angle-right"> </i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="horz-background">
+                <div class="horz">
+                    <div class="fixed">
+                        <h1>Conservation</h1>
+                        <h2>Save the earth</h2>
+                        <p>Harnessing the power of art, technology, and community engagement, we're redefining
+                            conservation efforts, sculpting a sustainable future that harmonizes with nature's rhythm.
+                        </p>
+                        <div class="fixed-last-text">
+                            <div class="fixed-icon"><i class="fas fa-arrow-right"></i> </div>explore all articles
+                        </div>
+                    </div>
+                    <div class="horz-scroll">
+                        <div class="main">
+                            <div class="main-scroll-div">
+                                <div class="cover">
+                                    <div class="btn-child-1">
+                                        <button class="icon" onclick="scrolll(3)">
+                                            <i class="fas fa-angle-left"> </i>
+                                        </button>
+                                    </div>
+                                    <div class="scroll-images" id="scroll-images-2">
+                                        {% for card in entry4 %}
+                                        <div class="child">
+                                            <div class="slider-image">
+                                                <a href="test.html">
+                                                    <img src="{{card.card_image.url}}" style="object-fit: fill;">
+                                                    <div class="slider-image-hover-text">
+                                                        <div class="slider-image-hover-text-1">Tanzania</div>
+                                                        <div class="slider-image-hover-text-2">{{card.card_desc}}</div>
+                                                        <div class="slider-image-hover-text-3"> Read more<i
+                                                                class="fa-solid fa-arrow-right"></i></div>
+                                                    </div>
+                                                    <div class="slider-img-text"></div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="btn-child-2">
+                                        <button class="icon" onclick="scrollr(3)">
+                                            <i class="fas fa-angle-right"> </i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="horz">
+                <div class="fixed">
+                    <h1>Cooking</h1>
+                    <h2>learn to cook</h2>
+                    <p>Embark on a culinary adventure blending global flavors, unconventional techniques, and a dash of
+                        creativity, crafting dishes that tantalize the taste buds and ignite your passion for cooking.
+                    </p>
+                    <div class="fixed-last-text">
+                        <div class="fixed-icon"><i class="fas fa-arrow-right"></i> </div>explore all articles
+                    </div>
+                </div>
+                <div class="horz-scroll">
+                    <div class="main">
+                        <div class="main-scroll-div">
+                            <div class="cover">
+                                <div class="btn-child-1">
+                                    <button class="icon" onclick="scrolll(4)">
+                                        <i class="fas fa-angle-left"> </i>
+                                    </button>
+                                </div>
+                                <div class="scroll-images" id="scroll-images-1">
+                                    {% for card in entry5 %}
+                                    <div class="child">
+                                        <div class="slider-image">
+                                            <a href="test.html">
+                                                <img src="{{card.card_image.url}}" style="object-fit: fill;">
+                                                <div class="slider-image-hover-text">
+                                                    <div class="slider-image-hover-text-1">India</div>
+                                                    <div class="slider-image-hover-text-2">{{card.card_desc}}</div>
+                                                    <div class="slider-image-hover-text-3"> Read more<i
+                                                            class="fa-solid fa-arrow-right"></i></div>
+                                                </div>
+                                                <div class="slider-img-text"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+
+                                </div>
+                                <div class="btn-child-2">
+                                    <button class="icon" onclick="scrollr(4)">
+                                        <i class="fas fa-angle-right"> </i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="horz-background">
+                <div class="horz">
+                    <div class="fixed">
+                        <h1>Premium</h1>
+                        <h2>Enjoy the best</h2>
+                        <p>This contents offers premium quality, delivering high-level insights and valuable
+                            information. Dive into an enriching experience with top-tier content that sets the standard
+                            for excellence.</p>
+                        <div class="fixed-last-text">
+                            <div class="fixed-icon"><i class="fas fa-arrow-right"></i> </div>explore all articles
+                        </div>
+                    </div>
+                    <div class="horz-scroll">
+                        <div class="main">
+                            <div class="main-scroll-div">
+                                <div class="cover">
+                                    <div class="btn-child-1">
+                                        <button class="icon" onclick="scrolll(5)">
+                                            <i class="fas fa-angle-left"> </i>
+                                        </button>
+                                    </div>
+                                    <div class="scroll-images" id="scroll-images-2">
+                                        {% for card in entry4 %}
+                                        <div class="child">
+                                            <div class="slider-image">
+                                                <div class="premiumcron" style="height: 32px; width: 32px; position: absolute; top: 10px; right: 10px; padding: 6px; border-radius: 50%; background-color: black; display: flex;
+                    align-items: center; justify-content: center; z-index: 1;">
+                                                    <span style="height: 20px; width: 20px;"> <img
+                                                            src="/static/web images/king_2545603.png" alt=""
+                                                            style="height: 100%; width: 100%; object-fit: cover; border-radius: 50%; position: inherit;"></span>
+                                                </div>
+                                                <a href="/subscribe/">
+                                                    <img src="{{card.card_image.url}}" style="object-fit: fill;">
+                                                    <div class="slider-image-hover-text">
+                                                        <div class="slider-image-hover-text-1">Tanzania</div>
+                                                        <div class="slider-image-hover-text-2">{{card.card_desc}}</div>
+                                                        <div class="slider-image-hover-text-3"> Read more<i
+                                                                class="fa-solid fa-arrow-right"></i></div>
+                                                    </div>
+                                                    <div class="slider-img-text"></div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="btn-child-2">
+                                        <button class="icon" onclick="scrollr(5)">
+                                            <i class="fas fa-angle-right"> </i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="footer-col">
+                            <h4>Learn More</h4>
+                            <ul>
+                                <li><a href="test.html">About Bliss</a></li>
+                                <li><a href="test.html">Getting started with Bliss</a></li>
+                                <li><a href="test.html">internship programs</a></li>
+                                <li><a href="test.html">courses & study</a></li>
+                                <li><a href="test.html">Code of Conduct</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Get Involved</h4>
+                            <ul>
+                                <li><a href="test.html">Contribute to Bliss</a></li>
+                                <li><a href="test.html">Submit a Bug</a></li>
+                                <li><a href="test.html">Report a Security Issue</a></li>
+                                <li><a href="test.html">Join a Group</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Get Help</h4>
+                            <ul>
+                                <li><a href="test.html">Getting Help FAQ</a></li>
+                                <li><a href="test.html">contact us</a></li>
+                                <li><a href="test.html">blogs</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>follow us</h4>
+                            <div class="social-links">
+                                <a href="test.html"><i class="fab fa-facebook-f"></i></a>
+                                <a href="test.html"><i class="fab fa-twitter"></i></a>
+                                <a href="test.html"><i class="fab fa-instagram"></i></a>
+                                <a href="test.html"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="last-row">
+                    <p class="last-row-p"><a href="#">terms & conditions</a> </p>
+                    <p class="last-row-p">|</p>
+                    <p class="last-row-p"><a href="#">imprint</a></p>
+                    <p class="last-row-p">|</p>
+                    <p class="last-row-p"><a href="#">privacy policy</a></p>
+                    <p class="last-row-p">|</p>
+                    <p class="last-row-p">copyright &copy; 2023-2027 Bliss</p>
+                </div>
+
+            </footer>
+        </div>
+    </div>
+</div>
+{% endblock %}
