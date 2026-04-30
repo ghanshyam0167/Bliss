@@ -56,7 +56,7 @@ class Post(models.Model):
 
 
 class Story(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="stories")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_stories")
     contenttext = models.TextField(null=True, blank=True)
     contentbackground = models.TextField(null=True, blank=True)
     contentfstyle = models.TextField(null=True, blank=True)
@@ -127,7 +127,7 @@ class Comment(models.Model):
 class Stories(models.Model):
     """Reaction/story text attached to a Post."""
     post = models.ForeignKey("Post", on_delete=models.CASCADE, related_name="poststories")
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_post_stories")
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
