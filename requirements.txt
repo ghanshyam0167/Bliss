@@ -15,3 +15,7 @@ gunicorn==22.0.0
 
 # Image handling (required for ImageField)
 Pillow==11.1.0
+
+# PostgreSQL support (for Vercel / production)
+dj-database-url==2.3.0
+psycopg2-binary==2.9.10
