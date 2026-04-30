@@ -1,0 +1,14 @@
+# Vercel ignore — these are excluded from the Lambda bundle
+venv/
+.venv/
+env/
+staticfiles/
+media/
+*.sqlite3
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+.git/
+.vscode/
+node_modules/
