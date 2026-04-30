@@ -1,8 +1,8 @@
 from django.contrib import admin
 from .models import Search
 
-class searchadmin(admin.ModelAdmin):
-    list_display = ("S_image", "S_image", "s_lng","s_author","s_pdate","s_desc")
 
-# Register your models here.
-admin.site.register(Search, searchadmin)
+@admin.register(Search)
+class SearchAdmin(admin.ModelAdmin):
+    list_display = ("id", "s_title", "s_author", "s_lng", "s_pdate")
+    search_fields = ("s_title", "s_author", "s_desc")

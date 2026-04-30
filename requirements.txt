@@ -1,6 +1,17 @@
-asgiref == 3.6.0
-Django == 4.1.5
-python-dateutil ==2.8.2
-six == 1.16.0
-sqlparse == 0.4.3
-tzdata== 2022.7
+# Core Django
+Django==5.1.9
+asgiref==3.8.1
+sqlparse==0.5.3
+tzdata==2024.2
+
+# Environment variable management
+python-decouple==3.8
+
+# Static file serving (production)
+whitenoise==6.8.2
+
+# Production WSGI server
+gunicorn==22.0.0
+
+# Image handling (required for ImageField)
+Pillow==11.1.0

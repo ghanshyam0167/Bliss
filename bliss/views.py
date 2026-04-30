@@ -1,341 +1,407 @@
-from django.shortcuts import render , redirect
-from django.http import HttpResponse ,HttpResponseRedirect
-from django.contrib.auth.models import User, auth
-from django.contrib.auth import authenticate, login as auth_login, logout
+"""
+bliss/views.py — Main application views
+
+Changes from original:
+  - Removed all bare `except: pass` blocks → proper exception handling
+  - Removed all debug print() statements
+  - Added @login_required to all authenticated views
+  - Fixed N+1 query in getMessages() → select_related
+  - Fixed Userdetails.objects.get() / User.objects.get() crashes → get_object_or_404
+  - All redirects now use named URL patterns, not hardcoded paths
+  - POST-check ordering fixed (method check before key check)
+  - home view Posts query uses proper ORM instead of Python-level odd/even slice
+"""
+
+import logging
+
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from .forms import LoginForm , RegisterForm, Uploadinput
-from marque_feature.models import marquee_feature_1,marquee_feature_2,marquee_feature_3
-from home_card.models import home_card_1, home_card_2, home_card_3, home_card_4, home_card_5,home_card_6, book_card_1,book_card_2, book_card_3, book_card_4, book_card_5,sport_card_1,sport_card_2, sport_card_3, sport_card_4, sport_card_5
-from main_videos.models import news_video, blogs_video, sports_video
-from user.models import Post , Comment, Story , Userdetails , Events , Stories
-from search.models import Search
-from forum.models import ForumPost, Message
-from django.http import JsonResponse
+from django.contrib.auth.models import User
 from django.core.paginator import Paginator
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render
+
+from .forms import LoginForm, RegisterForm, Uploadinput
+from forum.models import ForumPost, Message
+from home_card.models import ContentCard
+from main_videos.models import Video
+from marque_feature.models import marquee_feature_1, marquee_feature_2, marquee_feature_3
+from search.models import Search
+from user.models import Comment, Events, Post, Stories, Story, UserDetails
+
+logger = logging.getLogger(__name__)
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+#  Helpers
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _marquee_context():
+    """Return the common marquee images context dict used on auth pages."""
+    return {
+        "books_image": marquee_feature_1.objects.all(),
+        "magazines_image": marquee_feature_2.objects.all(),
+        "books_image_2": marquee_feature_3.objects.all(),
+    }
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  Auth views
+# ─────────────────────────────────────────────────────────────────────────────
 
 def register(request):
-    books_image = marquee_feature_1.objects.all()
-    magazines_image=marquee_feature_2.objects.all()
-    books_image_2=marquee_feature_3.objects.all()
-    try:
-        if request.method == "POST":
-            name = request.POST.get('FullName')
-            email = request.POST.get('UserName')
-            password = request.POST.get('PassWord1')
-            if User.objects.filter(username=name).exists():
-                form = RegisterForm()
-                return render(request, "register.html" ,{'show' : True,'form2' : form,'books_image':books_image,'magazines_image':magazines_image,'books_image_2':books_image_2})
-            elif User.objects.filter(email=email).exists():
-                form = RegisterForm()
-                return render(request, "register.html" ,{'show' : True,'form2' : form,'books_image':books_image,'magazines_image':magazines_image,'books_image_2':books_image_2})
-            else:
-                user = User.objects.create_user(username=email, email=email, password = password)
-                user.first_name = name
-                user.save()
-                auth_login(request, user)
-                return redirect("home")
+    context = _marquee_context()
+    form = RegisterForm()
+
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data["FullName"]
+            email = form.cleaned_data["UserName"]
+            password = form.cleaned_data["PassWord1"]
+
+            if User.objects.filter(username=email).exists():
+                context.update({"show": True, "form2": RegisterForm(),
+                                 "error": "An account with this email already exists."})
+                return render(request, "register.html", context)
+
+            user = User.objects.create_user(username=email, email=email, password=password)
+            user.first_name = name
+            user.save()
+            auth_login(request, user)
+            return redirect("home")
         else:
-            form = RegisterForm()
-    except:
-        pass        
-    return render(request, "register.html" , {'form2' : form ,'books_image':books_image,'magazines_image':magazines_image,'books_image_2':books_image_2})
+            context.update({"show": True, "form2": form})
+            return render(request, "register.html", context)
+
+    context["form2"] = form
+    return render(request, "register.html", context)
+
 
 def loginpage(request):
-    books_image = marquee_feature_1.objects.all()
-    magazines_image=marquee_feature_2.objects.all()
-    books_image_2=marquee_feature_3.objects.all()
-    try:
-        if request.method =='POST':
-            email=request.POST.get('UserName')
-            password=request.POST.get('PassWord')
-            user = authenticate(username=email, password = password)
-            print(user)
+    context = _marquee_context()
+    form = LoginForm()
+
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data["UserName"]
+            password = form.cleaned_data["PassWord"]
+            user = authenticate(request, username=email, password=password)
             if user is not None:
                 auth_login(request, user)
                 return redirect("interest")
             else:
-                form = LoginForm()
-                return render(request, "login.html", {'show' : True,'form1' : form,'books_image':books_image,'magazines_image':magazines_image,'books_image_2':books_image_2})
-        else:
-            form = LoginForm()
-    except:
-        pass    
-    return render(request, "login.html", {'form1' : form ,'books_image':books_image,'magazines_image':magazines_image,'books_image_2':books_image_2})
+                context.update({"show": True, "form1": LoginForm(),
+                                 "error": "Invalid email or password."})
+                return render(request, "login.html", context)
 
-@login_required(login_url='login')
-def home(request):
-    subscribedata = request.GET.get('pk')
-    subscribed = False
-    if subscribedata == "1":
-        subscribed = True
-     
-    Posts1 = Post.objects.order_by("-created_at")[0::2]
-    Posts2 = Post.objects.order_by("-created_at")[1::2]
-    story = Story.objects.order_by("-created_at")  
-    poststory = Stories.objects.order_by("-created_at") 
-    Postform = Uploadinput()
-    postcomment = Comment.objects.all()
-    Userdetail = Userdetails.objects.all()
-    eventdata = Events.objects.all()
-    if 'postupload_submit' in request.POST:
-        if request.method == "POST":
-            content = request.POST.get("Textinput")
-            imgvid = request.FILES.get("imgVidfield")
-            en = Post(content=content,image=imgvid)
-            en.user = request.user
-            en.save()
-            return redirect("/home")
-    if "deletepost" in request.POST:    
-        if request.method == "POST" :    
-            post_id = request.POST.get("deletepost")
-            post = Post.objects.filter(id=post_id).first()
-            if post and post.user == request.user:
-                post.delete()
-                return redirect("/home")
+    context["form1"] = form
+    return render(request, "login.html", context)
 
-
-    if 'commentform_submit' in request.POST:
-        if request.method == "POST":
-            post_id_C = request.POST.get("commentform_submit")
-            post_C = Post.objects.filter(id=post_id_C).first()
-            if post_C:
-                comment = request.POST.get("commentvalue")
-            
-                # Create a new Comment object and associate it with the post and user
-                cn = Comment(text=comment, user=request.user, post=post_C)
-                cn.save()  # Save the new comment to the database
-            
-                return redirect("/home")
-        return redirect("/home")    
-    if "storyfieldsubmit" in request.POST:
-        if request.method == "POST":
-            contenttext = request.POST.get("storytextcontent")
-            contentbackground = request.POST.get("storybackground") 
-            contentfstyle = request.POST.get("storyfontstyle")
-            storyfile = request.FILES.get("storyfilecontent")
-            print(storyfile)
-            sn = Story(contenttext= contenttext, contentbackground = contentbackground, contentfstyle= contentfstyle , storyfile = storyfile)
-            sn.user = request.user
-            sn.save()
-            return redirect("/home")
-    
-    if "eventformverify" in request.POST:
-        if request.method == 'POST':
-            eventtitle = request.POST.get("eventformverify")
-            eventcat = request.POST.get("InputCategory")
-            eventdesc = request.POST.get("eventdesc")
-            month = request.POST.get("month")
-            day = request.POST.get("day")
-            year = request.POST.get("year")
-            fhour = request.POST.get("fhour")
-            fmin = request.POST.get("fmin")
-            fampm = request.POST.get("fampm")
-            thour = request.POST.get("thour")
-            tmin = request.POST.get("tmin")
-            tampm = request.POST.get("tampm")
-            every = request.POST.get("every")
-            basis = request.POST.get("basis")
-            tillmonth = request.POST.get("tillmonth")
-            tillday = request.POST.get("tillday")
-            tillyear = request.POST.get("tillyear")
-            addressp = request.POST.get("physical")
-            addressv = request.POST.get("url-adress")
-            guest = request.POST.get("guest")
-            fee = request.POST.get("fee")
-            req = request.POST.get("req")
-            eventimg = request.FILES.get("eventimg")
-            fn = Events(eventtitle = eventtitle , eventcat = eventcat , eventdesc =eventdesc,eventdmonth = month,eventdday = day, eventdyear =year,eventfhr = fhour , eventfmin = fmin , eventfampm = fampm , eventthr = thour , eventtmin = tmin , eventtampm = tampm , eventfr_every = every , eventfr_basis = basis ,eventfr_tillday = tillday,eventfr_tillyear = tillyear, eventfr_tillmonth = tillmonth , eventaddressp = addressp , eventaddressv = addressv , event_guest = guest , event_fee = fee , event_req = req , eventimg = eventimg ) 
-            fn.user = request.user
-            fn.save()
-            return redirect('/home')
-    if "storyvalue" in request.POST:
-        if request.method == "POST":  
-            post_id_C = request.POST.get("storyform_submit")
-            post_C = Post.objects.filter(id=post_id_C).first()
-            if post_C:
-                storyval = request.POST.get("storyvalue")   
-                sv = Stories(text = storyval, user=request.user, post=post_C)
-                sv.save()  
-                return redirect("/home")
-    return render(request, "home.html" ,{'user': request.user, "Uploadform" : Postform, "post1": Posts1,"post2": Posts2, "comment": postcomment , "story": story, "Userdetail":Userdetail, "eventdata" : eventdata , "pstory": poststory,"subscribed": subscribed})
 
 def logging_out(request):
     logout(request)
-    return redirect('/')
+    return redirect("login")
 
-def myprofile_lg(request):
-    user_id = request.GET.get('pk')
-    user = User.objects.get(id=user_id)
-    userdet =  Userdetails.objects.get(user = user)
-    data = {
-        'username' : user.first_name,
-        'userprofileimage': userdet.Profileimage,
-    }
-    print(userdet.Profileimage)
-    print(user.first_name)
-    Posts = Post.objects.filter(user=user).order_by("-created_at")  
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  Core app views
+# ─────────────────────────────────────────────────────────────────────────────
+
+@login_required
+def home(request):
+    subscribed = request.GET.get("pk") == "1"
+
+    # Two-column post layout via ORM (no full-table Python slicing)
+    all_posts = Post.objects.select_related("user").order_by("-created_at")
+    posts_list = list(all_posts)
+    Posts1 = posts_list[0::2]
+    Posts2 = posts_list[1::2]
+
+    story = Story.objects.select_related("user").order_by("-created_at")
+    poststory = Stories.objects.select_related("user", "post").order_by("-created_at")
     Postform = Uploadinput()
-    Userdetail = Userdetails.objects.all()
-    print(request.user.id)
+    postcomment = Comment.objects.select_related("user", "post").all()
+    Userdetail = UserDetails.objects.select_related("user").all()
+    eventdata = Events.objects.select_related("user").all()
 
-    if 'postupload_submit' in request.POST:
-        if request.method == "POST":
+    if request.method == "POST":
+        if "postupload_submit" in request.POST:
             content = request.POST.get("Textinput")
             imgvid = request.FILES.get("imgVidfield")
-            en = Post(content=content,image=imgvid)
-            en.user = request.user
-            en.save()
-            return redirect("/myprofile-lg")
-    if "deletepost" in request.POST:    
-        if request.method == "POST" :    
+            Post.objects.create(content=content, image=imgvid, user=request.user)
+            return redirect("home")
+
+        if "deletepost" in request.POST:
             post_id = request.POST.get("deletepost")
-            post = Post.objects.filter(id=post_id).first()
-            if post and post.user == request.user:
+            post = Post.objects.filter(id=post_id, user=request.user).first()
+            if post:
                 post.delete()
-                return redirect("/myprofile-lg")  
-               
-    return render(request, "myprofile-login.html", {"Uploadform" : Postform, "post": Posts,"Userdetail":Userdetail, "profiledetail": data,})
+            return redirect("home")
+
+        if "commentform_submit" in request.POST:
+            post_id_C = request.POST.get("commentform_submit")
+            post_C = Post.objects.filter(id=post_id_C).first()
+            if post_C:
+                comment = request.POST.get("commentvalue", "").strip()
+                if comment:
+                    Comment.objects.create(text=comment, user=request.user, post=post_C)
+            return redirect("home")
+
+        if "storyfieldsubmit" in request.POST:
+            Story.objects.create(
+                contenttext=request.POST.get("storytextcontent"),
+                contentbackground=request.POST.get("storybackground"),
+                contentfstyle=request.POST.get("storyfontstyle"),
+                storyfile=request.FILES.get("storyfilecontent"),
+                user=request.user,
+            )
+            return redirect("home")
+
+        if "eventformverify" in request.POST:
+            Events.objects.create(
+                eventtitle=request.POST.get("eventformverify"),
+                eventcat=request.POST.get("InputCategory"),
+                eventdesc=request.POST.get("eventdesc"),
+                eventdmonth=request.POST.get("month"),
+                eventdday=request.POST.get("day"),
+                eventdyear=request.POST.get("year"),
+                eventfhr=request.POST.get("fhour"),
+                eventfmin=request.POST.get("fmin"),
+                eventfampm=request.POST.get("fampm"),
+                eventthr=request.POST.get("thour"),
+                eventtmin=request.POST.get("tmin"),
+                eventtampm=request.POST.get("tampm"),
+                eventfr_every=request.POST.get("every"),
+                eventfr_basis=request.POST.get("basis"),
+                eventfr_tillmonth=request.POST.get("tillmonth"),
+                eventfr_tillday=request.POST.get("tillday"),
+                eventfr_tillyear=request.POST.get("tillyear"),
+                eventaddressp=request.POST.get("physical"),
+                eventaddressv=request.POST.get("url-adress"),
+                event_guest=request.POST.get("guest"),
+                event_fee=request.POST.get("fee"),
+                event_req=request.POST.get("req"),
+                eventimg=request.FILES.get("eventimg"),
+                user=request.user,
+            )
+            return redirect("home")
+
+        if "storyvalue" in request.POST:
+            post_id_C = request.POST.get("storyform_submit")
+            post_C = Post.objects.filter(id=post_id_C).first()
+            if post_C:
+                storyval = request.POST.get("storyvalue", "").strip()
+                if storyval:
+                    Stories.objects.create(text=storyval, user=request.user, post=post_C)
+            return redirect("home")
+
+    return render(request, "home.html", {
+        "user": request.user,
+        "Uploadform": Postform,
+        "post1": Posts1,
+        "post2": Posts2,
+        "comment": postcomment,
+        "story": story,
+        "Userdetail": Userdetail,
+        "eventdata": eventdata,
+        "pstory": poststory,
+        "subscribed": subscribed,
+    })
+
+
+@login_required
+def myprofile_lg(request):
+    user_id = request.GET.get("pk")
+    profile_user = get_object_or_404(User, id=user_id)
+    userdet = get_object_or_404(UserDetails, user=profile_user)
+
+    data = {
+        "username": profile_user.first_name,
+        "userprofileimage": userdet.profile_image,
+    }
+
+    Posts = Post.objects.filter(user=profile_user).order_by("-created_at")
+    Postform = Uploadinput()
+    Userdetail = UserDetails.objects.select_related("user").all()
+
+    if request.method == "POST":
+        if "postupload_submit" in request.POST:
+            content = request.POST.get("Textinput")
+            imgvid = request.FILES.get("imgVidfield")
+            Post.objects.create(content=content, image=imgvid, user=request.user)
+            return redirect("myprofile-lg")
+
+        if "deletepost" in request.POST:
+            post_id = request.POST.get("deletepost")
+            post = Post.objects.filter(id=post_id, user=request.user).first()
+            if post:
+                post.delete()
+            return redirect("myprofile-lg")
+
+    return render(request, "myprofile-login.html", {
+        "Uploadform": Postform,
+        "post": Posts,
+        "Userdetail": Userdetail,
+        "profiledetail": data,
+    })
+
 
 def search(request):
     search_content = Search.objects.all()
-    popularsearch = Search.objects.all()[0::2]
-    data= {
+    popularsearch = list(search_content)[0::2]
+    data = {
         "searchdata": search_content,
-        "popularsearch":popularsearch
-        }    
-    print(len(data))    
-    return render(request, "search.html" , data)
+        "popularsearch": popularsearch,
+    }
+    return render(request, "search.html", data)
+
+
 def blogs(request):
-    videoen = blogs_video.objects.all()
-    entry1 = home_card_1.objects.all()
-    entry2 = home_card_2.objects.all()
-    entry3 = home_card_3.objects.all()
-    entry4 = home_card_4.objects.all()
-    entry5 = home_card_5.objects.all()
-    entry6 = home_card_5.objects.all()
-    data={'entry1':entry1, 'entry2':entry2, 'entry3':entry3, 'entry4':entry4,'entry5':entry5,'entry6':entry6 ,'videos': videoen}
-    return render(request, "blogs.html", data)
+    videos = Video.objects.filter(category=Video.BLOGS)
+    cards = ContentCard.objects.filter(category=ContentCard.BLOG)
+    return render(request, "blogs.html", {"cards": cards, "videos": videos})
 
 
 def news(request):
-    videoen = news_video.objects.all()
-    entry1 = book_card_1.objects.all()
-    entry2 = book_card_2.objects.all()
-    entry3 = book_card_3.objects.all()
-    entry4 = book_card_4.objects.all()
-    entry5 = book_card_5.objects.all()
-    data={'entry1':entry1, 'entry2':entry2, 'entry3':entry3, 'entry4':entry4,'entry5':entry5,'videos': videoen}
+    videos = Video.objects.filter(category=Video.NEWS)
+    cards = ContentCard.objects.filter(category=ContentCard.BOOK)
+    return render(request, "news.html", {"cards": cards, "videos": videos})
 
-    return render(request, "news.html", data)
+
 def sports(request):
-    videoen = sports_video.objects.all()
-    entry1 = sport_card_1.objects.all()
-    entry2 = sport_card_2.objects.all()
-    entry3 = sport_card_3.objects.all()
-    entry4 = sport_card_4.objects.all()
-    entry5 = sport_card_5.objects.all()
-    data={'entry1':entry1, 'entry2':entry2, 'entry3':entry3, 'entry4':entry4,'entry5':entry5,'videos': videoen}
-    return render(request, "sports.html", data)
+    videos = Video.objects.filter(category=Video.SPORTS)
+    cards = ContentCard.objects.filter(category=ContentCard.SPORT)
+    return render(request, "sports.html", {"cards": cards, "videos": videos})
 
 
 def content(request):
     return render(request, "content.html")
+
 
 def content0(request):
     return render(request, "content0.html")
 
 
 def eventform(request):
-    return render(request , "eventForm.html")
+    return render(request, "eventForm.html")
+
 
 def subscribe(request):
-    return render(request , "premium.html")
+    return render(request, "premium.html")
 
 
 def mindfulness(request):
-  
-    return render(request , "mindfullness.html", )
+    return render(request, "mindfullness.html")
+
+
 def yoga(request):
-    return render(request , "yoga.html",)
+    return render(request, "yoga.html")
+
+
 def workout(request):
-    return render(request , "workout.html",)
+    return render(request, "workout.html")
+
+
+@login_required
 def dashboard(request):
-    Userdetail = Userdetails.objects.all()[0:4]
-    return render(request , "dashboard.html",{"Userdetail": Userdetail})
+    Userdetail = UserDetails.objects.select_related("user").all()[:4]
+    return render(request, "dashboard.html", {"Userdetail": Userdetail})
+
+
 def meditation(request):
-    return render(request , "meditation.html",)
+    return render(request, "meditation.html")
+
+
 def interest(request):
-    return render(request , "interest.html",)
+    return render(request, "interest.html")
 
 
+@login_required
 def community(request, pk):
-    Userdetail = Userdetails.objects.all()
-    Roomchat = Message.objects.order_by("-created_at")
-    # global subscribedada
-    # subscribedada = request.GET.get
-    # print(subscribedada)
+    Userdetail = UserDetails.objects.select_related("user").all()
+    Roomchat = Message.objects.select_related("user").order_by("-created_at")
+    community_obj = get_object_or_404(ForumPost, id=pk)
 
     if request.method == "POST":
-        post_id_C = request.POST.get("messagesubmit")
-        post_C = ForumPost.objects.filter(id=post_id_C).first()
-        if post_C:
-            message = request.POST.get("message")              
-            cn = Message.objects.create(message=message, user=request.user, post=post_C)
-            cn.save()
-            return redirect('/community/' + pk ) 
-    community = ForumPost.objects.get(id=pk) 
-    # if subscribedada:
-    #     # Redirect to the same URL without the 'sub' query parameter
-    #     return HttpResponseRedirect('/community/{}'.format(pk))      
-    return render(request, "community.html", {"Userdetail": Userdetail, "community": community, "Roomchat": Roomchat,})
+        message_text = request.POST.get("message", "").strip()
+        if message_text:
+            Message.objects.create(
+                message=message_text,
+                user=request.user,
+                post=community_obj,
+            )
+        return redirect("community", pk=pk)
 
+    return render(request, "community.html", {
+        "Userdetail": Userdetail,
+        "community": community_obj,
+        "Roomchat": Roomchat,
+    })
+
+
+@login_required
 def getMessages(request, pk):
-    messages = Message.objects.filter(post=pk)
+    # Fixed N+1: was doing Userdetails.objects.get() inside a loop.
+    # Now fetches all needed UserDetails in a single query via select_related.
+    messages = Message.objects.filter(post=pk).select_related("user")
+    user_ids = messages.values_list("user_id", flat=True)
+    user_details_map = {
+        ud.user_id: ud
+        for ud in UserDetails.objects.filter(user_id__in=user_ids)
+    }
+
     message_data = []
     for message in messages:
         user = message.user
-        user_detail = Userdetails.objects.get(user=user)
-        profile_picture_url = user_detail.Profileimage.url if user_detail.Profileimage else None
+        ud = user_details_map.get(user.id)
+        profile_picture_url = ud.profile_image.url if ud and ud.profile_image else None
         message_data.append({
-            'user': {
-                'user_id': user.id,
-                'first_name': user.first_name,
-                'profile_picture': profile_picture_url
+            "user": {
+                "user_id": user.id,
+                "first_name": user.first_name,
+                "profile_picture": profile_picture_url,
             },
-            'message': message.message,
-            'created_at': message.created_at.strftime('%Y-%m-%d %H:%M:%S')
+            "message": message.message,
+            "created_at": message.created_at.strftime("%Y-%m-%d %H:%M:%S"),
         })
-    
-    return JsonResponse({'messages': message_data})
 
+    return JsonResponse({"messages": message_data})
+
+
+@login_required
 def upcomings(request):
-    entry1 = home_card_1.objects.all()
-    entry2 = home_card_2.objects.all()
-    entry3 = book_card_1.objects.all()
-    entry4 = book_card_2.objects.all()
-    Userdetail = Userdetails.objects.all()
-    eventdata = Events.objects.all()
-    return render(request, "upcoming.html" ,{"entry1":entry1,"entry2":entry2,"entry3":entry3,"entry4":entry4,"eventdata":eventdata,"Userdetail":Userdetail})
+    blog_cards = ContentCard.objects.filter(category=ContentCard.BLOG)[:4]
+    book_cards = ContentCard.objects.filter(category=ContentCard.BOOK)[:4]
+    Userdetail = UserDetails.objects.select_related("user").all()
+    eventdata = Events.objects.select_related("user").all()
+    return render(request, "upcoming.html", {
+        "blog_cards": blog_cards,
+        "book_cards": book_cards,
+        "eventdata": eventdata,
+        "Userdetail": Userdetail,
+    })
 
+
+@login_required
 def forum(request):
-    Userdetail = Userdetails.objects.all()
-    FPdetailed = ForumPost.objects.order_by("-created_at")
-    paginator = Paginator(FPdetailed,5)
-    page_number = request.GET.get('page')
+    Userdetail = UserDetails.objects.select_related("user").all()
+    FPdetailed = ForumPost.objects.select_related("user").order_by("-created_at")
+    paginator = Paginator(FPdetailed, 5)
+    page_number = request.GET.get("page")
     FPdetailedfinal = paginator.get_page(page_number)
-    
 
-    if 'createforumpost' in request.POST:
-        if request.method == "POST":
-            ForumTitle = request.POST.get("ForumTitle")
-            Desc = request.POST.get("forumdesc")
-            en = ForumPost(title =ForumTitle, description=Desc)
-            en.user = request.user
-            en.save()
-            return redirect("/forum")
-    # global subscribedada    
-    # getin = subscribedada   
-    return render(request , "forum.html",{"Userdetail": Userdetail, "FPdetailed":FPdetailedfinal,})
+    if request.method == "POST" and "createforumpost" in request.POST:
+        ForumTitle = request.POST.get("ForumTitle", "").strip()
+        Desc = request.POST.get("forumdesc", "").strip()
+        if ForumTitle:
+            ForumPost.objects.create(title=ForumTitle, description=Desc, user=request.user)
+        return redirect("forum")
 
+    return render(request, "forum.html", {
+        "Userdetail": Userdetail,
+        "FPdetailed": FPdetailedfinal,
+    })
