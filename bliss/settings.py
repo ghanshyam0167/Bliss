@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "cloudinary_storage",
+    "cloudinary",
     # Project apps
     "marque_feature",
     "home_card",
@@ -120,10 +122,22 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 
 # ─────────────────────────────────────────────────────────
-#  Media files
+#  Media files — Cloudinary in production, local in dev
 # ─────────────────────────────────────────────────────────
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": config("CLOUDINARY_CLOUD_NAME", default=""),
+    "API_KEY": config("CLOUDINARY_API_KEY", default=""),
+    "API_SECRET": config("CLOUDINARY_API_SECRET", default=""),
+}
+
+if config("CLOUDINARY_CLOUD_NAME", default=""):
+    # Production: store media on Cloudinary
+    DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+    MEDIA_URL = "/media/"  # Cloudinary overrides the actual URL
+else:
+    # Development: store media locally
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = BASE_DIR / "media"
 
 
 # ─────────────────────────────────────────────────────────

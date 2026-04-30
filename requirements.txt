@@ -19,3 +19,7 @@ Pillow==11.1.0
 # PostgreSQL support (for Vercel / production)
 dj-database-url==2.3.0
 psycopg2-binary==2.9.10
+
+# Cloud media storage (images/videos on Vercel)
+cloudinary==1.41.0
+django-cloudinary-storage==0.3.0
